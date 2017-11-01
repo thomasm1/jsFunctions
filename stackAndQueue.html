@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stack</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<style>
+    body {
+        margin:10px;
+    }
+	#div2 {
+	color:white;
+	background-color:steelblue;
+	opacity:.8; 
+	}
+	
+	#div3 {
+	background-color:steelblue;
+	opacity:.8;
+	}
+	form {
+	background-color:slateblue;
+	opacity:.8;
+	color:silver;}
+	#stack {
+	background-color:slateblue;
+	opacity:.8;
+	color:silver;}
+	#queue {
+	background-color:darkgreen;
+	opacity:.8;
+	color:white;}
+</style>
+</head>
+<body> 
+
+
+
+
+
+        <p>What is bonjour mean?</p>
+        
+        <p><input type="text" id="magicWord"></p>
+    
+        <p><button id="checkMagicWord">Enter</button></p>
+        
+        <script type="text/javascript">
+            
+            document.getElementById("checkMagicWord").onclick = function() {
+                
+                var magicWordEntered = document.getElementById("magicWord").value;
+                
+                var magicWord = "hello";
+                
+                if (magicWordEntered == magicWord) {
+                    
+                    alert("You got it!");
+                    
+                } else {
+                    
+                    alert("Nope, try again!");
+                    
+                }
+                
+            }
+            
+        </script>
+        <div id="div2">
+		<p>How many fingers am I holding up?</p>
+        
+        <p><input type="text" id="guess"> <button id="checkGuess">Guess!</button></p>
+        
+        <script type="text/javascript">
+            
+            document.getElementById("checkGuess").onclick = function() {
+                
+                var randomNumber = Math.random();
+                
+                randomNumber = randomNumber * 6;
+                
+                randomNumber = Math.floor(randomNumber);
+                
+                if (document.getElementById("guess").value == randomNumber) {
+                    
+                    alert("Well done! You got it!");
+                    
+                } else {
+                    
+                    alert("Nope! The number was " + randomNumber);
+                    
+                }
+                
+            }
+            
+            
+        </script>
+		</div>
+
+
+
+
+<div id="div3">
+        <p id="text">Hello World!</p>
+        
+        <button id="myButton">Change text</button>
+        
+        <script type="text/javascript">
+            
+            document.getElementById("myButton").onclick = function() {
+                
+                document.getElementById("text").innerHTML = "Hello I'm Tom!";
+                
+            }
+        
+        </script>
+</div>
+
+
+     
+ 
+ <form>
+        <div class="form-group">
+        <!--  <label for="palindrome-detector"> </label> 
+         
+          <input name="palindrome-detector" type="input" class="form-control" id="textInput" placeholder="Enter palindrome">-->
+   <p id="text"></p> 
+<script type="text/javascript">
+    // STACK 
+    console.log('Start STACK I -- PALINDROME'); 
+ document.write('Start STACK I -- PALINDROME<br /><br /><br />');
+  var letters = new Array();   // this is our stack 
+            letters[0] = "Array-zero<br />"; 
+            document.write(' // this is our stack ');
+            letters[1] = "Array-one<br />";  
+            document.write(letters[1]);
+            letters.push("++push +htis ++!<br />");
+            document.write(letters + ' is th whole array'); 
+            letters.splice(1, 1, "this splices in at [1]", "this second splices ends at [1]<br />"); 
+            document.write(letters);
+            console.log(letters);
+
+  // this is our stack 
+var word =  "racecar";
+
+var rword = "";
+// put letters of word into stack
+for (var i = 0;i < word.length; i++) {
+    letters.push(word[i]);
+}
+// pop off the stack in reverse order
+for (var i = 0; i < word.length; i++) {
+    rword += letters.pop();
+}
+
+if (rword === word) {
+    console.log(' <h4> ' + word + 'is a palindrome.</h4>');
+    document.write(word + ' is a palindrome.');
+    
+}
+else {
+    console.log(word + ' is not a palindrome');
+    document.write(word + ' is not a palindrome');
+}
+</script>
+
+        </div>
+        <div class="form-group">
+       <!--   <label for="stack"> </label>
+          <input  name="stack" class="form-control" id="stack" placeholder="stack">-->
+        </div>
+      
+      
+        </div>
+      
+      </form> 
+<div id="stack">
+<script>
+    // STACK 
+console.log('Start STACK 2'); 
+document.write('Start STACK 2<br /><br />');
+var Stack = function() {
+    this.count = 0;
+    this.storage = {};
+// Adds a value onto end of stack
+    this.push = function(value) {
+        this.storage[this.count] = value;
+        this.count++;
+    }
+// Removes and returns a value at the end of stack
+    this.pop = function() {
+        if (this.count === 0) {
+            return undefined;
+        }
+        this.count--;
+        var result = this.storage[this.count];
+        delete this.storage[this.count];
+        return result;
+    } 
+    this.size = function() {
+        return this.count;
+    }
+    // Returns value at the end of the stack (BUT DOES NOT REMOVE ITEM)
+    this.peek = function() {
+        return this.storage[this.count-1];
+    }
+};
+
+var myStack = new Stack();
+myStack.push('push'); 
+document.write(myStack.peek());
+
+myStack.push('push2');
+console.log(myStack.peek());
+document.write(myStack.peek());
+console.log(myStack.pop()); 
+console.log(myStack.peek());
+
+myStack.push('push3');
+document.write(myStack.peek());
+console.log(myStack.peek()); 
+</script>
+</div>
+
+<div id="queue">
+<hr><br /><hr>
+
+<script>
+console.log('Start QUEUE'); 
+document.write('Start QUEUE<br /><br />');
+function Queue() { // q is here
+	collection = []; // collect items in queue
+	this.print = function() {
+		document.write(collection);
+	}; // helper function
+	this.enqueue = function(element) { // pushes first item on q
+		collection.push(element);
+	};
+	this.dequeue = function() {  // takes item off queue
+		return collection.shift();// pulls off first item in array , returns it
+	};
+	this.front = function() { // this returns item at 0 index, (no remove)
+		return collection [0];
+	};
+	this.size = function() { // length method
+		return collection.length;
+	};
+	this.isEmpty = function() {
+		return (collection.length === 0);
+	};
+}
+ 
+var q = new Queue();
+q.enqueue('a');
+q.enqueue('b');
+q.enqueue('c');
+q.print();
+document.write('<br />');
+q.dequeue();
+q.front();
+q.print();
+document.write('<br />');
+
+</script>
+<hr><br /><hr>
+
+<script>
+console.log('Start PRIORITY QUEUE'); 
+document.write('Start PRIORITY QUEUE<br /><br />');
+function PriorityQueue() { // q is here
+	collection = []; // collect items in queue
+	this.printCollection = function() {
+		console.log(collection));
+		document.write(collection);
+	}; // helper function
+	this.enqueue = function(element) {  
+		if .... line 41
+</div>
+</body>
+</html>
