@@ -1,0 +1,154 @@
+/*
+Browsers add prefixes to property names before they are stable
+moz : Firefox, ms : IE, o : Opera and webkit : Chrome / Safari
+*/
+
+div#div1, div#div2, div#div3, div#div4{
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  border: 3px solid black;
+}
+
+/* Direction or left / right / top / bottom, color stops*/
+#div1{
+  background: -moz-linear-gradient(45deg, red, yellow, blue);
+  background: -webkit-linear-gradient(45deg, red, yellow, blue);
+  background: -ms-linear-gradient(45deg, red, yellow, blue);
+  background: -o-linear-gradient(45deg, red, yellow, blue);
+  background: linear-gradient(45deg, red, yellow, blue);
+}
+
+/* You can also define how much of the gradient each color takes up */
+#div2{
+  background: -moz-linear-gradient(left top, red 20%, yellow 30%, blue 60%);
+  background: -webkit-linear-gradient(left top, red 20%, yellow 30%, blue 60%);
+  background: -ms-linear-gradient(left top, red, yellow, blue);
+  background: -o-linear-gradient(left top, red, yellow, blue);
+  background: linear-gradient(left top, red, yellow, blue);
+}
+
+/* You can have the gradient repeat */
+#div3{
+  background: -moz-repeating-linear-gradient(left top, red 20%, yellow 30%, blue 60%);
+  background: -webkit-repeating-linear-gradient(left top, red 20%, yellow 30%, blue 60%);
+  background: -ms-repeating-linear-gradient(left top, red 20%, yellow 30%, blue 60%);
+  background: -o-repeating-linear-gradient(left top, red 20%, yellow 30%, blue 60%);
+  background: repeating-linear-gradient(left top, red 20%, yellow 30%, blue 60%);
+}
+
+/* Radial gradients are another option */
+#div4{
+  background: -moz-radial-gradient(red 20%, yellow 30%, blue 60%);
+  background: -webkit-radial-gradient(red 20%, yellow 30%, blue 60%);
+  background: -ms-radial-gradient(red 20%, yellow 30%, blue 60%);
+  background: -o-radial-gradient(red 20%, yellow 30%, blue 60%);
+  background: radial-gradient(red 20%, yellow 30%, blue 60%);
+}
+
+div#div5, div#div6, div#div7, div#div8{
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  border: 3px solid black;
+}
+
+/* Make an element scale when interacted with */
+#div5:hover{
+  -webkit-transform: scale(2);
+  -moz-transform: scale(2);
+  -o-transform: scale(2);
+  -ms-transform: scale(2);
+}
+
+/* Make an element rotate when interacted with
+Also have rotateX(deg) & rotateY(deg)*/
+#div6:hover{
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+}
+
+/* Make an element skew Also have skewX(deg) & skewY(deg) */
+#div7:hover{
+  -webkit-transform: skew(20deg, 10deg);
+  -moz-transform: skew(20deg, 10deg);
+  -o-transform: skew(20deg, 10deg);
+  -ms-transform: skew(20deg, 10deg);
+}
+
+/* Make an element move Also have translateX(deg) & translateY(deg) */
+#div8:hover{
+  -webkit-transform: translate(20px, 20px);
+  -moz-transform: translate(20px, 20px);
+  -o-transform: translate(20px, 20px);
+  -ms-transform: translate(20px, 20px);
+}
+
+div#div9{
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  border: 3px solid black;
+  background: orange;
+}
+
+/* You can define a change to an element and have it slowly take effect
+Transition
+ease : Increasing change
+ease-in : Increase at start
+ease-out : Decrease at end
+ease-in-out : Increase at start, decrease at end
+linear : Constant change
+*/
+
+#div9:hover{
+  background: red;
+  border-radius: 20px;
+  -webkit-transition: 2s ease-in-out;
+  -ms-transition: 2s ease-in-out;
+  -o-transition: 2s ease-in-out;
+  -moz-transition: 2s ease-in-out;
+  transition: 2s ease-in-out;
+}
+
+div#div10, div#div11, div#div12{
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  border: 3px solid black;
+  background: red;
+}
+
+/* Animate by changing attributes over time
+Define name, duration, delay and the changes to make */
+
+div#div10{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 4s;
+    -webkit-animation-delay: 2s;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-delay: 2s;
+}
+
+@-webkit-keyframes example {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:-200px;}
+    75%  {background-color:green; left:0px; top:-200px;}
+    100% {background-color:red; left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:-200px;}
+    75%  {background-color:green; left:0px; top:-200px;}
+    100% {background-color:red; left:0px; top:0px;}

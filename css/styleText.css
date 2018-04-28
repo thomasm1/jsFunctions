@@ -1,0 +1,76 @@
+#underline{
+  text-decoration: underline;
+}
+
+#line-through{
+  text-decoration: line-through;
+}
+
+#overline{
+  text-decoration: overline;
+}
+
+#lowercase{
+  text-transform: lowercase;
+}
+
+#uppercase{
+  text-transform: uppercase;
+}
+
+#capitalize{
+  text-transform: capitalize;
+}
+
+/* Whitespace is preserved and wraps on line breaks */
+#whitespace-pre{
+  white-space: pre;
+}
+
+/* White space collapses, but only wraps on line break */
+#never-wrap{
+  white-space: nowrap;
+}
+
+#preserve-wrap{
+  white-space: pre-wrap;
+}
+
+#left-right{
+  direction: ltr;
+}
+
+#right-left{
+  direction: rtl;
+}
+
+table{
+  width: 600px;
+  caption-side: top;
+  text-align: center;
+  border: 2px solid black;
+}
+
+td {
+  border: 2px solid black;
+  padding: 10px;
+}
+
+table#fixed{
+  table-layout: fixed;
+}
+
+/*
+border spacing applies 10px space on left / right and
+15px on top / bottom
+
+empty-cells will hide the border if the column doesn't
+contain anything
+
+border-collapse deletes the table border
+*/
+table#spacing{
+  border-spacing: 10px 15px;
+  empty-cells: hide;
+  border-collapse: collapse;
+}

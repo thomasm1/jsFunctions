@@ -1,0 +1,51 @@
+@import "heading.css";
+@import "paragraph.css";
+  
+ 
+* { font-family: "Roboto",  sans-serif;}
+ 
+div * { font-family: "Comic Sans MS", cursive, sans-serif; }
+ 
+.sitelink { font-family: Georgia, serif; }
+ 
+ 
+p.sitelink {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  color: black;
+}
+ 
+span#IDnbc {
+  font-family: "Times New Roman", Times, serif;
+  color: blue;
+}
+  
+#IDnbc{
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  color: black;
+}
+ 
+#references ol li {
+  color: purple;
+}
+ 
+#references ul li {
+  color: green;
+}
+ 
+h3 + p{
+  font-style: italic;
+}
+ 
+h3 + p > a {
+  color: red;
+}
+ 
+p[class] {
+  background: gray;
+}
+ 
+p[id] {
+  background: yellow;
+}
+ 
+*[alt~="tmm"] {background: steelblue;}
