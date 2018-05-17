@@ -1,0 +1,230 @@
+/* Change the color of links in the document based on events */
+a:hover { color: blue; }
+a:active { color: red; }
+a:visited { color: #989898; }
+
+body {
+  background: #5D8AA8;
+}
+
+div#wrapper{
+  margin:0 auto;
+  background:white;
+  width:800px;
+  height:1500px;
+}
+
+header {
+  /* Display like a <p> instead of like a <span> */
+  display:block;
+  /* Padding Top, Right, Bottom, Left */
+  padding: 0px 0px 10px 0px;
+}
+
+#websiteLogo{
+  padding: 5px 0px 0px 5px;
+}
+
+/* Treat the nav tag as a block element */
+#horzNav {
+  display:block;
+  /* Padding Top, Right, Bottom, Left */
+  padding: 5px 20px 5px 0px;
+  background: black;
+}
+
+/* Remove underlines from links in the nav element */
+#horzNav a {
+  text-decoration: none;
+  padding: 0px 0px 0px 20px;
+  color: white;
+}
+
+/* Add hover color */
+#horzNav a:hover {
+  color: #89CFF0;
+}
+
+main {
+  /* Padding Top, Right, Bottom, Left */
+  padding: 10px 10px 20px 20px;
+  float: left;
+  width: 600px;
+}
+
+#sidebar{
+  padding: 20px 10px 0px 10px;
+  float: right;
+  width: 150px;
+  height: auto;
+  background: #DBE9F4;
+}
+
+h2{
+  font-size: 1em;
+}
+
+/* text-align aligns text either to the left, center, or right */
+/* word-spacing defines the size of the space between words */
+#para-1 {
+  text-align: left;
+  word-spacing: .5em;
+}
+
+#para-2 {
+  text-align: right;
+}
+
+#para-3 {
+  text-align: center;
+}
+
+#para-4 {
+  text-indent: 2em;
+}
+
+/* letter-spacing changes the space between letters */
+#para-5 {
+  letter-spacing: .5em;
+}
+
+/* clear makes sure no elements appear next to footer */
+footer{
+  clear: both;
+  background: black;
+  color: white;
+  padding: 10px 10px 10px 10px;
+}
+
+/* Different list marker options
+circle, disc, lower-latin, lower-greek, upper-latin, upper-greek,
+square, url("pic.png"), upper-roman, lower-roman, decimal
+*/
+#sidebar-list{
+  list-style-type: lower-latin;
+  list-style-position: outside;
+}
+
+/* You can define that list markers should be inside list item
+content boxes (Default is outside above)*/
+
+#sidebar-list-2{
+  list-style-position: inside;
+}
+
+/* You can place content before an element */
+p#para-1:before{
+  content: "*";
+}
+
+/* You can place content after as well */
+p#para-1:after{
+  content: "@";
+}
+
+/* Auto generate numbered content
+Create a counter to count the number of h3 tags starting with 1
+and store the value in num, or sub. You can also define the increment
+amount.
+You can output the values with content
+*/
+h3{
+  font-size: .9em;
+  counter-increment: num;
+}
+
+h4{
+  font-size: .7em;
+  counter-increment: sub 2;
+}
+
+h3:before{
+  content: counter(num) " ";
+}
+
+h4:before{
+  content: counter(num) "." counter(sub) " ";
+}
+
+/* There are many CSS Pseudo-classes */
+/* You can style the first letter in an element */
+#para-2:first-letter{
+  font-size: 25pt;
+}
+
+/* You can style the first line */
+#para-3:first-line{
+  background: yellow;
+}
+
+/* Color the first child span in the document */
+span:first-child{
+  background-color: orange;
+}
+
+/* Select every p that is the last child of its parent */
+p:last-child {
+  background: #FAE7B5;
+}
+
+/* Select the 2nd child span */
+span:nth-child(2){
+  background: #FFE4C4;
+}
+
+h3:hover {
+  background: orange;
+}
+
+/* We can change the cursor when an element is hovered over
+pointer, crosshair, move, text, wait, progress, help, url(samp.cur)
+*/
+#common-quote {
+  cursor: pointer;
+}
+
+/* Draw a box around an element */
+#para-4 {
+  outline: 2px solid blue;
+}
+
+#para-5 {
+  border: 2px solid black;
+}
+
+/*   buttons with hover effects as well */
+dl#buttons{
+  width: 150px;
+}
+
+dt.site-button{
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+dt.site-button a{
+  display: block;
+  color: white;
+  text-decoration: none;
+}
+
+dt.site-button a:link{
+  background: blue;
+  border: 5px solid blue;
+}
+
+dt.site-button a:hover{
+  background: green;
+  border: 5px solid blue;
+}
+
+dl#kids-pics a img.hidden{
+  visibility: hidden;
+  position: absolute;
+  left: 110px;
+  top: 742px;
+}
+
+dl#kids-pics a:hover img.hidden{
+  visibility: visible;
+}

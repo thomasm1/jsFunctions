@@ -1,0 +1,93 @@
+#parent-div{
+  background: #B2BEB5;
+  border: 0.1em solid black;
+}
+
+#default{
+  background: #DBE9F4;
+}
+
+/*
+  auto makes sure space on the left = right
+  Show how changing between em, % and pixels changes things
+*/
+#centered{
+  background: #89CFF0;
+  width: 50%;
+  margin: auto;
+}
+
+/* text-align: left, right, center, justify */
+#centered-text{
+  text-align: center;
+}
+
+/* Absolute Positioning : Positioning Based on the Document */
+#top-left-pos{
+  background: #89CFF0;
+  border: 0.1em solid black;
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  z-index: 4; /* Element with highest z index goes on top */
+}
+
+#bottom-right-tl-parent {
+  background: #DBE9F4;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+#top-right-pos{
+  background: #89CFF0;
+  border: 0.1em solid black;
+  position: absolute;
+  width: 400px;
+  height: 100px;
+  top: 0px;
+  right: 0px;
+}
+
+#bottom-left-tr-parent {
+  background: #DBE9F4;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+/* Fixed positioning : Positioning Based on the Browser */
+
+#fixed-pos{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #DBE9F4;
+  border: 0.1em solid black;
+  margin: 0;
+}
+
+/* Relative Positioning : Positioned Relative to the original */
+
+#relative-1{
+  background: #DBE9F4;
+  border: 0.1em solid black;
+  height: 100px;
+}
+
+#relative-2{
+  position: relative;
+  left: 20px; /* 20px to the right of original */
+  top: -30px; /* 30px up from original */
+  width: 300px;
+  background: yellow;
+  border: 0.1em solid black;
+}
+
+/* Floating Content : Float an element to the left or right of the parent */
+
+img[src="LittleBrain.png"] {
+  float: left;
+  padding: 10px;
+}

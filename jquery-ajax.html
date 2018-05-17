@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JQuery Tutorial</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+                                              <!--XML separeate customers.xml  
+                                              <customers>
+                                              <customer id="0">
+                                              <firstName>Paul</firstName>
+                                              <lastName>Jones</lastName>
+                                              <street>123 Main St</street>
+                                              <city>Anywhere</city>
+                                              <zip>15235</zip>
+                                              </customer>
+
+                                              <customer id="1">
+                                              <firstName>Sally</firstName>
+                                              <lastName>Jones</lastName>
+                                              <street>123 Main St</street>
+                                              <city>Anywhere</city>
+                                              <zip>15235</zip>
+                                              </customer>
+                                              </customers>
+                                              -->
+<h3>Playing with Server Data</h3>
+<div>
+  <h3>Message from the Server:</h3>
+  <p id="first">Waiting for Message</p>
+</div>
+ 
+<form id="theForm">
+  <button type="button" id="oneButton">Get Text</button><br />
+ 
+<div>
+  <h3>Double Number on the Server:</h3>
+  <span></span><br />
+</div>
+ 
+<input type="text" name="data" id="data"></input>
+<button type="button" id="twoButton">Double Number</button><br /><br />
+<button type="button" id="threeButton">Get XML Data</button>
+ 
+</form>
+ 
+<div>
+  <h3>XML Data from the Server:</h3>
+</div>
+ 
+<div id="customers">Customer Information</div>
+ 
+<script type="text/javascript">
+          $("document").ready(function() {
+            $("#oneButton").on("click",getInfoFromServer);
+            $("#twoButton").on("click",getDblFromServer);
+            $("#threeButton").on("click",getXmlFromServer);
+          });
+
+          // Pull text from a text file on the server
+          // Type defines the type of request to make being GET or POST
+          // Success defines the function to call if the request
+          // succeeds
+          // Error could be defined to specify the function to call if
+          // an error happens
+
+          function getInfoFromServer() {
+          $.ajax({
+            type: "GET",
+            url: "textFromServer.txt",
+            success: postToPage});
+          }
+
+          // Function called to display the message from the server
+          // Receives the text and the server status
+          function postToPage(data, status) {
+            $('#first').text(data);
+          }
+
+          // Load a value into a span
+          // I define that the program getDouble.php should be executed
+          // getDouble is sent the information in the form and then it
+          // stores the returned info in the span
+
+          function getDblFromServer() {
+            $("span").load("getDouble.php",
+            $("#theForm").serializeArray());
+          }
+
+          // Here I define that I'm receiving xml data from the server
+
+          function getXmlFromServer() {
+          $.ajax({
+            type: "GET",
+            url: "customers.xml",
+            datatype: "xml",
+            success: postToPageTwo});
+          }
+
+          // I use the find method to search through the xml data
+          // When I match for any of these attributes I append them to
+          // the div named customers
+
+          function postToPageTwo(data) {
+
+            $(data).find('customer').each(function(){
+              var id = $(this).attr('id');
+              var firstName = $(this).find('firstName').text();
+              var lastName = $(this).find('lastName').text();
+              var street = $(this).find('street').text();
+              var city = $(this).find('city').text();
+              var zip = $(this).find('zip').text();
+
+              $('<div class="firstname"></div>').html(firstName).appendTo('#customers');
+
+              $('<div class="lastname"></div>').html(lastName).appendTo('#customers');
+
+              $('<div class="street"></div>').html(street).appendTo('#customers');
+
+              $('<div class="city"></div>').html(city).appendTo('#customers');
+
+              $('<div class="zip"></div><br />').html(zip).appendTo('#customers');
+
+            });
+          }
+</script>
+</body>
+</html>

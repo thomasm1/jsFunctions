@@ -1,0 +1,48 @@
+/* You can create column boxes that fits content into boxes */
+
+div#lorem{
+  height: 150px;
+  width: 450px;
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+div#lorem{
+  -webkit-columns: 4;
+  -ms-columns: 4;
+  -o-columns: 4;
+  -moz-columns: 4;
+  columns: 4;
+}
+
+div#lorem{
+  -webkit-column-rule: 2px dashed black;
+  -ms-columns: 2px dashed black;
+  -o-columns: 2px dashed black;
+  -moz-columns: 2px dashed black;
+  columns: 2px dashed black;
+}
+
+/* You can define the amount of space taken up by elements in a containing
+element */
+#container{
+  height: 150px;
+  width: 450px;
+  border: 2px solid black;
+}
+
+#container{
+  display: -webkit-box;
+}
+
+#div1{
+  -webkit-box-flex : 2;
+}
+
+#div2{
+  -webkit-box-flex : 2;
+}
+
+#div3{
+  -webkit-box-flex : 3;
+}
