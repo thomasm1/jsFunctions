@@ -106,5 +106,5 @@ console.log(req.checkBody.fname);
 });
 
 app.listen(3000, function(){
-    console.log('Server starting, cough cough, on Port 3000...');
+    console.log('EJS Server starting, cough cough, on Port 3000...');
 })
