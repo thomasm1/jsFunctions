@@ -1,4 +1,4 @@
-    var body = d3.select("body");
+    var body = d3.select("two");
         
     function teleport(s){
         s.transition().duration(1000) // <-A

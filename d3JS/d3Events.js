@@ -1,4 +1,4 @@
-    var body = d3.select("body"), duration = 3000;
+    var body = d3.select("four"), duration = 3000;
 
     var div = body.append("div")
             .classed("box", true)

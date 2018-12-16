@@ -2,13 +2,62 @@
 <head>
   <meta charset="utf-8">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="iris.css"/> 
+<style>
+.one, .three, .five {
+  background-color:lightblue;
+  width:600px;
+  margin:20px;
+  border: solid 1px blue;
+  display:none;
+}
+.two, .four, .six {
+  background-color:steelblue;
+  width:800px;
+  display:none;
+}
+</style>
 </head>
 
+
 <body>
-  <script>
-    
+<button id="one">one</button>
+<button id="two">two</button>
+<button id="three">three</button>
+<button id="four">four - transition</button>
+<button id="five">five</button>
+<button id="six">six - data generation</button>
+
+<div class="charts">
+<div class="d3 one">1</div>
+<div class="d3 two">2
+  <div></div>
+  <div></div></div>
+<div class="d3 three">3
+  <div></div>
+  <div></div>
+</div>
+<div class="d3 four">4
+  <div></div>
+  <div></div></div>
+<div class="d3 five">5
+  <div></div>
+  <div></div></div>
+<div class="d3 six">6
+  <div></div>
+  <div></div></div> 
+</div> 
+<script> 
+
+document.getElementById('one').addEventListener('click', function () {
+  
+  console.log("You finally clicked without jQuery");
+    d3.selectAll(".d3").style("display","none");
+  d3.selectAll(".one").style("display","block");
+   
     function render(data){
-      d3.select("body")
+      d3.selectAll(".one")
         .append("pre")
         .text(JSON.stringify(data, null, 2));
     }
@@ -19,7 +68,239 @@
       d.petal_width  = +d.petal_width;
       return d;
     }
-    d3.csv("../data/iris.csv", type, render);
+    d3.csv("iris.csv", type, render);
+});
+</script>
+
+<script>
+document.getElementById('two').addEventListener('click', function () {
+   
+  console.log("You finally clicked without jQuery");
+    d3.selectAll(".d3").style("display","none");
+  d3.selectAll(".two").style("display","block");
+    var body = d3.selectAll(".two");
+        
+    function teleport(s){
+        s.transition().duration(1000) // <-A
+            .style("width", "200px")
+            .style("height", "1px")
+        .transition().duration(500) // <-B
+            .style("left", "600px")
+        .transition().duration(1000) // <-C
+            .style("left", "800px")
+            .style("height", "80px")
+            .style("width", "80px");
+    };
     
-  </script>
+    body.append("div")    
+            .style("position", "fixed")
+            .style("background-color", "steelblue")
+            .style("left", "10px")
+            .style("width", "80px")
+            .style("height", "80px")
+            .call(teleport); // <-D    
+});
+
+
+
+
+document.getElementById('three').addEventListener('click', function () {
+  console.log("You finally clicked without jQuery");
+  d3.selectAll(".d3").style("display", "none");
+  d3.selectAll(".three").style("display","block"); 
+var data = [ // <-A
+{name: 'Linear', fn: d3.easeLinear},
+{name: 'Cubic', fn: d3.easeCubic},
+{name: 'CubicIn', fn: d3.easeCubicIn},
+{name: 'Sin', fn: d3.easeSin},
+{name: 'SinIn', fn: d3.easeSinIn},
+{name: 'Exp', fn: d3.easeExp},
+{name: 'Circle', fn: d3.easeCircle},
+{name: 'Back', fn: d3.easeBack},
+{name: 'Bounce', fn: d3.easeBounce},
+{name: 'Elastic', fn: d3.easeElastic},
+{name: 'Custom', fn: function(t){ return t * t; }}// <-B
+],
+colors = d3.scaleOrdinal(d3.schemeCategory20);
+
+d3.select(".three").selectAll("div")
+.data(data) // <-C
+.enter()
+.append("div")
+.attr("class", "fixed-cell")
+.style("top", function (d, i) {
+return i * 40 + "px";
+})
+.style("background-color", function (d, i) {
+return colors(i);
+})
+.style("color", "white")
+.style("left", "500px")
+.text(function (d) {
+return d.name;
+});
+  
+});
+
+
+document.getElementById('four').addEventListener('click', function () {
+  console.log("You finally clicked without jQuery");
+  d3.selectAll(".d3").style("display", "none");
+  d3.selectAll(".four").style("display","block"); 
+  var body = d3.selectAll(".four"), duration = 3000;
+
+    var div = body.append("div")
+            .classed("box", true)
+            .style("background-color", "steelblue")
+            .style("color", "white")
+            .text("waiting") // <-A
+        .transition().duration(duration) // <-B
+                .delay(1000) // <-C
+                .on("start", function(){ // <-D
+                    d3.select(this).text(function (d, i) {
+                        return "transitioning";
+                    });
+                })
+                .on("end", function(){ // <-E
+                    d3.select(this).text(function (d, i) {
+                        return "done";
+                    });
+                })
+            .style("margin-left", "600px");
+});
+ 
+document.getElementById('five').addEventListener('click', function () {
+  
+  console.log("You finally clicked without jQuery");
+    d3.selectAll(".d3").style("display","none");
+  d3.selectAll(".five").style("display","block");
+   
+
+  var data = ["Cat", "Dog", "Cat", "Dog", "Cat", "Dog", "Cat", "Dog"],
+        duration = 1500;
+
+    d3.selectAll(".five").selectAll("div")
+            .data(data)
+        .enter()
+        .append("div")
+            .attr("class", "fixed-cell")
+            .style("top", function (d, i) {
+                return i * 40 + "px";
+            })
+            .style("background-color", "steelblue")
+            .style("color", "white")
+            .style("left", "500px")
+            .text(function (d) {
+                return d;
+            })
+            .transition() // <- A
+                .duration(duration)
+                    .style("left", "10px")
+            .filter(function(d){return d == "Cat";}) // <- B
+                .transition() // <- C
+                .duration(duration)
+                    .style("left", "500px");
+}); 
+
+document.getElementById('six').addEventListener('click', function () {
+  console.log("You finally clicked without jQuery");
+  d3.selectAll(".d3").style("display", "none");
+  d3.selectAll(".six").style("display","block"); 
+var id= 0,
+        data = [],
+        duration = 500,
+        chartHeight = 100,
+        chartWidth = 680;
+
+    for(var i = 0; i < 20; i++) push(data);
+
+    function render(data) {
+        var selection = d3.selectAll(".six")
+                .selectAll("div.v-bar")
+                .data(data, function(d){return d.id;}); // <-A
+
+        // enter
+        selection.enter()
+                .append("div")
+                .attr("class", "v-bar")
+                .style("z-index", "0")
+                .style("position", "fixed")
+                .style("top", chartHeight + "px")
+                .style("left", function(d, i){
+                    return barLeft(i+1) + "px"; // <-B
+                })
+                .style("height", "0px") // <-C
+                .append("span");
+
+        // update
+        selection
+                .transition().duration(duration) // <-D
+                .style("top", function (d) {
+                    return chartHeight - barHeight(d) + "px";
+                })
+                .style("left", function(d, i){
+                    return barLeft(i) + "px";
+                })
+                .style("height", function (d) {
+                    return barHeight(d) + "px";
+                })
+                .select("span")
+                .text(function (d) {return d.value;});
+
+        // exit
+        selection.exit()
+                .transition().duration(duration) // <-E
+                .style("left", function(d, i){
+                    return barLeft(-1) + "px"; //<-F
+                })
+                .remove(); // <-G
+    }
+
+    function push(data) {
+        data.push({
+            id: ++id,
+            value: Math.round(Math.random() * chartHeight)
+        });
+    }
+
+    function barLeft(i) {
+        return i * (30 + 2);
+    }
+
+    function barHeight(d) {
+        return d.value;
+    }
+
+    setInterval(function () {
+        data.shift();
+        push(data);
+        render(data);
+    }, 2000);
+
+    render(data);
+
+    d3.selectAll(".six")
+       .append("div")
+           .attr("class", "baseline")
+           .style("position", "fixed")
+           .style("z-index", "1")
+           .style("top", chartHeight + "px")
+           .style("left", "0px")
+           .style("width", chartWidth + "px");
+});
+</script>
+<script></script>
+  <!--
+  <script src="d3Chaining.js"></script>
+  
+  <script src="d3Chart.js"></script>
+  
+  <script src="d3Easing.js"></script>
+  
+  <script src="d3Filter.js"></script>
+  
+  <script src="transitionMulti.js"></script>
+  
+  <script src=""></script>-->
 </body>
+ 
