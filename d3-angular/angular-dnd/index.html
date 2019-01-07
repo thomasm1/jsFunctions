@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="website" ng-controller="MainCtrl">
+<head>
+    <title>AngularJS Drag and Drop!</title>
+    <link href="css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="css/no-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+    <link href="css/website.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="list-area">
+    <div class="list-wrapper">
+        <ul class="list" sortable ng-repeat="group in groups">
+            <h2>{{group.label}}</h2>
+            <hr>
+            <li ng-repeat="task in tasks | filter:{group:group.data}" class="task {{task.group}}">{{task.label}}</li>
+        </ul>
+    </div>
+</div>
+
+<script src="lib/jquery-1.9.1.js"></script>
+<script src="lib/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="lib/sugar-1.3.9.min.js"></script>
+<script src="lib/angular.min.js"></script>
+<script type="text/javascript" src="js/website.js"></script>
+</body>
+</html>

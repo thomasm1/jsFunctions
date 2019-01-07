@@ -1,0 +1,15 @@
+<div id="content-container">
+    <board ng-repeat="(boardId, board) in boards" content-id="boardId" content="board" ng-click="setCurrentBoard(boardId)"></board>
+    <div class="create board">
+        <div class="caption">
+            <form>
+                <fieldset>
+                    <div><input type="text" class="medium" ng-model="currentBoard.title" placeholder="Board Title" required></div>
+                    <div><input type="text" ng-model="currentBoard.description" placeholder="Board description." required></div>
+                    <div class="bottom x-small"><input type="checkbox" ng-model="currentBoard.isPublic"> Board is Public</div>
+                    <button type="submit" class="bottom-right-corner"><span class="glyphicon glyphicon-plus"></span></button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

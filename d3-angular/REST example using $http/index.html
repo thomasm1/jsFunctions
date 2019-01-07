@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="noteriousApp">
+
+  <head>
+    <link data-require="bootstrap-css@*" data-semver="3.0.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+    <script data-require="angular.js@*" data-semver="1.2.0-rc1" src="http://code.angularjs.org/1.2.0rc1/angular.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+    <script src="boards.service.js"></script>
+    <script src="boards.controller.js"></script>
+  </head>
+
+  <body ng-controller="BoardsCtrl" class="bg-blue">
+    <header class="navbar-clear" role="banner">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand"><img src="http://noterio.us/assets/img/logo.png" alt="noterio.us"/></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="blue" href="http://angularjs.org/" target="_blank">AngularJS</a></li>
+                    <li><a class="blue" href="https://github.com/simpulton/noterious" target="_blank">GITHUB</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+    </header>
+    <div id="content-container">
+        <div class="edit board my-repeat-animation" ng-repeat="(boardId, board) in boards">
+            <div class="caption">
+                <button type="button" class="top-right-corner" ng-click="deleteBoard(boardId)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <div><input type="text" class="medium" ng-model="board.title" placeholder="Board Title"></div>
+                <div><input type="text" ng-model="board.description" placeholder="Board description."></div>
+                <div class="bottom x-small"><input type="checkbox" ng-model="board.isPublic"> Board is Public</div>
+                <a href="#/{{boardId}}" type="button" class="view bottom-right-corner">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                </a>
+            </div>
+        </div>
+        <div class="create board">
+            <div class="caption">
+                <form ng-submit="createBoard(newBoard);resetForm()">
+                    <fieldset>
+                        <div><input type="text" class="medium" ng-model="newBoard.title" placeholder="Board Title" required></div>
+                        <div><input type="text" ng-model="newBoard.description" placeholder="Board description." required></div>
+                        <div class="bottom x-small"><input type="checkbox" ng-model="newBoard.isPublic"> Board is Public</div>
+                        <button type="submit" class="bottom-right-corner"><span class="glyphicon glyphicon-plus"></span></button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+  </body>
+
+</html>

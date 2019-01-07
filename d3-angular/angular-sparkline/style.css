@@ -1,0 +1,24 @@
+body {
+  font: 14px helvetica;
+  width: 100%;
+  height: 100%;
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+}
+
+.path {
+  fill: none;
+  stroke: #000;
+  stroke-width: 3px;
+}
+
+.selected {
+  stroke: #78C656;
+}
+.btn {
+  font-size: 40px;
+  background-color: #efefef;
+}

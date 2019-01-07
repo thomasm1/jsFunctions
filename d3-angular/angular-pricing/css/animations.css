@@ -1,0 +1,78 @@
+.highlight-transition.mute-add,
+.highlight-transition.mute-remove {
+    transition: 0.2s linear all;
+}
+
+.highlight-transition.mute-add,
+.highlight-transition.mute-remove.mute-remove-active {
+    opacity: 1;
+}
+
+.highlight-transition.mute,
+.highlight-transition.mute-remove,
+.highlight-transition.mute-add.mute-add-active {
+    opacity: 0.2;
+}
+
+
+.highlight-animation.mute {
+    opacity: 0;
+}
+
+.highlight-animation.mute-add {
+    -webkit-animation:0.5s mute-on;
+    -moz-animation:0.5s mute-on;
+    -o-animation:0.5s mute-on;
+    animation:0.5s mute-on;
+}
+
+@keyframes mute-on {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+@-webkit-keyframes mute-on {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+@-moz-keyframes mute-on {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+@-o-keyframes mute-on {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+.highlight-animation.mute-remove {
+    -webkit-animation:0.5s mute-off;
+    -moz-animation:0.5s mute-off;
+    -o-animation:0.5s mute-off;
+    animation:0.5s mute-off;
+}
+
+@keyframes mute-off {
+    from { opacity:0; }
+    to { opacity:1; }
+}
+
+@-webkit-keyframes mute-off {
+    from { opacity:0; }
+    to { opacity:1; }
+}
+
+@-moz-keyframes mute-off {
+    from { opacity:0; }
+    to { opacity:1; }
+}
+
+@-o-keyframes mute-off {
+    from { opacity:0; }
+    to { opacity:1; }
+}
+
+
+
+

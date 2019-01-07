@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="src.js"></script>
+    <script src="sparkline.js"></script>
+</head>
+<body>
+<div ng-app="main">
+    <div ng-controller="MainController">
+        <div class="span2">
+            <button class="btn btn-success" ng-click="update()">update</button>
+        </div>
+        <chart-sparkline data="data"></chart-sparkline>
+    </div>
+</div>
+<script type="text/javascript">
+    var main = angular.module('main', [])
+        .config(['$routeProvider', function($routeProvider) {
+            $routeProvider.when('/', { controller: MainController });
+        }]);
+
+    // Controllers
+    var MainController = ['$scope', function($scope) {
+        // create random data
+        $scope.randomize = function(n, y) {
+            if (arguments.length < 2) y = 1;
+            if (!arguments.length) n = 30;
+            return d3.range(n).map(function(d) { return Math.random() })
+        };
+        $scope.update = function() {
+            //TODO: make this come from API
+            $scope.updates++;
+            $scope.data = $scope.randomize();
+        };
+        // Models
+        //initial values
+        $scope.updates = 0;
+        $scope.data = $scope.randomize();
+    }];
+
+    // Views
+    main.directive('chartSparkline', function() {
+        var sparkline = charts.sparkline();
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div class="chart"></div>',
+            scope: {
+                data: '='
+            },
+            link: function($scope, $element, $attr) {
+                //we select the element of this directive
+                var div = d3.select($element[0]);
+                //we calculate it's dimensions so we can be responsive
+                var bbox = div.node().getBoundingClientRect();
+                sparkline.width(bbox.width || 900);
+                sparkline.height(bbox.height || 400 - 50);
+                window.onresize = function() {
+                    bbox = div.node().getBoundingClientRect();
+                    sparkline.width(bbox.width || 900);
+                    sparkline.height(bbox.height || 400 - 50);
+                    //this is how you update the chart
+                    div.call(sparkline);
+                }
+                //we update the chart when the data get's updated
+                $scope.$watch('data', function(newVal, oldVal) {
+                    if(newVal) div.datum(newVal).call(sparkline);
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

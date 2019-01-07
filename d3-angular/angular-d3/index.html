@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  
+  <head>
+    <!-- Third Party Scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.2.0/lodash.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.0.8/d3.min.js"></script>
+    
+    
+    <!-- Application script -->
+    <script src="myController.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Stylesheets -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+  </head>
+  
+  <body>
+    <div ng-controller="myController" class="container">
+       <h1>Test Mini Charts with D3.js</h1>
+
+      <div class="row">
+        <div class="span12">
+          <table class="table table-condensed table-bordered table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Amount A</th>
+                <th>Amount B</th>
+                <th>Amount C</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Chart</th>
+                <td mini-chart="chartSeries('a')"></td>
+                <td mini-chart="chartSeries('b')"></td>
+                <td mini-chart="chartSeries('c')"></td>
+              </tr>
+              <tr>
+                <th>{{currentAmounts.label}}</th>
+                <td>
+                  <input type="text" ng-model="currentAmounts.a">
+                </td>
+                <td>
+                  <input type="text" ng-model="currentAmounts.b">
+                </td>
+                <td>
+                  <input type="text" ng-model="currentAmounts.c">
+                </td>
+              </tr>
+              <tr ng-repeat="row in previousAmounts">
+                <th>{{row.label}}</th>
+                <td>{{row.a}}</td>
+                <td>{{row.b}}</td>
+                <td>{{row.c}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
