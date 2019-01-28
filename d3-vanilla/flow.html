@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+
+<head><meta charset="utf-8">
+
+<title>Streamgraph</title>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../dist/js/analytics.js','ga'); 
+  ga('create', 'UA-71584977-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</head>
+
+<body>
+
+
+<style>
+body {
+padding:40px 20px ;
+background-color:silver;
+}
+button {
+  float:left;
+  padding:10px;
+  margin:10px;
+    background-color: #dfeef7;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+  } 
+
+button:hover {
+  font-weight: 600;  
+  transition: margin 0.3s;  
+    background-color:white;
+	margin-top: 11px;
+}
+#div5 {
+  background-color: #dfeef7;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+}
+#tmm_bck {
+	float:right;
+  padding:10px;
+  margin:10px;
+	color:blue;text-decoration:none; 
+    background-color: #dfeef7;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+} 
+#tmm_bck:hover {
+	font-weight: 600;
+    border:solid 1px silver; 
+    transition: margin 0.3s; 	}
+	  
+</style>
+
+<button onclick="transition()">Update chart</button>
+
+ <h4 id="tmm_bck">
+  <a style="text-decoration:none;" href="../../../index.html">back to TMM</a>
+</h4>
+    <div id="div5"><svg width="763" height="400"></svg></div>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+var n = 20, // number of layers
+m = 200, // number of samples per layer
+k = 10; // number of bumps per layer
+var stack = d3.stack().keys(d3.range(n)).offset(d3.stackOffsetWiggle),
+layers0 = stack(d3.transpose(d3.range(n).map(function() { return bumps(m, k); }))),
+layers1 = stack(d3.transpose(d3.range(n).map(function() { return bumps(m, k); }))),
+layers = layers0.concat(layers1);
+    
+var svg = d3.select("svg"),
+width = +svg.attr("width"),
+height = +svg.attr("height");
+var x = d3.scaleLinear()
+    .domain([0, m - 1])
+    .range([0, width]);
+var y = d3.scaleLinear()
+    .domain([d3.min(layers, stackMin), d3.max(layers, stackMax)])
+    .range([height, 0]);
+var z = d3.interpolateCool;
+
+var area = d3.area()
+        .x(function(d, i) { return x(i); })
+        .y0(function(d) { return y(d[0]); })
+        .y1(function(d) { return y(d[1]); });
+svg.selectAll("path")
+  .data(layers0)
+  .enter().append("path")
+    .attr("d", area)
+    .attr("fill", function() { return z(Math.random()); });
+
+function stackMax(layer) {
+  return d3.max(layer, function(d) { return d[1]; });
+}
+function stackMin(layer) {
+  return d3.min(layer, function(d) { return d[0]; });
+}
+function transition() {
+  var t;
+  d3.selectAll("path")
+    .data((t = layers1, layers1 = layers0, layers0 = t))
+    .transition()
+          .duration(2500)
+          .attr("d", area);
+}
+
+
+
+// Inspired by Lee Byron’s test data generator.
+
+function bumps(n, m) {
+  var a = [], i;
+  for (i = 0; i < n; ++i) a[i] = 0;
+  for (i = 0; i < m; ++i) bump(a, n);
+  return a;
+}
+
+
+
+function bump(a, n) {
+  var x = 1 / (0.1 + Math.random()),
+y = 2 * Math.random() - 0.5,
+      z = 10 / (0.1 + Math.random());
+  for (var i = 0; i < n; i++) {
+    var w = (i / n - y) * z;
+    a[i] += x * Math.exp(-w * w);
+
+  }
+
+}
+
+
+
+</script>
+</body>
+
+</html>

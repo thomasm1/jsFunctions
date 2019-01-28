@@ -1,0 +1,363 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Q</title>
+<!--
+   d3 series chart I'm trying to replicate four times with four different CSVs. 
+   Each chart has a lined tooltip that follows the pointer across the series and displays figures. 
+   It works, ... sort of.
+The problem is that mousing over one series chart will show the tooltips on other charts 
+and with the numeric scale of the moused over chart displayed on the charts not being moused over. 
+Also, the x-scale line only shows on the first chart. 
+I've tried some workarounds on this with interesting results but no real success. 
+I've attached the original problem code
+-->
+<script src="//d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//www.quantigy.com/wp-content/themes/dashslate1/style.css" />
+<link rel="stylesheet" type="text/css" href="//www.quantigy.com/wp-content/themes/dashslate1/boilerplate.css" />
+<style type="text/css">
+  .legend {
+    background-color: yellow;
+  }
+</style>
+</head>
+
+<body>
+
+		<div class="flexcontainer1 clearfix">
+			<div class="clearfix wellseriesviz">
+				<p class="vizheader">Daily Volume (MCF) and Energy Content (DT)</p>
+<!--
+  svg id="svg-bp-prod" 
+-->
+        <svg id="svg-bp-prod" width="640" height="300"></svg>
+			</div>
+			<div class="clearfix wellseriesviz">
+        <p class="vizheader">Daily Cumulative Volume and Energy Content</p>
+<!--
+  svg id="svg-bp-prod-cum" 
+-->        
+				<svg id="svg-bp-prod-cum" width="640" height="300"></svg>
+			</div>
+		</div>
+		<div class="flexcontainer1 clearfix">
+			<div class="clearfix wellseriesviz">
+        <p class="vizheader">Daily RIN Actual</p>
+<!--
+  svg id="svg-bp-rins" 
+-->
+				<svg id="svg-bp-rins" width="640" height="300"></svg>
+			</div>
+			<div class="clearfix wellseriesviz">
+        <p class="vizheader">Cumulative Actual RINs</p>
+<!--
+  svg id="svg-bp-rins-cum" 
+-->
+				<svg id="svg-bp-rins-cum" width="640" height="300"></svg>
+			</div>
+		</div>
+</body>
+
+<script>
+	//makeProductionSeriesLines(selectedtype,selectedcols)
+function searchSelectAction(){
+	makeProductionSeriesLines("bp-prod","bp-prod.csv");
+	makeProductionSeriesLines("bp-rins","bp-rins.csv");
+	makeProductionSeriesLines("bp-prod-cum","bp-prod-cum.csv");
+	makeProductionSeriesLines("bp-rins-cum","bp-rins-cum.csv");
+	console.log("builds function")
+}
+	
+	/////////////////////////////////////////////////////////////////////////////
+//Production Series
+/////////////////////////////////////////////////////////////////////////////
+
+  var makeProductionSeriesLines = function(selectedtype,selectedcols){ //encapsulate the d3 to update upon clicking map icons
+  // 	<svg id="svg- + bp-rins-cum" ... 
+	var svg = d3.select("svg#svg-" + selectedtype),
+		margin = {top: 20, right: 60, bottom: 60, left: 60},
+		width = svg.attr("width") - margin.left - margin.right,
+		height = svg.attr("height") - margin.top - margin.bottom,
+		g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var parseTime = d3.timeParse("%Y-%m-%d");
+
+	var x = d3.scaleTime().range([0, width]),
+		y = d3.scaleLinear().range([height, 0]),
+		z = d3.scaleOrdinal(["#ff0000","#4682B4","#ff6600","#009933","#cccc33","#000000","#666666"]);
+
+   var line = d3.line()
+	  .curve(d3.curveBasis)
+	  .x(function(d) { return x(d.date); })
+	  .y(function(d) { return y(d.statvalue); });
+
+
+  d3.csv(selectedcols, type, function(error, data) {
+	  
+	if (error) throw error;
+  
+	var stats = data.columns.slice(1).map(function(id) {
+	  return {
+		id: id,
+		values: data.map(function(d) {
+		  return {date: d.date, statvalue: d[id]}; //Y-values-> statvalue: d[id] in y-value at each d.date
+		})
+	  };
+	});
+
+	x.domain(d3.extent(data, function(d) { return d.date; }));
+  	y.domain([
+	  d3.min(stats, function(c) { return d3.min(c.values, function(d) { return d.statvalue; }); }),
+	  d3.max(stats, function(c) { return d3.max(c.values, function(d) { return d.statvalue; }); })
+	]);
+  	z.domain(stats.map(function(c) { return c.id; }));
+	
+	  //// @TM -perhaps divide up the legend requests data "request"
+  ////  var makeProductionSeriesLines = function(selectedtype,selectedcols){ 
+                            //encapsulate the d3 to update upon clicking map icons
+  ////	<svg id="svg- + bp-rins-cum" ... 
+	 ////  var svg = d3.select("svg#svg-" + selectedtype),
+
+	  // draw legend/////
+    /////     
+	 var legend = svg.selectAll(".legend") //tm: from "legend" to ".legend"
+	 .data(stats)
+		.enter().append("g")
+		.attr("class", "legend");
+  
+	  // draw legend colored rectangles
+	  legend.append("rect")
+	  .attr("x", width-width+150)
+		.attr("y", function(d,i){return (i*10)+margin.top})
+		.attr("width", 9)
+		.attr("height", 9) 
+		.style("fill", function(d) { return z(d.id); });
+  
+	  // draw legend text
+	  legend.append("text")
+		  .attr("x", (width-width)+160)
+		  .attr("y", function(d,i){return (i*10)+margin.top})
+		  .attr("dy", 8)
+		  .style("text-anchor", "start") 
+          .style("text-transform", "capitalize")     // tm:  capitalized labels
+		  .attr("font-family", "sans-serif")
+		  .attr("font-size", "9px")
+		  .attr("fill", function(d) { return z(d.id); })    // tm: added font-color match
+		  .text(function(d) { return "__ " + d.id; });    // tm: added a "__"  before label.
+//////   
+// x-axis formatting
+	  g.append("g")
+		.attr("class", "axis")       // tm: removed this class, .axis--x  [[had caused x-axis to hide]]
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x)
+      //      .tickFormat(d3.timeFormat("%Y-%m-%d"))  // tm: date options
+      )
+	  	.selectAll("text")	
+            .style("text-anchor", "end") 
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", function(d) {
+                return "rotate(-35)" // tm: fiddled from -65 to -35
+                });
+  // left Y-axis formatting
+	g.append("g")
+		.attr("class", "axis")
+		.call(d3.axisLeft(y))
+	  //.append("text")
+		//.attr("transform", "rotate(-90)")
+		//.attr("y", 6)
+		//.attr("dy", "0.71em")
+		//.attr("fill", "red")
+		//.text("GAS MCF")
+	;
+	  
+	  // right Y-axis formatting
+	g.append("g")
+		.attr("class", "axis")   // tm: removed  axis--y
+	  .attr("transform","translate(" + width + ",0)")
+		.call(d3.axisRight(y))
+	  //.append("text")
+		//.attr("transform", "rotate(90)")
+		//.attr("y", 6)
+		//.attr("dy", "0.71em")
+		//.attr("fill", "blue")
+		//.text("DT")
+	;
+
+    var stat = g.selectAll(".statline")
+      .data(stats)
+      .enter().append("g")
+      .attr("class", "statline");
+
+    stat.append("path")   
+      .attr("class", "line")
+      .attr("d", function(d) {
+        return line(d.values);
+      })
+              .style("fill",function(d) {   // tm: fiddled, adding cumulative distr ...
+                return z(d.id);
+              })
+              .style("opacity",".7")                         
+      .style("stroke", function(d) {
+        return z(d.id);
+      }); 
+
+    stat.append("text")
+      .datum(function(d,i) { ///  TM added ,i to match index to this particular data stream
+        return {
+          name: d.id,         //  d.id
+          value: d.values[i]  //  d.values[i]   <--just tidying
+        ///    d.values[d.values.length - 1]  <--original
+                  };
+      })
+      .attr("transform", function(d) {
+        return "translate(" + x(d.value.date) + "," + y(d.value.statvalue) + ")";
+      })
+      .attr("x", 3)
+      .attr("dy", "1.35em")
+      .text(function(d) {
+        return d.id;
+      });
+////////// Trouble Area: ///////////	  On Wednesday 10/25th, I'll split this using d3.nest
+//  Previously, I attempted to use if/else (as demonstrated with opacity in lines 273-304), by which I planned to use an .attr("class", "active") specifier
+//  tag to make just this.class = 3 inactive. 
+//
+    var mouseG = g.append("g")
+      .attr("class", "mouse-over-effects") 
+      .attr("class","active");
+
+    mouseG.append("path") // this is the black vertical line to follow mouse
+      .attr("class", "mouse-line")
+      .style("stroke", "purple")          // purple line
+      .style("stroke-width", "1px")
+      .style("opacity", "1"); //tm from 0 to 1 --no change
+      
+    var lines = document.getElementsByClassName('line');
+//////////// solution here to split up viewed mouse-over interaction 
+    var mousePerLine = mouseG.selectAll('.mouse-per-line')    
+      .data(stats)
+      .enter()
+      .append("g")
+      .attr("class", "mouse-per-line");
+
+    mousePerLine.append("circle")
+      .attr("r", 7)
+      .style("stroke", function(d) {
+        return z(d.id);
+      })
+      .style("fill", "none")
+      .style("stroke-width", "1px")
+      .style("opacity", "0");
+
+    mousePerLine.append("text")
+      .attr("transform", "translate(10,3)");
+
+    mouseG.append("svg:rect") // append a rect to catch mouse movements on canvas   // + selectedtype 
+    .attr("id",selectedtype)        /// TM: from .style( to correct .attr(  
+      ///then wishing to make 
+      .attr("class", "active")
+	.attr('width', width) // can't catch mouse events on a g element
+      .attr('height', height)
+      .attr('fill', 'none')
+      .attr('pointer-events', 'all')
+        .on('mouseout', function() { // on mouse out hide line, circles and text
+                                    d3.selectAll(".mouse-line")
+                                  //   .attr("visibility","hidden")
+                                    .style("opacity", "0");
+
+                                  d3.selectAll(".mouse-per-line circle")
+                                //   .attr("visibility","hidden")
+                                    .style("opacity", "0");
+
+                                  d3.selectAll(".mouse-per-line text")
+                                    // .attr("visibility","hidden")
+                                    .style("opacity", "0");
+        })
+      .on('mouseover', function() { // on mouse in show line, circles and text
+                                  d3.selectAll(".mouse-line")   //TM added ...ectAll
+                                    .style("opacity", function() {
+                                      if ((this.id === selectedtype) && (this.class === "active")) {  // attempting to filter one window here.
+                                        return "0"
+                                        } else {
+                                        return ".5"
+                                        };
+                                      }
+                                    )
+                                    .style("fill","orange");
+                                
+                                  d3.selectAll(".mouse-per-line circle")
+                                    .style("opacity", function() {
+                                      if (this.id === selectedtype) {
+                                        return "0"
+                                        } else {
+                                        return ".5"    
+                                               };
+                                      }
+                                    )
+                                    .style("fill","orange");
+                                  d3.selectAll(".mouse-per-line text")
+                                    .style("opacity", function() {
+                                      if (this.id === selectedtype) {
+                                        return "0"
+                                        } else {
+                                        return ".5"
+                                        };
+                                      }
+                                    )
+                                    .style("color","orange");
+      })
+      .on('mousemove', function() { // mouse moving over canvas
+                            var mouse = d3.mouse(this);
+                            d3.selectAll(".mouse-line")   // selectAll TM *** original was select  showed 1 line. Now all 4 show (simultaneously :-(
+                                     .attr("d", function() {
+                                var d = "M" + mouse[0] + "," + height;
+                                d += " " + mouse[0] + "," + 0;
+                                return d;
+          });
+
+        d3.selectAll(".mouse-per-line")
+          .attr("transform", function(d, i) {
+            console.log(width/mouse[0])
+            var xDate = x.invert(mouse[0]),
+                bisect = d3.bisector(function(d) { return d.date; }).right;
+                idx = bisect(d.values, xDate);
+            
+            var beginning = 0,
+                end = lines[i].getTotalLength(),
+                target = null;
+
+            while (true){
+              target = Math.floor((beginning + end) / 2);
+              pos = lines[i].getPointAtLength(target);
+              if ((target === end || target === beginning) && pos.x !== mouse[0]) {
+                  break;
+              }
+              if (pos.x > mouse[0])      end = target;
+              else if (pos.x < mouse[0]) beginning = target;
+              else break; //position found
+            }
+            
+            d3.select(this).select('text')                // Then, I realized the event triggering in the other 3 windows is
+                                                      // less important(and maybe preferred, if value is just simply updated (with correct values text *from a different source, so 
+                                                        // this I'll do tonight 10/24 or WEdnesday 10/25 at latest.
+              .text(y.invert(pos.y).toFixed(2));
+              
+            return "translate(" + mouse[0] + "," + pos.y +")";
+          });
+      });
+	  
+  });
+	  
+	function type(d, _, columns) {
+		d.date = parseTime(d.date);
+		for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
+		return d;
+	}	  
+}
+  
+searchSelectAction();
+
+</script>
+
+</html>

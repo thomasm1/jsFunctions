@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html lang="en"> 
+<head>
+<meta charset="utf-8">
+<title>TMM | class. Trees | RANDOM WALK 
+</title>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../dist/js/analytics.js','ga'); 
+  ga('create', 'UA-71584977-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<link rel="stylesheet" href="../../../dist/css/style.css" />
+<style>
+
+#tmm_bck {
+	float:right;
+  padding:10px;
+  margin:10px;
+	color:blue;text-decoration:none; 
+    background-color: #dfeef7;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+} 
+#tmm_bck:hover {
+	font-weight: 600;
+    border:solid 1px silver; 
+    transition: margin 0.3s; 	}
+</style>
+ </head>
+ <body>
+
+
+
+
+ 
+ <h4 id="tmm_bck">
+   <a style="text-decoration:none;" href="../../../index.html">back to TMM</a></h4>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+  
+<h4>Random Walk Classification Tree</h4>
+<h6>Click tree to refresh</h6>
+<canvas width="1200px" height=600px"></canvas>
+<script>
+  
+  var canvas = document.querySelector("canvas"),
+      context = canvas.getContext("2d"),
+      width = canvas.width,
+      height = canvas.height,
+      color = d3.scaleSequential(d3.interpolateRainbow).domain([0, 1000]),
+      randomX = d3.randomNormal(0.3),
+      randomY = d3.randomNormal(0);
+  
+  render();
+  
+  canvas.onclick = render;
+  
+  function render() {
+    var x0 = width / 20,
+        y0 = height / 2,
+        mainWalk = randomWalk(x0, y0, 1000);
+  
+    context.clearRect(0, 0, width, height);
+    context.lineJoin = "round";
+    context.lineCap = "round";
+    context.lineWidth = 1.5;
+    context.strokeStyle = "black";
+    renderWalk(mainWalk);
+  
+    context.globalCompositeOperation = "multiply";
+    context.lineWidth = 1;
+    for (var i = 0; i < mainWalk.length; i += 2) {
+      var branchStart = mainWalk[i],
+          x0 = branchStart[0],
+          y0 = branchStart[1];
+      for (var j = 0; j < 1; ++j) {
+        context.strokeStyle = color(i + (Math.random() - 0.5) * 50);
+        var x1 = x0, y1 = y0;
+        for (var k = 0, m = 20; k < m; ++k) {
+          context.globalAlpha = (m - k - 1) / m;
+          var pieceWalk = randomWalk(x1, y1, 10),
+              pieceEnd = pieceWalk[pieceWalk.length - 1];
+          renderWalk(pieceWalk);
+          x1 = pieceEnd[0];
+          y1 = pieceEnd[1];
+        }
+        context.globalAlpha = 1;
+      }
+    }
+  }
+  
+  function renderWalk(walk) {
+    var i, n = walk.length;
+    context.beginPath();
+    context.moveTo(walk[0][0], walk[0][1]);
+    for (i = 1; i < n; ++i) {
+      context.lineTo(walk[i][0], walk[i][1]);
+    }
+    context.stroke();
+  }
+  
+  function randomWalk(x0, y0, n) {
+    var points = new Array(n), i;
+    points[0] = [x0, y0];
+    for (i = 1; i < n; ++i) {
+      points[i] = [
+        x0 += randomX() * 2,
+        y0 += randomY() * 2
+      ];
+    }
+    return points;
+  }
+  
+  </script>
+  </body>
+  </html>

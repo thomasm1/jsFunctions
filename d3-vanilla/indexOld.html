@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Quantigy Charts, Sankey Charts, D3 Charts">
+
+    <meta name="keywords" content="Quantigy Charts, Sankey Charts, D3 Charts">
+
+    <meta name="author" content="Thomas Maestas">
+
+
+
+    <title>
+Quantigy Charts by TM
+     </title>
+     <script src="//d3js.org/d3.v4.min.js"></script>
+     <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+      <link href="assets/css/toolkit-inverse.css" rel="stylesheet">
+    <link href="assets/css/application.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="//www.quantigy.com/wp-content/themes/dashslate1/style.css" />
+    <link rel="stylesheet" type="text/css" href="//www.quantigy.com/wp-content/themes/dashslate1/boilerplate.css" />
+    
+<style>
+h1,h2,h3,h4,h5,h6 {
+text-align:center;
+margin:40px;
+}
+</style>
+    <style>
+
+      /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+
+      /* this chunk of css is not part of the toolkit :) */
+
+      body {
+
+        width: 1px;
+
+        min-width: 100%;
+
+        *width: 100%;
+        
+      }
+      html body div.with-iconav div.container div.row div.col-lg-4.mb-5 
+      div.list-group.mb-3 a.list-group-item.list-group-item-action.justify-content-between {
+      font-size:.9rem;
+      background-color:#1997c6;  
+      } 
+      .red {color:rgb(226, 160, 160);
+      }
+    
+      .with-iconav {
+        padding-top:5px;
+        background-color:#107292;
+      }
+#this, #this2, #this3 {
+  background-color:#1997c6;
+  padding:0px;
+}
+    </style>
+
+  </head>
+
+<body>
+  
+
+
+
+<div class="with-iconav">
+
+  <nav class="iconav">
+    <a class="iconav-brand" href="/index.html">
+      <span class="icon icon-leaf iconav-brand-icon"></span>
+    </a>
+    <div class="iconav-slider">
+      <ul class="nav nav-pills iconav-nav flex-md-column">
+        <li class="nav-item">
+          <a class="nav-link" href="#" title="Overview" data-toggle="tooltip" data-placement="right" data-container="body">
+            <span class="icon icon-home"></span>
+            <small class="iconav-nav-label hidden-md-up">D3 Chart Versions: Sankey, Hierarchical<br />Collaboration with Joe on BP-Test Line Charts</small>
+          </a>
+        </li>
+        <!--
+        <li class="nav-item">
+          <a class="nav-link" href="../order-history-light/index.html" title="Order history" data-toggle="tooltip" data-placement="right" data-container="body">
+            <span class="icon icon-text-document"></span>
+            <small class="iconav-nav-label hidden-md-up">History</small>
+          </a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link" href="/fluid-light/index.html" title="Fluid layout" data-toggle="tooltip" data-placement="right" data-container="body">
+            <span class="icon icon-globe"></span>
+            <small class="iconav-nav-label hidden-md-up">Fluid layout</small>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/icon-nav-light/index.html" title="Icon-nav" data-toggle="tooltip" data-placement="right" data-container="body">
+            <span class="icon icon-area-graph"></span>
+            <small class="iconav-nav-label hidden-md-up">Icon nav</small>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html" title="Docs" data-toggle="tooltip" data-placement="right" data-container="body">
+            <span class="icon icon-list"></span>
+            <small class="iconav-nav-label hidden-md-up">Docs</small>
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#" title="Dark UI" data-toggle="tooltip" data-placement="right" data-container="body">
+            <span class="icon icon-flash"></span>
+            <small class="iconav-nav-label hidden-md-up"> </small>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" title="Signed in ..." data-toggle="tooltip" data-placement="right" data-container="body">
+            <img src="" alt="" class="rounded-circle">
+            <small class="iconav-nav-label hidden-md-up"> </small>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="dashhead">
+      <div class="dashhead-titles">
+        <h5 class="dashhead-subtitle">Quantigy</h5>
+        <h5 class="dashhead-title">D3 Chart Versions: Sankey, Hierarchical<br />Collaboration with D3 Line Charts</h5>
+       </small>
+    
+      </div>
+<!--
+      <div class="dashhead-toolbar">
+        <div class="input-with-icon dashhead-toolbar-item">
+          <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
+          <span class="icon icon-calendar"></span>
+        </div>
+        <span class="dashhead-toolbar-divider hidden-sm-down"></span>
+        <div class="btn-group dashhead-toolbar-item btn-group-thirds">
+          <button type="button" class="btn btn-outline-primary">Day</button>
+          <button type="button" class="btn btn-outline-primary active">Week</button>
+          <button type="button" class="btn btn-outline-primary">Month</button>
+        </div>
+      </div>
+    -->
+    </div>
+
+    <ul class="nav nav-bordered mt-4 mt-md-2 mb-0 clearfix" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a href="#" class="nav-link active" role="tab" data-toggle="tab" aria-controls="traffic">D3 Templates</a>
+      </li>
+      <!--
+      <li class="nav-item" role="presentation">
+        <a href="#sales" class="nav-link" role="tab" data-toggle="tab" aria-controls="sales">A</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a href="#support" class="nav-link" role="tab" data-toggle="tab" aria-controls="support">B</a>
+      </li>
+      -->
+    </ul>
+
+    <hr class="mt-0 mb-5">
+    <div class="row">
+        <div class="col-lg-4 mb-5">
+          <div class="list-group mb-3">
+            <h6 class="list-group-header">
+              River Birtch<br /><br />Sankey Versions
+            </h6>
+          
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="http://localhost/q/RiverBirtch/riverbirtch.v8/">
+              <span class="list-group-progress" style="width: 2.3%;"></span>
+              <span>Multi-Node * 1-day * RB-> 5 targets with values</span> 
+            </a>
+               
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="http://localhost/q/RiverBirtch/riverbirtch.v7/">
+              <span class="list-group-progress" style="width: 4.5%;"></span>
+              <span>31 days * RB-> 5 targets with values</span>   
+            </a>
+   
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="http://localhost/q/RiverBirtch/riverbirtch.v6/">
+              <span class="list-group-progress" style="width: 5.0%;"></span>
+              <span>RB-> 5 targets with values <small>with Bootstrap dataTables</small></span>
+            </a>
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="http://localhost/q/RiverBirtch/riverbirtch.v5/">
+              <span class="list-group-progress" style="width: 5.0%;"></span>
+              <span>RB-> 5 targets with values<small> &amp; formatting</small></span>
+              
+            </a>
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="http://localhost/q/RiverBirtch/riverbirtch.v4/">
+              <span class="list-group-progress" style="width: 15.0%;"></span>
+              <span>RB-> 5 targets with values</span> 
+            </a>
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="http://localhost/q/RiverBirtch/riverbirtch.v3/">
+              <span class="list-group-progress" style="width: 62.4%;"></span>
+              <span>RB-> 5 targets without values</span> 
+            </a>
+            <!--
+            <a class="list-group-item list-group-item-action justify-content-between"> 
+              <span class="list-group-progress" style="width: 1.7%;">Needed:</span><br />
+              <span>3+ Nodes * <strong>31-day</strong> * RB-> 5 targets with values</span>
+              <span class="text-muted">csv -OR- .json</span> 
+            </a>
+
+            
+
+          -->
+            
+          </div>
+          <!--
+          <a href="#" class="btn btn-outline-primary px-3">View all pages</a>
+          -->
+        </div>
+        <div class="col-lg-4 mb-5">
+          <div class="list-group mb-3">
+            <h6 class="list-group-header">
+              BP-Test<br /><br />
+              4-csv Line Charts
+            </h6>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" 
+              href="bp-test/index.html">
+                <span>Rec'd from Joe, 10-12-17<br /> D3 Multi-window Interactive</span>
+               
+              </a>
+            <!--
+              <a class="list-group-item list-group-item-action justify-content-between" 
+              href="#">
+                <span>/ (Logged in)</span>
+                <span class="ftext-muted">1,143,393</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" 
+              href="#">
+                <span>/tour</span>
+                <span class="ftext-muted">938,287</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" 
+              href="#">
+                <span>/features/something</span>
+                <span class="ftext-muted">749,393</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>/features/another-thing</span>
+                <span class="ftext-muted">695,912</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>/users/username</span>
+                <span class="ftext-muted">501,938</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>/page-title</span>
+                <span class="ftext-muted">392,842</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>/some/page-slug</span>
+                <span class="ftext-muted">298,183</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>/another/directory/and/page-title</span>
+                <span class="ftext-muted">193,129</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>/one-more/page/directory/file-name</span>
+                <span class="ftext-muted">93,382</span>
+              </a>
+            -->
+          </div>
+          <!--
+          <a href="#" class="btn btn-outline-primary px-3">View all pages</a>
+          -->
+        </div>
+        <div class="col-lg-4 mb-5">
+          <div class="list-group mb-3">
+            <h6 class="list-group-header">
+              D3 Library  Options and <br /><br />
+              Related Git Repositories
+            </h6>
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="RiverBirtch/riverbirtch.v9/index.html">
+              <span class="list-group-progress red" style="width: 1.7%;"></span><br />
+              <span>Needed: Radial Hierarchical Tree without Values</span> 
+            </a>
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="RiverBirtch/riverbirtch.v10/index.html">
+              <span class="list-group-progress red" style="width: 1.7%;"></span><br />
+              <span>Needed: Hierarchical Tree<br />Interactive Node/Link </span>
+            </a>
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="RiverBirtch/riverbirtch.v8/indexSankeyNVD3.html">
+              <span class="list-group-progress red" style="width: 1.7%;"></span><br />
+              <span>NVD3 Options </span> 
+            </a>
+            <a class="list-group-item list-group-item-action justify-content-between" 
+            href="RiverBirtch/riverbirtch.v8/indexSankeyRAW.html">
+              <span class="list-group-progress red" style="width: 1.7%;"></span><br />
+              <span>RAW Embed Options</span>
+            </a>
+  
+            <!--
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Desktop (1920x1080)</span>
+                <span class="text-muted">3,929,481</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Desktop (1366x768)</span>
+                <span class="text-muted">1,143,393</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Desktop (1440x900)</span>
+                <span class="text-muted">938,287</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Desktop (1280x800)</span>
+                <span class="text-muted">749,393</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Tablet (1024x768)</span>
+                <span class="text-muted">695,912</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Tablet (768x1024)</span>
+                <span class="text-muted">501,938</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Phone (320x480)</span>
+                <span class="text-muted">392,842</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Phone (720x450)</span>
+                <span class="text-muted">298,183</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Desktop (2560x1080)</span>
+                <span class="text-muted">193,129</span>
+              </a>
+            
+              <a class="list-group-item list-group-item-action justify-content-between" href="#">
+                <span>Desktop (2560x1600)</span>
+                <span class="text-muted">93,382</span>
+              </a>
+-->
+          </div>
+<!--
+          <a href="#" class="btn btn-outline-primary px-3">View all pages</a>
+-->
+        </div>
+      </div>
+  
+    <hr class="mt-0 mb-5">
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="traffic">
+        <div class="row text-center m-t-md">
+         
+         
+          <div class="col-md-4 mb-5">
+            <div id="this" class="w-3 mx-auto">
+               <script type="text/javascript">
+          var svg = dimple.newSvg("#this",  180, 240);
+          var data = [{
+              "X-Axis": "B",
+              "Y-Axis": 2000
+          }, {
+              "X-Axis": "A",
+              "Y-Axis": 3000
+          }];
+          var chart = new dimple.chart(svg, data);
+          chart.addCategoryAxis("x", "X-Axis");
+          chart.addMeasureAxis("y", "Y-Axis");
+          chart.addSeries(null, dimple.plot.bar);
+          chart.draw();
+      </script>
+             <!-- <canvas
+                class="ex-graph"
+                width="200" height="200"
+                data-chart="doughnut"
+                data-dataset="[230, 130]"
+                data-dataset-options="{ backgroundColor: ['#1ca8dd', '#1bc98e'] }"
+                data-labels="['Returning', 'New']">
+              </canvas>
+            -->
+            </div>
+            <strong class="text-muted"><br />Dimple Bar Chart</strong>
+            <h4>Dimple  Bar Chart</h4>
+          </div>
+
+
+          <div class="col-md-4 mb-4">
+              <div id="this2" class="w-3 mx-auto">
+                  <script type="text/javascript">
+             var svg = dimple.newSvg("#this2",  180, 240);
+             var data = [{
+                 "X-Axis": "Case A.",
+                 "Y-Axis": 2000
+             }, {
+                 "X-Axis": "Case B.",
+                 "Y-Axis": 3000
+             }];
+             var chart = new dimple.chart(svg, data);
+             chart.addCategoryAxis("x", "X-Axis");
+             chart.addMeasureAxis("y", "Y-Axis");
+             chart.addSeries(null, dimple.plot.bar);
+             chart.draw();
+         </script>
+                <!-- <canvas
+                   class="ex-graph"
+                   width="200" height="200"
+                   data-chart="doughnut"
+                   data-dataset="[230, 130]"
+                   data-dataset-options="{ backgroundColor: ['#1ca8dd', '#1bc98e'] }"
+                   data-labels="['Returning', 'New']">
+                 </canvas>
+               -->
+               </div>
+
+               <strong class="text-muted"><br />D3 RAW Embedded</strong>
+            <h4>RAW Embedded</h4>
+          </div>
+
+
+          <div class="col-md-4 mb-5">
+              <div id="this3" class="w-3 mx-auto">
+                  <script type="text/javascript">
+             var svg = dimple.newSvg("#this3",  180, 240);
+             var data = [{
+                 "X-Axis": "Case A.",
+                 "Y-Axis": 2000
+             }, {
+                 "X-Axis": "Case B.",
+                 "Y-Axis": 3000
+             }];
+             var chart = new dimple.chart(svg, data);
+             chart.addCategoryAxis("x", "X-Axis");
+             chart.addMeasureAxis("y", "Y-Axis");
+             chart.addSeries(null, dimple.plot.bar);
+             chart.draw();
+         </script>
+                <!-- <canvas
+                   class="ex-graph"
+                   width="200" height="200"
+                   data-chart="doughnut"
+                   data-dataset="[230, 130]"
+                   data-dataset-options="{ backgroundColor: ['#1ca8dd', '#1bc98e'] }"
+                   data-labels="['Returning', 'New']">
+                 </canvas>
+               -->
+               </div>
+
+               <strong class="text-muted"><br />D3 RAW Embedded</strong>
+            <h4>RAW Embedded</h4> 
+         
+          </div>
+        </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="sales">
+        <div class="ex-line-graphs mb-5">
+          <canvas
+            class="ex-line-graph"
+            width="600" height="400"
+            data-chart="line"
+            data-dataset="[[2500, 3300, 2512, 2775, 2498, 3512, 2925, 4275, 3507, 3825, 3445, 3985]]"
+            data-labels="['','Aug 29','','','Sept 5','','','Sept 12','','','Sept 19','']">
+          </canvas>
+        </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="support">
+        <div class="ex-line-graphs mb-5">
+          <canvas
+            class="ex-line-graph"
+            width="600" height="400"
+            data-chart="bar"
+            data-labels="['August','September','October','November','December','January','February']"
+            data-dataset="[[65, 59, 80, 81, 56, 55, 40], [28, 48, 40, 19, 86, 27, 90]]"
+            data-dataset-options="[{label: 'First dataset'}, {label: 'Second dataset'}]">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="hr-divider my-4">
+      
+        <iframe src="https://resourcetrade.earth/embed?year=2015&category=1&units=value" width="560" height="315" frameborder="0"></iframe>
+        
+      <!--
+
+      <h3 class="hr-divider-content hr-divider-heading">Quick stats</h3>
+    </div>
+
+    <div class="row statcards mt-3 mb-3 text-xs-center text-md-left">
+      <div class="col-6 col-md-3 statcard mb-4">
+        <h3 class="statcard-number text-success">
+          12,938
+          <small class="delta-indicator delta-positive">5%</small>
+        </h3>
+        <span class="statcard-desc">Page views</span>
+      </div>
+      <div class="col-6 col-md-3 statcard mb-4">
+        <h3 class="statcard-number text-danger">
+          758
+          <small class="delta-indicator delta-negative">1.3%</small>
+        </h3>
+        <span class="statcard-desc">Downloads</span>
+      </div>
+      <div class="col-6 col-md-3 statcard mb-4">
+        <h3 class="statcard-number text-success">
+          1,293
+          <small class="delta-indicator delta-positive">6.75%</small>
+        </h3>
+        <span class="statcard-desc">Sign-ups</span>
+        
+      </div>
+      <div class="col-6 col-md-3 statcard mb-4">
+        <h3 class="statcard-number text-danger">
+          758
+          <small class="delta-indicator delta-negative">1.3%</small>
+        </h3>
+        <span class="statcard-desc">Downloads</span>
+      </div>
+    </div>
+  -->
+    <hr class="my-4">
+
+ 
+  </div>
+</div>
+
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/tether.min.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/tablesorter.min.js"></script>
+    <script src="assets/js/toolkit.js"></script>
+    <script src="assets/js/toolkitEdit.js">
+    // This is exact copy of toolkit, but with edits at line 4907</script> 
+    <script src="assets/js/application.js"></script>
+    <script>
+      // execute/clear BS loaders for docs
+      $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
+    </script>
+  </body>
+</html>
+

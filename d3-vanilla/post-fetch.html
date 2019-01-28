@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DAILY TECH Posts</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" >
+  
+</head>
+<body>
+  <div class="container">
+    <h1 class="display-4 mb-4">Fetch API Tech Daily</h1>
+    <div class="d-flex">
+      <button class="btn btn-primary mr-4" id="getText">Get Text</button>
+      <button class="btn btn-success mr-4" id="getPosts">Get JSON</button>
+      <button class="btn btn-warning mr-4" id="getApis">Get API</button>
+    </div>
+    <hr>
+    <div id="output"></div>
+    <form id="addPost">
+      <div class="form-group">
+        <input type="text" id="title" class="form-control" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <textarea id="body" class="form-control" placeholder="Body"></textarea>
+      </div>  
+      <input type="submit" class="btn btn-secondary" value="Submit">
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('getText').addEventListener('click', getText);
+    document.getElementById('getPosts').addEventListener('click', getPosts);
+    document.getElementById('getApis').addEventListener('click', getApis);
+    document.getElementById('addPost').addEventListener('submit', addPost);
+
+    function getText(){
+      // fetch('sample.txt')
+      // .then(function(res){
+      //   return res.text();
+      // })
+      // .then(function(data){
+      //   console.log(data);
+      // });
+
+      fetch('data/sample.txt')
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById('output').innerHTML = data;
+      })
+      .catch((err) => console.log(err))
+    }
+
+    function getPosts(){
+      fetch('http://localhost:5000/api/maps')
+      .then((res) => res.json())
+      .then((data) => {
+        let output = '<h2 class="mb-4">Posts</h2>';
+        data.forEach(function(post){
+          output += `
+            <ul class="list-group mb-3">
+              <li class="list-group-item">ID: ${post.id}</li>
+              <li class="list-group-item">Date ID: ${post.did}</li>
+              <li class="list-group-item">Title: ${post.title}</li>
+              <li class="list-group-item">Date: ${post.date}</li>
+            </ul>
+          `;
+        });
+        document.getElementById('output').innerHTML = output;
+      })
+    }
+
+    function getApis(){
+      fetch('http://localhost:5000/api/maps')
+      .then((res) => res.json())
+      .then((data) => {
+        let output = '<h2 class="mb-4">Posts</h2>';
+        data.forEach(function(post){
+          output += `
+            <div class="card card-body mb-3">
+              <h3>${post.title}</h3> 
+            </div>
+          `;
+        });
+        document.getElementById('output').innerHTML = output;
+      })
+    }
+
+    function addPost(e){
+      e.preventDefault();
+
+      let title = document.getElementById('title').value;
+      let body = document.getElementById('body').value;
+
+      fetch('https://localhost:5000/api/maps', {
+        method:'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-type':'application/json'
+        },
+        cat3:JSON.stringify({title:title, cat3:cat3})
+      })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+    }
+  </script>
+</body>
+</html>
