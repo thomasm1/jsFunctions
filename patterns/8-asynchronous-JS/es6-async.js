@@ -19,22 +19,33 @@ const getRelated = publisher => {
         setTimeout(pub => {
             const recipe = {title: 'Italiano',
             publisher: 'Tomas'};
-            resolve(`${pub}: ${recipe}`);
+            resolve(`${pub}: ${recipe.title}: ${recipe.publisher}`);
         }, 1500, publisher);
     });
 };
-getIDs
-.then(IDs => {
+
+// getIDs.then(IDs => {
+//     console.log(IDs);
+//     return getRecipe(IDs[2]);
+// })
+// .then(recipe => {
+//     console.log(recipe);
+//     return getRelated(recipe.publisher);
+// })
+// .then(recipe => {
+//     console.log(recipe);
+// })
+// .catch(error => {
+//     console.log('Error!!!');
+// });
+async function getRecipesAsyncAwait() {
+    const IDs = await getIDs;
     console.log(IDs);
-    return getRecipe(IDs[2]);
-})
-.then(recipe => {
+    const recipe = await getRecipe(IDs[2]);
     console.log(recipe);
-    return getRelated(recipe.publisher);
-})
-.then(recipe => {
-    console.log(recipe);
-})
-.catch(error => {
-    console.log('Error!!!');
-});
+    const related = await getRelated('Tomas');
+    console.log(related);
+
+    return recipe;
+}
+getRecipesAsyncAwait().then(result => console.log(`${result} is the best!`));
