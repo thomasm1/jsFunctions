@@ -1,0 +1,10 @@
+/.git
+/LICENSE
+*.md
+/.htaccess
+/.gitignore
+/public_hmtl/documentation
+/Dockerfile
+
+
+
