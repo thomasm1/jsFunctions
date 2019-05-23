@@ -1,0 +1,9 @@
+*.js.map
+bower_components/
+node_modules/
+typings/
+app/**/*.js
+server/**/*.js
+test/**/*.js
+.vscode/settings.json
+*.diff
