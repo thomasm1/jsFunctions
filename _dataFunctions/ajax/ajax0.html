@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ajax 0 - Calling API </title>
+  <style>
+body {
+  background: white;
+  padding: 20px;
+  font-family: Helvetica;
+}
+
+.banner-message {
+  background-color:aliceblue;
+  color:darkblue;
+  border-radius: 4px;
+  padding: 20px; 
+  text-align: left;
+  transition: all 0.2s; 
+}
+small {color:blue;}
+button {
+  background: #0084ff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 14px;
+  font-size: 15px;
+  color: #fff;
+}
+ 
+</style>
+</head>
+<body>
+  <button id="button">Get User</button>
+  <button id="button2">Get Users</button>
+  <br><br>
+  <h1>Item</h1>  
+  <div id="item"></div>
+  
+  <h1>Items, Ordered</h1>  
+  <div id="items"></div>
+
+  <script>
+    document.getElementById('button').addEventListener('click', loadUser);
+    document.getElementById('button2').addEventListener('click', loadItems);
+
+    function loadUser(){
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://devtest.equisolve-dev.com/', true);
+
+      xhr.onload = function(){
+        if(this.status == 200){
+          var item = JSON.parse(this.responseText);
+          
+          var output = ''; 
+          output += '<ul>' +
+            '<li>Title: '+item[0].title+'</li>' +
+            '<li>Date: '+item[0].published_at+'</li>'
+            '</ul>'; 
+      	  } 
+          document.getElementById('item').innerHTML = output;
+        } 
+
+      xhr.send();
+    }
+
+
+function loadItems() {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'https://devtest.equisolve-dev.com/', true);
+  
+	xhr.onload = function() {
+	  if (this.status == 200) {
+		var output = '';
+		var items = JSON.parse(this.responseText);
+		//  var dateArray = new Array();
+		items.sort(function(b, a) {
+		  return (a.published_at > b.published_at) - (a.published_at < b.published_at);
+		});
+		for (var i in items) { 
+		  output += `<h5><small>Date:  ${items[i].published_at}</small><br /> Title:  ${items[i].title}</h5>`; }
+		document.getElementById('items').innerHTML = output;
+	  }
+	}
+	xhr.send();
+  }
+  
+  </script>
+</body>
+</html>
