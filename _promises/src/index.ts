@@ -1,5 +1,5 @@
 document.getElementById("app").innerHTML = `
-<h1>Vanilla Async
-</h1> 
+<h3>Typescript Portion
+</h3> 
 
 `;

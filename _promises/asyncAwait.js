@@ -27,25 +27,3 @@ function createPost(post) {
     }, 2000);
   });
 }
-
-createPost({ title: "Promises post-three", body: "this new post3" })
-  .then(getPostsPromise)
-  .catch(err => console.log(err));
-
-// Promise.all([p1,p2,p3,p4]).then(values => console.log(values)
-const promise1 = Promise.resolve("prom 1");
-const promise2 = 10;
-const promise3 = new Promise((resolve, reject) =>
-  setTimeout(resolve, 2000, "Goodby!")
-);
-const promise4 = fetch(
-  "https://tmm-nov.s3.amazonaws.com/data/posts/may19.json"
-).then(res => res.json());
-
-Promise.all([promise1, promise2, promise3, promise4]).then(values =>
-  console.log(values)
-);
-Promise.all([promise1, promise2, promise3, promise4]).then(
-  values =>
-    (document.getElementById("promiseAll").innerHTML = values[3][0].author)
-);
