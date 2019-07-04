@@ -41,11 +41,14 @@ const promise3 = new Promise((resolve, reject) =>
 const promise4 = fetch(
   "https://tmm-nov.s3.amazonaws.com/data/posts/may19.json"
 ).then(res => res.json());
+// const promise4 = fetch("https://jsonplaceholder.typicode.com/users").then(res => res.json());
 
 Promise.all([promise1, promise2, promise3, promise4]).then(values =>
   console.log(values)
 );
 Promise.all([promise1, promise2, promise3, promise4]).then(
   values =>
-    (document.getElementById("promiseAll").innerHTML = values[3][0].author)
+    (document.getElementById("promiseAll").innerHTML =
+      "promise All:<br /> " + values[3][0].author)
+  //typicode (document.getElementById("promiseAll").innerHTML = values[3][7].name)
 );
