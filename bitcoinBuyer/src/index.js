@@ -50,7 +50,47 @@ const btc2019 = [
   }
 ];
 
-const eth2019 = [
+const ethBtc = [
+  {
+    Date: "2019-07-04",
+    Symbol: "BTCUSD",
+    Open: 11976.42,
+    High: 12064.26,
+    Low: 11820,
+    Close: 11909.55,
+    "Volume BTC": 1237.57,
+    "Volume USD": 14790355.69
+  },
+  {
+    Date: "2019-07-03",
+    Symbol: "BTCUSD",
+    Open: 10829.18,
+    High: 12014.6,
+    Low: 10829.18,
+    Close: 11976.42,
+    "Volume BTC": 36836.85,
+    "Volume USD": 419076229.34
+  },
+  {
+    Date: "2019-07-02",
+    Symbol: "BTCUSD",
+    Open: 10577.63,
+    High: 10925,
+    Low: 9651,
+    Close: 10829.18,
+    "Volume BTC": 41476.42,
+    "Volume USD": 424791613.92
+  },
+  {
+    Date: "2019-07-01",
+    Symbol: "BTCUSD",
+    Open: 10761.26,
+    High: 11210.52,
+    Low: 9953,
+    Close: 10577.63,
+    "Volume BTC": 37633.9,
+    "Volume USD": 396857365.17
+  },
   {
     Date: "2019-07-04",
     Symbol: "ETHUSD",
@@ -92,7 +132,6 @@ const eth2019 = [
     "Volume USD": 53230192.12
   }
 ];
-const buyPrice = [111, 222, 666, 333, 444, 555, 777, 888];
 // for (let i = 0; i < btc2019.length; i++) {
 //   console.log(btc2019[i]);
 // }
@@ -101,18 +140,46 @@ btc2019.forEach(function(btc) {
   console.log(btc.Symbol, btc.Date, btc.High);
 });
 //
-// let canBuy = [];
-// for (let i = 0; i < buyPrice.length; i++) {
-//   if (buyPrice[i] >= buyPrice[i - 1]) {
-//     canBuy.push(buyPrice[i]);
-//   }
-// }
-// console.log(canBuy);
+let canSell = [];
+for (let i = 0; i < btc2019.length; i++) {
+  if (btc2019[i] >= btc2019[i - 1]) {
+    canSell.push(btc2019[i]);
+  }
+}
+console.log(canSell);
 // filter
-const canBuy = buyPrice.filter(function(btc) {
-  if (btc >= btc - 1) {
+const canBuy = btc2019.filter(function(btc) {
+  if (btc.Close <= 11000) {
     return true;
   }
 });
 console.log(canBuy);
+// map new arrays -> create array of btc volumes
+const coinSymbols = ethBtc.map(function(coin) {
+  return coin.Symbol;
+});
+console.log(coinSymbols);
 //
+// const coinIntervals = ethBtc.map(function(coin) {
+//   return `${coin.Symbol} [O:${coin.Open}-C:${coin.Close}]`;
+// });
+const coinIntervals = ethBtc.map(
+  coin => `${coin.Symbol} [O:${coin.Open}-C:${coin.Close}]`
+);
+console.log(coinIntervals);
+//
+const coinSquareRoot = ethBtc.map(coin => Math.sqrt(coin.Close));
+const coinSquare = ethBtc.map(coin => coin.Close * 2);
+console.log(coinSquareRoot, coinSquare);
+// sort
+// const sortedBtc = btc2019.sort(function(a, b) {
+//   if (a.Close > b.Close) {
+//     return 1;
+//   } else {
+//     return -1;
+//   }
+// });
+const sortedBtc = btc2019.sort((a, b) => (a.Open > b.Open ? 1 : -1));
+const sortedB = btc2019.sort((a, b) => a.Open - b.Open);
+console.log(sortedBtc);
+console.log(sortedB);
