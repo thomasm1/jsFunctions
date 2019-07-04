@@ -181,5 +181,34 @@ console.log(coinSquareRoot, coinSquare);
 // });
 const sortedBtc = btc2019.sort((a, b) => (a.Open > b.Open ? 1 : -1));
 const sortedB = btc2019.sort((a, b) => a.Open - b.Open);
-console.log(sortedBtc);
-console.log(sortedB);
+console.log(sortedBtc, sortedB);
+//reduce
+// let closeAvg = 0, closeSum = 0;
+// for (let i = 0; i < btc2019.length; i++) {
+//   closeSum += btc2019[i].Close;
+//   closeAvg = closeSum/btc2019.length;
+// }
+// reduce total
+const closeSum = btc2019.reduce((total, btc) => total + btc.Close, 0);
+const closeAvg = closeSum / btc2019.length;
+console.log("sum: " + closeSum, "avg: " + closeAvg);
+// reduce daily intervals
+const closeIntTot = btc2019.reduce(
+  (total, btc) => total + (btc.Close - btc.Open),
+  0
+); //  !!! fix absolutes logic
+const closeIAvg = closeIntTot / btc2019.length;
+console.log("sum: " + closeIntTot, "avg: " + closeIAvg);
+// filter out negative days, calc
+const avgPosOnly = btc2019
+  .filter(btc => btc.Close - btc.Open >= 0)
+  .map(btc => (btc.Close - btc.Open) / btc2019.length); ///calc each avg
+console.log(avgPosOnly);
+//
+const avgPosLong = btc2019
+  .filter(btc => btc.Close - btc.Open >= 0)
+  .map(btc => (btc.Close - btc.Open) / btc2019.length) ///calc each avg
+  .sort((a, b) => a - b)
+  .reduce((a, b) => a + b, 0); // sum each pos avg, reduce to total
+const avgPos = avgPosLong / btc2019.length;
+console.log(avgPosLong, avgPos);
