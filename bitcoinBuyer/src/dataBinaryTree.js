@@ -1,4 +1,5 @@
-/* Binary Search Tree */
+// B-TREE SEARCH
+console.log("%c B-TREE SEARCH:", "color:white; background-color:black");
 
 class Node {
     constructor(data, left = null, right = null) {
