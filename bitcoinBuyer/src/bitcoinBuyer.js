@@ -1,7 +1,9 @@
 console.log("%c BITCOIN CALCS BEGIN: ", "color:white; background-color:orange")
 
 document.getElementById("app").innerHTML = `
-<h1>Arrays Vanilla!</h1>
+
+<div class="appTitle">
+</div>  
 <div>
 data from 07-04-2019<br />
 source -https://www.cryptodatadownload.com/data/northamerican/

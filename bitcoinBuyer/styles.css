@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css?family=Monoton");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+body {
+  font-family: "Roboto";
+}
+
+button {
+  margin: 0 7px 0 0;
+  background-color: #f5f5f5;
+  border: 1px solid #dedede;
+  border-top: 1px solid #eee;
+  border-left: 1px solid #eee;
+
+  font-size: 12px;
+  line-height: 130%;
+  text-decoration: none;
+  font-weight: bold;
+  color: #565656;
+  cursor: pointer;
+}
+.smallbox {
+  width: 300px;
+  height: 300px;
+}
+.box {
+  margin: 40px;
+  float: left;
+  text-align: center;
+  border: #969696 solid thin;
+  padding: 5px;
+}
