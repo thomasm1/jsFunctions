@@ -78,12 +78,12 @@ function render(data) {
 }
 
 setInterval(function() {
-  data.shift();
   //data = data.length === 0 ? [r, o, t, a, t, o, r] : data;
   //   // for (let i = 0; i < data.length; i++) {
   //   data.push(Math.round(Math.random() * 100));
   //   // }
-  data.push(Math.round(Math.random() * 100));
+  data.unshift(Math.round(Math.random() * 100));
+  data.pop();
   render(data);
 }, 1500);
 
