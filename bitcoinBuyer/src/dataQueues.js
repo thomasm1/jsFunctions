@@ -45,7 +45,7 @@ function PriorityQueue() {
     } else {
       var added = false;
       for (var i = 0; i < collection.length; i++) {
-        if (element[1] < collection[i][1]) {
+        if (element[1] < collection[i][1]) {Z
           collection.splice(i, 0, element);
           added = true;
           break;
