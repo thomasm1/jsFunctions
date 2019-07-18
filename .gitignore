@@ -12,5 +12,4 @@ node_modules
 # vim files
 .*.swp
 
-data
-data/*
+
