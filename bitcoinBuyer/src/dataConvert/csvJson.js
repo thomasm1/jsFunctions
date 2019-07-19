@@ -1,8 +1,7 @@
 // d3 STACKS
 //console.log("%c D3 data convert csv->json: ", "border:outset 3px silver;color:black; background-color:silver");
 
-document.getElementById("dataConvert").innerHTML = ` 
- <p>Source: 07-04-2019, https://www.CryptoDataDownload.com</p>
+document.getElementById("dataConvert").innerHTML = `  
 <div class="dataConvert">
 </div>  
 `;

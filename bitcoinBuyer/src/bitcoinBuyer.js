@@ -3,11 +3,7 @@ console.log("%c BITCOIN CALCS BEGIN: ", "color:white; background-color:orange")
 document.getElementById("app").innerHTML = `
 
 <div class="appTitle">
-</div>  
-<div>
-data from 07-04-2019<br />
-source -https://www.cryptodatadownload.com/data/northamerican/
-</div>
+</div>   
 `;
 const btc2019 = [
   {
