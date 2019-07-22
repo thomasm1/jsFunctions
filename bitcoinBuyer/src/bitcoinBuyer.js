@@ -129,14 +129,59 @@ const ethBtc = [
     "Volume ETH": 184436.14,
     "Volume USD": 53230192.12
   }
-];
-// for (let i = 0; i < btc2019.length; i++) {
-//   console.log(btc2019[i]);
-// }
-// forEach
-btc2019.forEach(function(btc) {
-  console.log(btc.Symbol, btc.Date, btc.High);
-});
+]; 
+console.log("%c Object mapping: ", "color:orange; border:solid 1px orange") 
+  //0-A.)
+  console.time("timer_Obj-A.");
+  for (const key in btc2019[0]) {
+    console.log("btc2019[0][key]: ", btc2019[0][key]);
+  }
+  console.timeEnd("timer_Obj-A.");
+  //0-B.)
+  console.time("timer_Obj-B.");
+  for (const b of Object.values(btc2019[0])) {
+    console.log("Object.values: ", b);
+  }
+  console.timeEnd("timer_Obj-B.");
+  //0-C.)
+  console.time("timer_Obj-C.");
+  const bObject = new Map(
+    Object.entries({
+      Date: "2019-07-02",
+      Symbol: "BTCUSD",
+      Open: 10577.63,
+      High: 10925,
+      Low: 9651,
+      Close: 10829.18,
+      "Volume BTC": 41476.42,
+      "Volume USD": 424791613.92
+    })
+  );
+  for (const b of bObject.values()) {
+    console.log("Object.entries", b);
+  }
+  console.timeEnd("timer_Obj-C.");
+  //1.)
+  console.time("timer_i");
+  for (let i = 0; i < btc2019.length; i++) {
+    console.log(btc2019[i].Symbol, btc2019[i].Date, btc2019[i].High);
+  }
+  console.timeEnd("timer_i");
+  //2.
+  console.time("timer_forOf");
+  for (const btc of btc2019) {
+    console.log(btc.Symbol, btc.Date, btc.High);
+  }
+  console.timeEnd("timer_forOf");
+  //3. forEach
+  console.time("timer_forEach");
+  btc2019.forEach(function(btc) {
+    console.log(btc.Symbol, btc.Date, btc.High);
+  });
+  console.timeEnd("timer_forEach");
+
+
+  console.log("%c Array mapping: ", "color:orange; border:solid 1px orange") 
 //
 let canSell = [];
 for (let i = 0; i < btc2019.length; i++) {
@@ -177,6 +222,8 @@ console.log(coinSquareRoot, coinSquare);
 //     return -1;
 //   }
 // });
+
+console.log("%c Sorting: ", "color:orange; border:solid 1px orange") 
 const sortedBtc = btc2019.sort((a, b) => (a.Open > b.Open ? 1 : -1));
 const sortedB = btc2019.sort((a, b) => a.Open - b.Open);
 console.log(sortedBtc, sortedB);
@@ -197,12 +244,15 @@ const closeIntTot = btc2019.reduce(
 ); //  !!! fix absolutes logic
 const closeIAvg = closeIntTot / btc2019.length;
 console.log("sum: " + closeIntTot, "avg: " + closeIAvg);
+
+console.log("%c Filtering out negative days: ", "color:orange; border:solid 1px orange") 
 // filter out negative days, calc
 const avgPosOnly = btc2019
   .filter(btc => btc.Close - btc.Open >= 0)
   .map(btc => (btc.Close - btc.Open) / btc2019.length); ///calc each avg
 console.log(avgPosOnly);
 //
+console.log("%c Calc Avg, Sum each pos avg, reduce to total: ", "color:orange; border:solid 1px orange") 
 const avgPosLong = btc2019
   .filter(btc => btc.Close - btc.Open >= 0)
   .map(btc => (btc.Close - btc.Open) / btc2019.length) ///calc each avg
