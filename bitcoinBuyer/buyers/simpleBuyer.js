@@ -181,4 +181,5 @@ function getMaxProfit(coinPrices) {
       minPrice = Math.min(minPrice, currentPrice);
     }
   
-    return maxProfit;
+    return maxProfit
+  };

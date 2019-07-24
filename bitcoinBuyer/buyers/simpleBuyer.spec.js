@@ -1,7 +1,6 @@
 function getMaxProfit(coin_prices) {
 
-    // Calculate day's max profit
-    
+    // Calculate day's max profit 
   
     return 0;
   }
