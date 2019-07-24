@@ -18,7 +18,7 @@
 
     path {
       fill: none;
-      stroke: #56c2a3;
+      stroke: rgba(135, 207, 235, 0.575);
     }
 
     text {
@@ -29,6 +29,13 @@
         1px 1px 3px white;
       pointer-events: none;
       font-family: 'Playfair Display', serif;
+    } 
+    div {
+      padding:5px;
+      margin:5px;
+    }
+    ul li {
+      list-style-type:square;
     }
     /* Title Widgets */
     .smallbox {
@@ -66,14 +73,34 @@
       text-align: center;
       width: 10px;
       display: inline-block;
-    }
-    .dataConvert {
-      background-color:aliceblue;
-      border:solid 1px orange;
-      max-width:400px;
-      max-height:200px;
-      overflow-y:scroll;
-    }
+    } 
     #app { 
       max-height:300px;
+      
+    }
+    #dataConvert {
+      background-color:aliceblue;
+      border:solid 1px orange;
+      width:400px;
+      height:300px;
+      float:right;
+      overflow:scroll;
+
+    }
+    #dataGetters-fetch {
+      background-color:aliceblue;
+      border:solid 1px orange;
+      width:400px;
+      height:300px;
+      float:right;
+      overflow:scroll;
+    }
+    
+    #dataGetters-promise {
+      background-color:aliceblue;
+      border:solid 1px orange;
+      /* max-width:400px; */
+      height:300px;
+      float:right;
+      overflow:scroll;
     }

@@ -69,21 +69,21 @@ function TitleWidget(spec) {
   
   var widget = new TitleWidget({
     color: "darkblue;",
-    backgroundColor: "skyblue;",
+    backgroundColor: "rgba(135, 207, 235, 0.575);",
     width: "90"
   })
     .headline(title);
   
   var subWidget = new TitleWidget({
     color: "blue;",
-    backgroundColor: "skyblue;",
-    width: "60",
+    backgroundColor: "rgba(135, 207, 235, 0.575);",
+    width: "80",
     margin: "5px;",
     maxHeight: "200px;",
     overflowY: "scroll;",
     textAlign: "justify;",
     titleTextAlign: "center;",
-    padding: "0px 30px;"
+    padding: "0px 10px;"
   })
     .headline(tocTitle)
     .desc(toc);
