@@ -77,7 +77,7 @@ function TitleWidget(spec) {
   var subWidget = new TitleWidget({
     color: "blue;",
     backgroundColor: "rgba(135, 207, 235, 0.575);",
-    width: "80",
+    width: "90",
     margin: "5px;",
     maxHeight: "200px;",
     overflowY: "scroll;",

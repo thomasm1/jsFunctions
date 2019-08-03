@@ -4,6 +4,8 @@
 <head>
 
 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 
 	<title>ArrayMaker</title>
@@ -14,33 +16,35 @@
 </head>
 
 <body>
+	<div class="appTitle"></div>
+	<script src="src/appTitle.js"> 	</script> 
 	<div class="container">
-		<div class="appTitle"></div>
-		<script src="src/appTitle.js"> 	</script>
-
 		<div id="dataGetters-fetch">
 			<div id="asyncAwait"></div>
-			<div id="asyncFetch"></div> 
+			<div id="asyncFetch"></div>
 			<div id="fetchAsyncEther"></div>
 		</div>
-
-		<div id="dataConvert"></div>
 		<div id="dataGetters-promise">
 			<div id="promiseAll"></div>
 			<div id="promises"></div>
 		</div>
-
-
 		<div id="appQueue"></div>
+		<div class="row"  >
+			<div class="dataConvert col col-xs-4" id="dataConvert0"></div>
+			<div class="dataConvert col col-xs-4" id="dataConvert1"></div>
+			<div class="dataConvert col col-xs-4" id="dataConvert2"></div>
+		</div>
+
+
 		<svg></svg>
-		<div id="app"></div> 
+		<div id="app"></div>
 
 		<br />
 
 		<script src="dataGetters/dataPromise.js"></script>
-		<script src="dataGetters/dataFetch.js"></script> 
+		<script src="dataGetters/dataFetch.js"></script>
 		<script src="src/world.js"></script>
-	
+
 	</div>
 	<script src="shared/csvJson.js"></script>
 	<script src="src/bitcoinBuyer.js"> 	</script>

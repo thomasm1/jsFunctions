@@ -6,20 +6,19 @@
       padding:0;
     }
     body {
-      background-color:skyblue;
+      background-color:aliceblue;
   
       /* white-space: nowrap; */
     }
     .container {
       font-family: "Roboto";  
-      background-color:aliceblue;
       /* position: fixed;
       left: 0;
       right: 0;
       top: 0;
       bottom: 0;
       margin: 0;  */
-      margin:40px;
+      margin:20px;
     }
 
     path {
@@ -49,11 +48,10 @@
       height: 300px;
     }
     .box {
-      margin: 40px;
-      float: left;
+      margin: 20px; 
       text-align: center;
-      border: #969696 solid thin;
-      padding: 5px;
+      border:  solid 1px #969696;
+      padding: 10px;
     }
     
     /* Data Bar Graphs */
@@ -84,19 +82,20 @@
       max-height:300px;
       
     }
-    #dataConvert {
+    .dataConvert {
+      font-size:1rem;
       background-color:aliceblue;
-      border:solid 1px orange;
-      width:400px;
-      height:300px;
-      float:left;
+      border:solid 1px orange; 
+      max-height:500px;
+      min-width:300px; 
       overflow:scroll;
 
     }
     #dataGetters-fetch {
       background-color:aliceblue;
       border:solid 1px orange;
-      /* width:400px; */
+      width:500px;
+      max-width:45%;
       height:400px;
       float:left;
       overflow:scroll;
@@ -105,7 +104,8 @@
     #dataGetters-promise {
       background-color:aliceblue;
       border:solid 1px orange;
-      /* max-width:400px; */
+      width:500px;
+      max-width:45%;
       height:400px;
       float:left;
       overflow:scroll;
