@@ -39,8 +39,8 @@
       padding:5px;
       margin:5px;
     }
-    ul li {
-      list-style-type:square;
+  li {
+      list-style-type:none;
     }
     /* Title Widgets */
     .smallbox {
@@ -96,7 +96,7 @@
       border:solid 1px orange;
       width:500px;
       max-width:45%;
-      height:400px;
+      height:250px;
       float:left;
       overflow:scroll;
     }
@@ -106,7 +106,7 @@
       border:solid 1px orange;
       width:500px;
       max-width:45%;
-      height:400px;
+      height:250px;
       float:left;
       overflow:scroll;
     }

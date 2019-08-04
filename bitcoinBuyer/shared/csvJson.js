@@ -1,32 +1,25 @@
 // d3 STACKS
 //console.log("%c D3 data convert csv->json: ", "border:outset 3px silver;color:black; background-color:silver");
 
-var baseUrl = 'data/';
-var eth = 'Coinbase_ETHUSD_2019.csv';
-var btc = 'Coinbase_BTCUSD_2019.csv';
-var ltc = 'Coinbase_LTCUSD_2019.csv';
-var coinArr = [btc, eth, ltc]
+const baseUrl = 'data/';
+const dcClass = ".dataConvert";
 
-document.getElementById("dataConvert0").innerHTML = `  
-<h4>Bitcoin Daily Prices</h4>
-<div class="dataConvert0">
-</div>  
-`;
-document.getElementById("dataConvert1").innerHTML = `  
-<h4>Ethereum Daily Prices</h4>
-<div class="dataConvert1">
-</div>  
-`;
-document.getElementById("dataConvert2").innerHTML = `  
-<h4>Litecoin Daily Prices</h4>
-<div class="dataConvert2">
-</div>  
-`;
-let dc = ".dataConvert";
+const eth = 'Coinbase_ETHUSD_2019.csv';
+const btc = 'Coinbase_BTCUSD_2019.csv';
+const ltc = 'Coinbase_LTCUSD_2019.csv';
+const coinArr = [btc, eth, ltc];
+
 for (let i = 0; i < coinArr.length; i++) {
+ 
+  const dc = 'dataConvert'; 
+  document.getElementById(dc + i).innerHTML = `  
+  <h4>${(i===0)? 'Bitcoin': (i===1)?'Ethereum':'Litecoin'} Daily Prices</h4>
+  <div class="${dc + i}">
+  </div>  
+  `; 
 
     function render(data){
-      d3.select(dc+i)
+      d3.select(dcClass+i)
         .append("pre")
         .text(JSON.stringify(data, null, 2) + ',');
     }
