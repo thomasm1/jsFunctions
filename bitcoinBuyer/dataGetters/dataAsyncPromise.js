@@ -37,6 +37,8 @@ function afterTheDelay() {
 //   console.log(finalResult);
 // })
 // .catch(failureCallback);
+ 
+
 function addPromise(price) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -46,7 +48,9 @@ function addPromise(price) {
     if (!error) {
       resolve();
     } else {
-      reject(console.log("Promise Errorrr occured"));
+      
+
+      reject(console.log("%c Promise Errorrr occured", "color:orange; border:solid 1px orange") );
     } 
     }, 2000);
   });
@@ -93,6 +97,7 @@ Promise.all([promise1, promise2, promise3, promise4]).then(
 //     console.log(err);
 //   }
 // })();  
+
 async function initAsync() {
   await addPromise({
     "Date": "2020-01-02",

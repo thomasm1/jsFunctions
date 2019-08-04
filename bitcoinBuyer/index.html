@@ -13,22 +13,32 @@
 	<link rel="stylesheet" href="styles.css" />
 
 	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<!-- <script src="node_modules/jsdom/lib/api.js"></script> -->
 </head>
 
 <body>
 	<div class="appTitle"></div>
-	<script src="src/appTitle.js"> 	</script> 
+	<script src="src/appTitle.js"> 	</script>
 	<div class="container">
-		<div id="dataGetters-fetch"> 
-			<div id="fetchAsyncBtc"></div>
-			<div id="fetchAsyncEther"></div>
-		</div>
-		<div id="dataGetters-promise">
-			<div id="promiseAll"></div>
-			<div id="promises"></div>
-		</div>
+
+		<div class="row">
+			<!-- <div class="dataGetters col col-xs-4">
+				<div id="scraperBtc"></div>
+				<div id="scraperEther"></div>
+			</div> -->
+			<div class="dataGetters col col-xs-4">
+				<div id="fetchAsyncBtc"></div>
+				<div id="fetchAsyncEther"></div>
+			</div>
+			<div class="dataGetters  col col-xs-4">
+				<div id="promiseAll"></div>
+				<div id="promises"></div>
+			</div>
+		</div> 
+
 		<div id="appQueue"></div>
-		<div class="row"  >
+
+		<div class="row">
 			<div class="dataConvert col col-xs-4" id="dataConvert0"></div>
 			<div class="dataConvert col col-xs-4" id="dataConvert1"></div>
 			<div class="dataConvert col col-xs-4" id="dataConvert2"></div>
@@ -38,10 +48,10 @@
 		<svg></svg>
 		<div id="app"></div>
 
-		<br />
-
+		<br /> 
+		<script src="dataGetters/dataScraper.js"></script>
 		<script src="dataGetters/dataAsyncPromise.js"></script>
-		<script src="dataGetters/dataFetch.js"></script> 
+		<script src="dataGetters/dataFetch.js"></script>
 		<script src="src/world.js"></script>
 
 	</div>

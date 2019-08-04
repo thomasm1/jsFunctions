@@ -91,16 +91,16 @@
       overflow:scroll;
 
     }
-    #dataGetters-fetch {
+    .dataGetters {
       background-color:aliceblue;
       border:solid 1px orange;
       width:500px;
-      max-width:45%;
+      /* max-width:45%; */
       height:250px;
       float:left;
       overflow:scroll;
     }
-    
+/*     
     #dataGetters-promise {
       background-color:aliceblue;
       border:solid 1px orange;
@@ -109,4 +109,4 @@
       height:250px;
       float:left;
       overflow:scroll;
-    }
+    } */
