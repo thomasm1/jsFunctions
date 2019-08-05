@@ -4,72 +4,118 @@
 <head>
 
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 
-	<title>ArrayMaker</title>
-	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="styles.css" />
+    <title>ArrayMaker</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
 
-	<script src="https://d3js.org/d3.v5.min.js"></script>
-	<!-- <script src="node_modules/jsdom/lib/api.js"></script> -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <script src="node_modules/jsdom/lib/api.js"></script> -->
 </head>
 
 <body>
-	<div class="appTitle"></div>
-	<script src="src/appTitle.js"> 	</script>
-	<div class="container">
+    <div class="appTitle"></div>
+    <script src="src/appTitle.js">
+    </script>
+    <div class="container">
 
-		<div class="row">
-			<!-- <div class="dataGetters col col-xs-4">
+        <div class="row">
+            <!-- <div class="dataGetters col col-xs-4">
 				<div id="scraperBtc"></div>
 				<div id="scraperEther"></div>
 			</div> -->
-			<div class="dataGetters col col-xs-4">
-				<div id="fetchAsyncBtc"></div>
-				<div id="fetchAsyncEther"></div>
-			</div>
-			<div class="dataGetters  col col-xs-4">
-				<div id="promiseAll"></div>
-				<div id="promises"></div>
-			</div>
-		</div> 
+            <div class="dataGetters col col-xs-6">
+                <div id="fetchAsyncBtc"></div>
+                <div id="fetchAsyncEther"></div>
+            </div>
+            <div class="dataGetters  col col-xs-6">
+                <div id="promiseAll"></div>
+                <div id="promises"></div>
+            </div>
+        </div>
 
-		<div id="appQueue"></div>
+        <div id="appQueue"></div>
 
-		<div class="row">
-			<div class="dataConvert col col-xs-4" id="dataConvert0"></div>
-			<div class="dataConvert col col-xs-4" id="dataConvert1"></div>
-			<div class="dataConvert col col-xs-4" id="dataConvert2"></div>
-		</div>
+        <div class="row">
+            <div class="dataConvert col col-xs-4" id="dataConvert0"></div>
+            <div class="dataConvert col col-xs-4" id="dataConvert1"></div>
+            <div class="dataConvert col col-xs-4" id="dataConvert2"></div>
+        </div>
 
+        <!-- <svg></svg> -->
+        <div id="app"></div>
 
-		<svg></svg>
-		<div id="app"></div>
+        <script src="dataGetters/dataScraper.js"></script>
+        <script src="dataGetters/dataAsyncPromise.js"></script>
+        <script src="dataGetters/dataFetch.js"></script>
+        <script src="src/world.js"></script>
+        <script src="dataGetters/serverless.js"></script>
 
-		<br /> 
-		<script src="dataGetters/dataScraper.js"></script>
-		<script src="dataGetters/dataAsyncPromise.js"></script>
-		<script src="dataGetters/dataFetch.js"></script>
-		<script src="src/world.js"></script>
+        <div align="center">
+            <h3>Serverless API Serving Bitcoin Prices</h3>
+        </div>
+        <div>
+            <code>
+			<span>1.) AWS API Gateway Endpoint <em>using</em>...</span><br />
+			<span> 2.) AWS Route 53 A Record Set Alias <em>using</em>...</span><br />
+			<span> 3.) AWS S3 files. GET Method button <em>triggers ...</em></span><br />
+			<span> 4.) AWS Lambda Function <em>returning ...</em> JSON data. </span>
+		</code>
+            <div align="center">
+                <button class="btn btn-primary" onclick="myFunction()">Make HTTP Call</button>
+            </div>
+            <div class="row">
+                <div class="dataXMLH col col-xs-6">
+                    <h5>Response from XMLHttpRequest:</h5>
+                    <div id="tom-tom">
+                    </div>
+                </div>
+                <div class="dataXMLH col col-xs-6">
+                    <h5>Bitcoin Daily Prices:</h5>
+                    <ul id="bitcoin">
+                    </ul>
+                </div>
+            </div>
+            <code>curl -X GET "https://jdkxd2ny04.execute-api.us-east-1.amazonaws.com/prod/thomasMiltonFunction"</code>
+        </div>
+        <hr>
+        <footer class="footer">
+            <h5> Copyright &copy; 2019 All Rights Reserved. </h5>
+            <h5><a href="mailto:thomasm1.maestas@gmail.com" title="Contact Information: thomasmaestas.net/">
+					Contact Thomas Maestas</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://thomasmaestas.net">thomasmaestas.net</a>
+            </h5>
+        </footer>
+    </div>
+    <script src="shared/csvJson.js"></script>
+    <script src="src/bitcoinBuyer.js">
+    </script>
+    <script src="src/dataStacks.js">
+    </script>
+    <script src="src/dataLinkedList.js"></script>
+    <script src="src/dataSets.js">
+    </script>
+    <script src="src/dataQueues.js">
+    </script>
+    <script src="src/dataBinaryTree.js">
+    </script>
+    <script src="src/dataHashTable.js">
+    </script>
+    <script src="src/dataTrieStruct.js">
+    </script>
+    <script src="src/dataHeap.js">
+    </script>
+    <script src="src/dataGraphs.js">
+    </script>
+    <script src="src/dataQueues_D3.js">
+    </script>
 
-	</div>
-	<script src="shared/csvJson.js"></script>
-	<script src="src/bitcoinBuyer.js"> 	</script>
-	<script src="src/dataStacks.js"> 	</script>
-	<script src="src/dataLinkedList.js"></script>
-	<script src="src/dataSets.js"> 	</script>
-	<script src="src/dataQueues.js"> 	</script>
-	<script src="src/dataBinaryTree.js"> 	</script>
-	<script src="src/dataHashTable.js"> 	</script>
-	<script src="src/dataTrieStruct.js"> 	</script>
-	<script src="src/dataHeap.js"> 	</script>
-	<script src="src/dataGraphs.js"> 	</script>
-	<script src="src/dataQueues_D3.js"> 	</script>
+    <script src="src/bitcoinBuyer_D3.js">
+    </script>
+    <script src="shared/performanceBigO.js">
+    </script>
 
-	<script src="src/bitcoinBuyer_D3.js"> 	</script>
-	<script src="shared/performanceBigO.js"> 	</script>
 </body>
 
 </html>

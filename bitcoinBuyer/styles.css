@@ -1,112 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Monoton");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+* {
+    margin: 0;
+    padding: 0;
+}
 
-		@import url("https://fonts.googleapis.com/css?family=Monoton");
-    @import url("https://fonts.googleapis.com/css?family=Roboto");
-    * {
-      margin:0;
-      padding:0;
-    }
-    body {
-      background-color:aliceblue;
-  
-      /* white-space: nowrap; */
-    }
-    .container {
-      font-family: "Roboto";  
-      /* position: fixed;
+body {
+    background-color: aliceblue;
+    /* white-space: nowrap; */
+}
+
+path {
+    fill: none;
+    stroke: rgba(135, 207, 235, 0.575);
+}
+
+text {
+    text-shadow: -1px -1px 3px white, -1px 1px 3px white, 1px -1px 3px white, 1px 1px 3px white;
+    pointer-events: none;
+    font-family: 'Playfair Display', serif;
+}
+
+div {
+    padding: 5px;
+    margin: 5px;
+}
+
+li {
+    list-style-type: none;
+}
+
+footer {
+    text-align: center;
+    vertical-align: center;
+}
+
+img {
+    margin: 20px;
+}
+
+code span {
+    color: darkblue;
+    padding-left: 20px;
+}
+
+.container {
+    font-family: "Roboto";
+    background: aliceblue;
+    /* position: fixed;
       left: 0;
       right: 0;
       top: 0;
       bottom: 0;
       margin: 0;  */
-      margin:20px;
-    }
+    margin: 20px;
+}
 
-    path {
-      fill: none;
-      stroke: rgba(135, 207, 235, 0.575);
-    }
 
-    text {
-      text-shadow:
-        -1px -1px 3px white,
-        -1px 1px 3px white,
-        1px -1px 3px white,
-        1px 1px 3px white;
-      pointer-events: none;
-      font-family: 'Playfair Display', serif;
-    } 
-    div {
-      padding:5px;
-      margin:5px;
-    }
-  li {
-      list-style-type:none;
-    }
-    /* Title Widgets */
-    .smallbox {
-      width: 300px;
-      height: 300px;
-    }
-    .box {
-      margin: 20px; 
-      text-align: center;
-      border:  solid 1px #969696;
-      padding: 10px;
-    }
-    
-    /* Data Bar Graphs */
-    
-    .h-bar {
-      min-height: 15px;
-      min-width: 10px;
-      background-color: steelblue;
-      margin-bottom: 2px;
-      font-size: 11px;
-      color: #f0f8ff;
-      text-align: right;
-      padding-right: 2px;
-    }
-    
-    .v-bar {
-      min-height: 1px;
-      min-width: 30px;
-      background-color: #4682b4;
-      margin-right: 2px;
-      font-size: 10px;
-      color: #f0f8ff;
-      text-align: center;
-      width: 10px;
-      display: inline-block;
-    } 
-    #app { 
-      max-height:300px;
-      
-    }
-    .dataConvert {
-      font-size:1rem;
-      background-color:aliceblue;
-      border:solid 1px orange; 
-      max-height:500px;
-      min-width:300px; 
-      overflow:scroll;
+/* Title Widgets */
 
-    }
-    .dataGetters {
-      background-color:aliceblue;
-      border:solid 1px orange;
-      width:500px;
-      /* max-width:45%; */
-      height:250px;
-      float:left;
-      overflow:scroll;
-    }
-/*     
-    #dataGetters-promise {
-      background-color:aliceblue;
-      border:solid 1px orange;
-      width:500px;
-      max-width:45%;
-      height:250px;
-      float:left;
-      overflow:scroll;
-    } */
+.smallbox {
+    width: 300px;
+    height: 300px;
+}
+
+.box {
+    margin: 20px;
+    text-align: center;
+    border: solid 1px #969696;
+    padding: 10px;
+}
+
+
+/* Data Bar Graphs */
+
+.h-bar {
+    min-height: 15px;
+    min-width: 10px;
+    background-color: steelblue;
+    margin-bottom: 2px;
+    font-size: 11px;
+    color: #f0f8ff;
+    text-align: right;
+    padding-right: 2px;
+}
+
+.v-bar {
+    min-height: 1px;
+    min-width: 30px;
+    background-color: #4682b4;
+    margin-right: 2px;
+    font-size: 10px;
+    color: #f0f8ff;
+    text-align: center;
+    width: 10px;
+    display: inline-block;
+}
+
+
+/* page style */
+
+#app {
+    max-height: 300px;
+}
+
+.dataConvert {
+    font-size: 1rem;
+    background-color: aliceblue;
+    border: solid 1px orange;
+    max-height: 500px;
+    max-width: 45%;
+    /* min-width: 300px; */
+    overflow: scroll;
+}
+
+.dataGetters {
+    background-color: aliceblue;
+    border: solid 1px orange;
+    /* width: 500px; */
+    max-width: 45%;
+    height: 250px;
+    float: left;
+    overflow: scroll;
+}
+
+.dataXMLH {
+    background-color: aliceblue;
+    border: solid 1px orange;
+    width: 45%;
+    height: 250px;
+    float: left;
+    overflow: scroll;
+}
