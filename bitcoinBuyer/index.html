@@ -4,12 +4,17 @@
 <head>
 
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 
     <title>ArrayMaker</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.3/Rx.js"></script>
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <!-- <script src="node_modules/jsdom/lib/api.js"></script> -->
@@ -80,38 +85,56 @@
             </div>
             <code>curl -X GET "https://jdkxd2ny04.execute-api.us-east-1.amazonaws.com/prod/thomasMiltonFunction"</code>
         </div>
+        <p class="portlet-title">RxJS Vanilla Data Stream Manipulation</p> 
+        <div class=" row rxjs analytics">
+            <div class="col col-xs-6 ">
+              
+                <div id="analytics">
+                </div>
+            </div>
+            <div class="pull-right col col-xs-5 col-right">
+              
+                <div id="analytics2">
+                </div>
+            </div>
+<div id="mouse"></div>
+
+        </div>
         <hr>
         <footer class="footer">
             <h5> Copyright &copy; 2019 All Rights Reserved. </h5>
             <h5><a href="mailto:thomasm1.maestas@gmail.com" title="Contact Information: thomasmaestas.net/">
-					Contact Thomas Maestas</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="https://thomasmaestas.net">thomasmaestas.net</a>
+                    Contact Thomas Maestas</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a
+                    href="https://thomasmaestas.net">thomasmaestas.net</a>
             </h5>
         </footer>
     </div>
+    <script src="dataGetters/dataStreamsRxJS.js"></script>
+
     <script src="shared/csvJson.js"></script>
-    <script src="src/bitcoinBuyer.js">
+    <script src="dataStructures/bitcoinBuyer.js">
     </script>
-    <script src="src/dataStacks.js">
+    <script src="dataStructures/dataStacks.js">
     </script>
-    <script src="src/dataLinkedList.js"></script>
-    <script src="src/dataSets.js">
+    <script src="dataStructures/dataLinkedList.js"></script>
+    <script src="dataStructures/dataSets.js">
     </script>
-    <script src="src/dataQueues.js">
+    <script src="dataStructures/dataQueues.js">
     </script>
-    <script src="src/dataBinaryTree.js">
+    <script src="dataStructures/dataBinaryTree.js">
     </script>
-    <script src="src/dataHashTable.js">
+    <script src="dataStructures/dataHashTable.js">
     </script>
-    <script src="src/dataTrieStruct.js">
+    <script src="dataStructures/dataTrieStruct.js">
     </script>
-    <script src="src/dataHeap.js">
+    <script src="dataStructures/dataHeap.js">
     </script>
-    <script src="src/dataGraphs.js">
+    <script src="dataStructures/dataGraphs.js">
     </script>
-    <script src="src/dataQueues_D3.js">
+    <script src="dataStructures/dataQueues_D3.js">
     </script>
 
-    <script src="src/bitcoinBuyer_D3.js">
+    <script src="dataStructures/bitcoinBuyer_D3.js">
     </script>
     <script src="shared/performanceBigO.js">
     </script>

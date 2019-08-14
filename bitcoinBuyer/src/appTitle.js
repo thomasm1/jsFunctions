@@ -18,76 +18,75 @@ source -https://www.cryptodatadownload.com/data/northamerican/`;
 function TitleWidget(spec) {
     var instance = {};
     var headline, desc;
-  
+
     instance.render = function() {
-      var div = d3.select(".appTitle").append("div");
-      div.append("h3").text(headline)
-      .attr(
-        "style",
-        "text-align:" +
-        spec.titleTextAlign 
-      );
-      div
-        .attr("class", "box")
-        // .attr("style", "color:" + spec.color)
-        .attr(
-          "style",
-          "background-color: " +
-            spec.backgroundColor +
-            "color:" +
-            spec.color +
-            "width:" +
-            spec.width +
-            "%;" +
-            "max-height:" + 
-            spec.maxHeight + 
-            "overflow-y:" + 
-            spec.overflowY +
-            "text-align:" +
-            spec.textAlign +
-            "padding:" +
-            spec.padding
-        )
-        .append("p")
-        .html(desc);
-      return instance;
+        var div = d3.select(".appTitle").append("div");
+        div.append("h3").text(headline)
+            .attr(
+                "style",
+                "text-align:" +
+                spec.titleTextAlign
+            );
+        div
+            .attr("class", "box")
+            // .attr("style", "color:" + spec.color)
+            .attr(
+                "style",
+                "background-color: " +
+                spec.backgroundColor +
+                "color:" +
+                spec.color +
+                "width:" +
+                spec.width +
+                "%;" +
+                "max-height:" +
+                spec.maxHeight +
+                "overflow-y:" +
+                spec.overflowY +
+                "text-align:" +
+                spec.textAlign +
+                "padding:" +
+                spec.padding
+            )
+            .append("p")
+            .html(desc);
+        return instance;
     };
 
     instance.headline = function(h) {
-      if (!arguments.length) return headline;
-      headline = h;
-      return instance;
+        if (!arguments.length) return headline;
+        headline = h;
+        return instance;
     };
 
     instance.desc = function(d) {
-      if (!arguments.length) return desc;
-      desc = d;
-      return instance;
+        if (!arguments.length) return desc;
+        desc = d;
+        return instance;
     };
     return instance;
-  } // end TitleWidget
-  
-  var widget = new TitleWidget({
-    color: "darkblue;",
-    backgroundColor: "rgba(135, 207, 235, 0.575);",
-    width: "90"
-  })
+} // end TitleWidget
+
+var widget = new TitleWidget({
+        color: "darkblue;",
+        backgroundColor: "rgba(135, 207, 235, 0.575);",
+        width: "90"
+    })
     .headline(title);
-  
-  var subWidget = new TitleWidget({
-    color: "blue;",
-    backgroundColor: "rgba(135, 207, 235, 0.575);",
-    width: "90",
-    margin: "5px;",
-    maxHeight: "200px;",
-    overflowY: "scroll;",
-    textAlign: "justify;",
-    titleTextAlign: "center;",
-    padding: "0px 10px;"
-  })
+
+var subWidget = new TitleWidget({
+        color: "blue;",
+        backgroundColor: "rgba(135, 207, 235, 0.575);",
+        width: "90",
+        margin: "5px;",
+        maxHeight: "200px;",
+        overflowY: "scroll;",
+        textAlign: "justify;",
+        titleTextAlign: "center;",
+        padding: "0px 10px;"
+    })
     .headline(tocTitle)
     .desc(toc);
-  
-  widget.render();
-  subWidget.render();
-  
+
+widget.render();
+subWidget.render();

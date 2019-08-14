@@ -96,7 +96,46 @@ code span {
     width: 10px;
     display: inline-block;
 }
+/* page RXJS */
 
+.portlet-title {
+    color: #ffa100;
+    font-style: italic;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    text-align:center;
+  }
+  
+  .portlet {
+    height: 180px;
+    padding-left: 5px;
+  }
+  
+.rxjs {
+    /* border:1px solid rgba(124,188,243,.4); */
+    border: 1px solid rgba(165, 42, 42, 0.377);
+    padding: 5px; 
+    width: 95%; 
+  }
+  
+  .analytics {
+    height: 400px;
+    max-height: 400px;
+    overflow-y: scroll;
+    padding-left: 5px;
+  }
+  
+  .analytics p:first-child {
+    border: none;
+    line-height: normal;
+  }
+  
+  .analytics p {
+    margin: 0; 
+    padding: 2px;
+    line-height: 1.1rem;
+  }
+  
 
 /* page style */
 
@@ -108,7 +147,7 @@ code span {
     font-size: 1rem;
     background-color: aliceblue;
     border: solid 1px orange;
-    max-height: 500px;
+    max-height: 400px;
     max-width: 45%;
     /* min-width: 300px; */
     overflow: scroll;
