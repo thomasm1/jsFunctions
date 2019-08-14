@@ -140,6 +140,59 @@ interv
     .finally(() => print2('--16. finally'))
     .subscribe(i => print2('--16 TAKEUNTIL: ' + i + '\n\n'))
 
+// 17.takeWhile
+const namex = Rx.Observable.of('17. tom', '17. milton', 'maestas', 'another-name')
+namex
+.takeWhile(name => name != 'maestas')
+.finally(() => print2('17. TAKEWHILE, found name \n\n'))
+.subscribe(i => print2(i))
+
+// 18. zip
+const yin = Rx.Observable.of('peanut butter', 'wine', 'random')
+const yang = Rx.Observable.of('jelly', 'cheese', 'orderly')
+
+const combined = Rx.Observable.zip(yin, yang)
+combined.subscribe(arr => print2('18. ZiP ' + arr))
+ 
+
+// 19.forkJoin 
+const yina = Rx.Observable.of('peanut butter', 'wine', 'random')
+const yanga = Rx.Observable.of('jelly', 'cheese', 'orderly').delay(2000)
+
+const forkJoined = Rx.Observable.forkJoin(yin, yang)
+forkJoined.subscribe(arr => print2('19. FORKJOIN ' + arr))
+ 
+// 20. catch 
+const observeError = Rx.Observable.create( observer => {
+    observer.next('good')
+    observer.next('greate')
+    observer.next('grand')
+     throw '20. CATCH this!'  
+    observer.next( 'wonderful' )
+})
+observeError
+    .catch (err => print2( `Error caught: ${err}`))
+    .retry(2)
+    .subscribe( val => print2(val))
+
+// 21. subject()
+const subjectt = new Rx.Subject()
+
+const subjA = subjectt.subscribe( val => print2(`21.Subject(A): ${val}`))
+const subjB = subjectt.subscribe( val => print2(`21.Subject(B): ${val}`))
+subjectt.next('hi ')
+setTimeout(() => {
+    subjectt.next('there...')
+}, 1000)
+// 22. subject()
+const observMulticast = Rx.Observable.fromEvent(document, 'click');
+const clickss = observMulticast
+    .do( _ => print2('Do one time!'))
+    const subject = clickss.multicast(() => new Rx.Subject() );
+    const subA = subject.subscribe( c => print2(`22.SUBJECT-A: ${c.timeStamp}`))
+    const subB = subject.subscribe( c => print2(`22.SUBJECT-B: ${c.timeStamp}`))
+    subject.connect();
+
 
 
 

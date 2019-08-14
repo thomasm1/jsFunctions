@@ -70,15 +70,15 @@ function TitleWidget(spec) {
 var widget = new TitleWidget({
         color: "darkblue;",
         backgroundColor: "rgba(135, 207, 235, 0.575);",
-        width: "90"
+        width: "100"
     })
     .headline(title);
 
 var subWidget = new TitleWidget({
         color: "blue;",
         backgroundColor: "rgba(135, 207, 235, 0.575);",
-        width: "90",
-        margin: "5px;",
+        width: "100",
+        margin: "0",
         maxHeight: "200px;",
         overflowY: "scroll;",
         textAlign: "justify;",
