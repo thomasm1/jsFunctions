@@ -167,7 +167,7 @@ const observeError = Rx.Observable.create( observer => {
     observer.next('good')
     observer.next('greate')
     observer.next('grand')
-     throw '20. CATCH this!'  
+    //  throw '20. CATCH this!'  
     observer.next( 'wonderful' )
 })
 observeError

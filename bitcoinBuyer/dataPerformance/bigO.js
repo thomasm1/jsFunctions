@@ -1,3 +1,6 @@
+
+console.log("%c big O Performance Timers", "color:white; background:red; :solid 1px blue")
+
 // AUXILIARY SPACE COMPLEXITY: memory allocateD to run alg (not including input space)
 //  O(1) Constant   Primitive types (bool, num, undefined, null)
 //  O(n) Linear   String types
