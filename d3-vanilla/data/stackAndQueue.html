@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stack</title>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<style>
+    body {
+        margin:2%;
+    
+
+    }
+    div {
+        padding:1%;
+    }
+	#div2 {
+	color:white;
+	background-color:steelblue;
+	opacity:.8; 
+	}
+	
+	#div3 {
+	background-color:slateblue;
+	opacity:.8;
+    
+	}
+	form {
+	background-color:slateblue;
+	opacity:.8;
+	color:silver;}
+	#stack {
+	background-color:slateblue;
+	opacity:.8;
+	color:silver;}
+	#queue {
+	background-color:steelblue;
+	opacity:.8;
+	color:white;}
+</style>
+</head>
+<body> 
+
+<div id="div3">
+       <h3>Array Stack</h3> 
+ <form>
+        <div class="form-group">
+        <!--  <label for="palindrome-detector"> </label> 
+         
+          <input name="palindrome-detector" type="input" class="form-control" id="textInput" placeholder="Enter palindrome">-->
+   <p id="text"></p> 
+<script type="text/javascript">
+    // STACK 
+    console.log('Start STACK I -- PALINDROME'); 
+ document.write('Start STACK I -- PALINDROME<br /><br /><br />');
+  var letters = new Array();   // this is our stack 
+            letters[0] = "Array-zero<br />"; 
+            document.write(' // this is our stack ');
+            letters[1] = "Array-one<br />";  
+            document.write(letters[1]);
+            letters.push("++push +htis ++!<br />");
+            document.write(letters + ' is th whole array'); 
+            letters.splice(1, 1, "this splices in at [1]", "this second splices ends at [1]<br />"); 
+            document.write(letters);
+            console.log(letters);
+ // STACK 1
+var word =  "racecar";
+
+var rword = "";
+// put letters of word into stack
+for (var i = 0;i < word.length; i++) {
+    letters.push(word[i]);
+}
+// pop off the stack in reverse order
+for (var i = 0; i < word.length; i++) {
+    rword += letters.pop();
+}
+
+if (rword === word) {
+    console.log(' <h4> ' + word + 'is a palindrome.</h4>');
+    document.write(word + ' is a palindrome.');
+    
+}
+else {
+    console.log(word + ' is not a palindrome');
+    document.write(word + ' is not a palindrome');
+}
+</script> 
+      
+ 
+<script>
+    // STACK 2
+console.log('Start STACK 2'); 
+document.write('<br /><br />Start STACK 2<br /><br />');
+var Stack = function() {
+    this.count = 0;
+    this.storage = {};
+// Adds a value onto end of stack
+    this.push = function(value) {
+        this.storage[this.count] = value;
+        this.count++;
+    }
+// Removes and returns a value at the end of stack
+    this.pop = function() {
+        if (this.count === 0) {
+            return undefined;
+        }
+        this.count--;
+        var result = this.storage[this.count];
+        delete this.storage[this.count];
+        return result;
+    } 
+    this.size = function() {
+        return this.count;
+    }
+    // Returns value at the end of the stack (BUT DOES NOT REMOVE ITEM)
+    this.peek = function() {
+        return this.storage[this.count-1];
+    }
+};
+
+var myStack = new Stack();
+myStack.push('push'); 
+document.write(myStack.peek());
+
+myStack.push('push2');
+console.log(myStack.peek());
+document.write(myStack.peek());
+console.log(myStack.pop()); 
+console.log(myStack.peek());
+
+myStack.push('push3');
+document.write(myStack.peek());
+console.log(myStack.peek()); 
+</script>
+</div>
+
+<div id="queue">
+
+<hr>
+        <h3>Array Queue</h3>
+ <hr>
+ 
+<script>
+console.log('Start QUEUE'); 
+document.write('Start QUEUE<br /><br />');
+function Queue() { // q is here
+	collection = []; // collect items in queue
+	this.print = function() {
+		document.write(collection);
+	}; // helper function
+	this.enqueue = function(element) { // pushes first item on q
+		collection.push(element);
+	};
+	this.dequeue = function() {  // takes item off queue
+		return collection.shift();// pulls off first item in array , returns it
+	};
+	this.front = function() { // this returns item at 0 index, (no remove)
+		return collection [0];
+	};
+	this.size = function() { // length method
+		return collection.length;
+	};
+	this.isEmpty = function() {
+		return (collection.length === 0);
+	};
+}
+ 
+var q = new Queue();
+q.enqueue('a');
+q.enqueue('b');
+q.enqueue('c');
+q.print();
+document.write('<br />');
+q.dequeue();
+q.front();
+q.print();
+document.write('<br />');
+
+</script>
+<hr><br /><hr>
+
+<script>
+console.log('Start PRIORITY QUEUE'); 
+document.write('Start PRIORITY QUEUE<br /><br />');
+
+function PriorityQueue() { // q is here
+	collection = []; // collect items in queue
+	this.printCollection = function() {
+		(console.log(collection));
+		(document.write(collection));
+	}; // helper function
+	this.enqueue = function(element) { 
+        if (this.isEmpty()) {
+            collection.push(element);
+        } else {
+            var added = false;
+            for (var i=0; i<collection.length; i++){
+                if (element[1] < collection[i][1]){ // checking priorities
+                    collection.splice(i,0,element);
+                added = true;
+                break;
+                }
+            }
+            if (!added){
+                collection.push(element);
+            }
+        }
+    };
+    this.dequeue = function() { 
+        var value = collection.shift();
+        return value[0];
+    };
+    this.front = function() {
+        return collection[0];
+    };
+    this.size = function() {
+        return collection.length;
+    };
+    this.isEmpty = function() {
+        return (collection.length === 0);
+    };
+}
+
+
+var pq = new PriorityQueue();
+pq.enqueue(['T Maestas', 2]);
+pq.enqueue(['T Rex', 3]);
+pq.enqueue(['Hey now!', 3]);
+pq.printCollection();
+pq.dequeue();
+pq.front();
+pq.printCollection();
+   </script> 
+        </div>
+<div class="div4">
+    
+        <script src="jspolyfill.js"   crossorigin="anonymous"></script>
+        <script src="trieDataStructure.js"   crossorigin="anonymous"></script>
+</div>
+
+<script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/tether.min.js"></script>
+    <script src="../assets/js/chart.js"></script>
+    <script src="../assets/js/tablesorter.min.js"></script>
+    <script src="../assets/js/toolkit.js"></script>
+    <script src="../assets/js/toolkitEdit.js">
+    // This is exact copy of toolkit, but with edits at line 4907</script> 
+    <script src="../assets/js/application.js"></script>
+    <script>
+      // execute/clear BS loaders for docs
+      $(function(){while(window.BS&&window.BS.loader&&window.BS.loader.length){(window.BS.loader.pop())()}})
+    </script>
+</body>
+</html>
