@@ -1,0 +1,20 @@
+:host {
+    /* box-sizing: border-box; */
+    display: none;
+    position: relative;
+    right: 0;
+    top: 0;
+    float:right;
+    width: 600px;
+    max-width:80%;
+    height: 100%;
+    padding: 20px 20px;
+    background: #ccc; 
+  }
+  
+  :host.is-open {
+    display: block;
+  }
+  .sidebar {
+      min-height:650px;
+  }

@@ -1,0 +1,106 @@
+<tm-accordion [title]="user.name" 
+[hasJustViewed]="selectedUserId === user.id"
+[isHidden]="false">
+<!--default collapsed ... with list > 10 maybe ...-->
+
+  <div class="col-xs-10 tmPanelBody">
+    <div class="vertical-align row">
+      <div class="col-xs-4 imageContainer">
+        <img class="imageClass" [src]="user.photoPath" />
+      </div>
+      <div class="col-xs-8">
+        <div class="row">
+          <div class="col-xs-6">
+            Email :
+          </div>
+          <div class="col-xs-6">
+            {{user.email}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            Phone :
+          </div>
+          <div class="col-xs-6">
+            {{user.phone}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            Contact Type :
+          </div>
+          <div class="col-xs-6">
+            {{user.contactType}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            Date of Birth :
+          </div>
+          <div class="col-xs-6">
+            {{user.dateOfBirth | date}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            UserGroup :
+          </div>
+          <div class="col-xs-6" [ngSwitch]="user.userGroup">
+            <!--   {{user.userGroup}}   -->
+            <span *ngSwitchCase="1">CoinTrader Premium</span>
+            <span *ngSwitchCase="2">CoinTrader</span>
+            <span *ngSwitchCase="3">CoinTracker</span>
+            <span *ngSwitchCase="4">CoinWatcher (free)</span>
+            <span *ngSwitchCase="5">AltCoinWatcher (free)</span>
+            <span *ngSwitchCase="6">Administration</span>
+            <span *ngSwitchDefault>Administration</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            Active :
+          </div>
+          <div class="col-xs-6">
+            {{user.isActive}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            Photo URL :
+          </div>
+          <div class="col-xs-6">
+            {{user.photoPath}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tmPanelFooter">
+      <button class="btn btn-primary" (click)="viewUser()">View</button>
+      <button class="btn btn-primary" (click)="editUser()">Edit</button>
+      <button class="btn btn-danger" *ngIf="!confirmDelete" (click)="confirmDelete=true">Delete</button>
+      <span *ngIf="confirmDelete">
+        <button class="btn btn-primary" (click)="confirmDelete=false">Cancel</button>
+        <button class="btn btn-danger" (click)="deleteUser()">Yes</button>
+        <span>Are you sure you want to delete?</span>
+      </span>
+  </div>
+
+</tm-accordion>
+<!-- 
+<div class="panel panel-primary" [class.panel-info]="selectedUserId === user.id">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{user.name}}</h3>
+  </div>
+
+  <div class="panel-body">
+
+  </div>
+
+  <div class="panel-footer">
+
+  </div>
+
+
+</div> -->

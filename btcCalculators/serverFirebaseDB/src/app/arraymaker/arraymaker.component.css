@@ -1,0 +1,27 @@
+div {
+    padding:0px; 
+    background-color:aliceblue;
+    color:darkblue;
+}
+.arraymaker {
+    min-height:800px;
+}
+h1,h2,h3 {
+    text-align:center;
+}
+h4 {
+    padding:10px;
+} 
+.d-cols { 
+    margin:0px;
+    padding:0px;
+    max-height:600px;
+    overflow:scroll;
+    background:rgba(118, 118, 133, 0.103); 
+}
+.data {   
+     width:35%;
+}
+.arrays {   
+    width:65%;
+}

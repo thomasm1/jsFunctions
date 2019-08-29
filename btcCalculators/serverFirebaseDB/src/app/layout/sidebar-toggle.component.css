@@ -1,0 +1,15 @@
+:host {
+    display: inline-block;
+    background: #ccc;
+    padding: 5px;
+    margin:5px;
+    cursor: pointer;
+    border: outset 3px silver;
+  }
+  
+  :host:hover {
+    background: #ddd;
+  }
+ h1,h2,h3,h4, h5 {
+     text-align:center;
+ }

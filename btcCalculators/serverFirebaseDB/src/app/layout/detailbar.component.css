@@ -1,0 +1,17 @@
+:host {
+    /* box-sizing: border-box; */
+    display: none;
+    /* position: fixed;
+    right: 0;
+    top: 0; */
+    float:left; 
+    padding: 5px 10px;
+    background: #ccc;
+  }
+  
+  :host.is-open {
+    display: inline-block;
+  }
+  .detailbar { 
+      min-height:100px;
+  }

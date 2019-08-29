@@ -1,0 +1,110 @@
+<form #userForm="ngForm" (ngSubmit)="saveUser()">
+    <!--resetting in html -> userForm.reset() -->
+    <div class="panel panel-primary" *ngIf="user">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{panelTitle}}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group" [class.has-error]="name.invalid && name.touched" [class.has-success]="name.valid">
+                <label for="name" class="control-label">Full Name<span class="required"> *</span></label>
+                <input id="name" required name="name" [(ngModel)]="user.name" type="text" class="form-control" #name="ngModel">
+                <span class="help-block" *ngIf="name.invalid && name.touched"> Name is required
+                  </span>
+            </div>
+
+            <div class="form-group" [class.has-error]="email.invalid && email.touched" [class.has-success]="email.valid">
+                <label for="email" class="control-label">Email<span class="required"> *</span></label>
+                <!-- [email]="user.email !== ''"    -->
+                <input id="email" name="email" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" [(ngModel)]="user.email" type="text" class="form-control" #email="ngModel">
+                <span class="help-block" *ngIf="email.errors?.required && email.touched"> Email is required
+              </span>
+                <!-- *ngIf="email.errors?.email && email.touched"> -->
+                <span class="help-block" *ngIf="email.errors?.pattern && email.touched"> Email is invalid, must have _@_._
+              </span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" [(ngModel)]="user.phone" type="text" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="contactType">Contact Preference</label>
+                <div class="form-control">
+                    <label class="radio-inline">
+                      <input 
+                      type="radio" 
+                      value="email" 
+                      name="contactType"
+                      [(ngModel)]="user.contactType">
+                    Email</label>
+                    <label class="radio-inline">
+                        <input 
+                        type="radio" 
+                        value="phone" 
+                        name="contactType"
+                        [(ngModel)]="user.contactType">
+                      Phone</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Active Member</label>
+                <div class="form-control">
+                    <label class="checkbox-inline">
+                      <input 
+                      type="checkbox"  
+                      name="isActive"
+                      [(ngModel)]="user.isActive">
+                    Is Active</label>
+                </div>
+            </div>
+
+            <div class="form-group" [class.has-error]="userGroup.touched && userGroup.invalid" [class.has-success]="userGroup.valid">
+                <label for="userGroup" class="control-label">UserGroup<span class="required">
+                    <!-- * -->
+                  </span></label>
+                <select id="userGroup" appSelectValidator="select" name="userGroup" [(ngModel)]="user.userGroup" class="form-control" #userGroup="ngModel">
+                    <option disabled  value="select"><em>Select Type of UserGroup: </em></option>
+                    <option  *ngFor="let group of userGroups" [value]="group.id">
+                      {{group.name}}
+                    </option> 
+                </select>
+                <span class="help-block" *ngIf="userGroup.touched && userGroup.errors?.defaultSelected"> UserGroup Type is required
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label for="dateOfBirth">Birthday</label>
+                <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" type="date" bsDatepicker class="form-control">
+            </div>
+
+            <div class="form-group" [class.has-error]="photoPath.invalid && photoPath.touched" [class.has-success]="photoPath.valid">
+                <label for="photoPath" class="control-label">Photo Submission<span class="required"> 
+                  <!-- *  -->
+                </span></label>
+                <input id="photoPath" name="photoPath" [(ngModel)]="user.photoPath" type="text" class="form-control" #photoPath="ngModel">
+                <p>Available images: assets/images/j.png, .../d.png, /e.png, /f.png</p>
+                <span class="help-block" *ngIf="photoPath.invalid && photoPath.touched"> Photo is required
+          </span>
+            </div>
+
+            <div *ngIf="user.photoPath" class="form-group">
+                <button type="button" (click)="togglePhotoPreview()" class="btn btn-primary pull-right">
+                  {{previewPhoto? "Hide ":"Show "}} Preview
+                </button>
+            </div>
+            <div class="form-group">
+                <img [src]="user.photoPath" height="200" width="200" *ngIf="previewPhoto" />
+            </div>
+        </div>
+        <span class="required pull-right">* required &nbsp;&nbsp;</span>
+        <div class="panel-footer">
+            <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</form>
+<!-- <div *ngIf="user.name !== null" style="background-color:aliceblue;color:green;">
+<p >userForm: {{userForm.value | json}}</p>
+<p >user: {{user.value | json}}</p>
+</div> -->

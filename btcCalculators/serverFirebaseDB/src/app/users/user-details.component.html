@@ -1,0 +1,87 @@
+<div class="panel panel-primary" *ngIf="user" (click)="handleClick()">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{user.name}}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-10">
+            <div class="vertical-align row">
+                <div class="col-xs-4  imageContainer">
+                    <img class="imageClass" [src]="user.photoPath" />
+                </div>
+                <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Email :
+                        </div>
+                        <div class="col-xs-6">
+                            {{user.email}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Phone :
+                        </div>
+                        <div class="col-xs-6">
+                            {{user.phone}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Contact Type :
+                        </div>
+                        <div class="col-xs-6">
+                            {{user.contactType}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Date of Birth :
+                        </div>
+                        <div class="col-xs-6">
+                            {{user.dateOfBirth | date}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            UserGroup :
+                        </div>
+                        <div class="col-xs-6" [ngSwitch]="user.userGroup">
+                            <!--   {{user.userGroup}}   -->
+                            <span *ngSwitchCase="1">CoinTrader Premium</span>
+                            <span *ngSwitchCase="2">CoinTrader</span>
+                            <span *ngSwitchCase="3">CoinTracker</span>
+                            <span *ngSwitchCase="4">CoinWatcher (free)</span>
+                            <span *ngSwitchCase="5">AltCoinWatcher (free)</span>
+                            <span *ngSwitchCase="6">Administration</span>
+                            <span *ngSwitchDefault>Administration</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Active :
+                        </div>
+                        <div class="col-xs-6">
+                            {{user.isActive}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            Photo URL :
+                        </div>
+                        <div class="col-xs-6">
+                            {{user.photoPath}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel footer">
+        <a class="btn btn-primary" [routerLink]="['/list', { id:user.id }]" queryParamsHandling="preserve">
+      Back to Users</a>
+        <button class="btn btn-primary pull-right" (click)="viewNextUser()">
+      View Next Contact
+    </button>
+    </div>
+</div>

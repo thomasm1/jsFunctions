@@ -1,0 +1,39 @@
+{
+    "users": [{
+            "id": "1",
+            "name": "Tom",
+            "email": "thomasm1.maestas@gmail.com",
+            "phone": 5055087707,
+            "contactType": "email",
+            "userGroup": "6",
+            "groupName": "Administration",
+            "dateOfBirth": "2020/9/3",
+            "isActive": true,
+            "photoPath": "assets/images/a.png"
+        },
+        {
+            "id": 2,
+            "name": "Thomas",
+            "email": "thomas@gmail.com",
+            "phone": 5055087707,
+            "contactType": "phone",
+            "userGroup": "2",
+            "groupName": "CoinTrader",
+            "dateOfBirth": "1976/9/3",
+            "isActive": true,
+            "photoPath": "assets/images/d.png"
+        },
+        {
+            "id": 3,
+            "name": "Milton",
+            "email": "milton@gmail.com",
+            "phone": 5055087707,
+            "contactType": "email",
+            "userGroup": "3",
+            "groupName": "AltCoinWatcher (free)",
+            "dateOfBirth": "2000/9/3/",
+            "isActive": false,
+            "photoPath": "assets/images/s.png"
+        }
+    ]
+}

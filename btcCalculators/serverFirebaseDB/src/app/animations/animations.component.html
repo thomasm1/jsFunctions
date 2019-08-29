@@ -1,0 +1,26 @@
+
+<button (click)="toggle()">Toggle A Popover</button> 
+<button (click)="changePosition('move')" class="button">Translate</button>
+<button (click)="changePosition('spin')" class="button">Rotate</button>
+<button (click)="changePosition('enlarge')" class="button">Scale</button>
+<button (click)="changePosition(null)" class="button">Reset</button>
+<br />
+<div [@popOverState]="stateName">
+    <p><img src="assets/images/tmm.png" width="50px"> 
+    </p>  
+    <p>Animations caption</p>
+  </div>   
+
+<div style="float:left">
+  <img [src]="photoUrl" class="photo" 
+  [@photoState]="position"
+  (@photoState.start)="logAnimation($event)"
+  (@photoState.done)="logAnimation($event)" >
+</div>
+
+<div style="float:left" [@photosAnimation]="photos.length">
+  <div *ngFor="let photo of photos">
+      <img [src]="photo" width="100px">   
+
+  </div>
+</div>

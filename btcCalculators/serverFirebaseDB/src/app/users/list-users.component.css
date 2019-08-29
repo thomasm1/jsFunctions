@@ -1,0 +1,42 @@
+.pointerCursor {
+    cursor: pointer;
+}
+.search {
+    height:90px;
+} 
+.clear-input {
+    margin:5px;
+    float:right;
+}
+.input input {
+    min-width: 250px;
+    width:49%;
+    margin-left:5px;
+    float:left;
+    display:block;
+    display:block;
+}
+.input span {
+    color:white;
+    background-color:#337ab7;
+    border-radius:2px;
+    float:left;
+    min-width: 250px;
+    width:49%;
+    padding:5px;
+    margin:3px 3px;
+    display:block;
+}
+em { color:pink;}
+
+h4.none { 
+    color:white;
+    background-color:#337ab7;
+    border-radius:2px;
+    float:left;
+    min-width: 250px;
+    width:49%;
+    padding:5px;
+    margin:30px 3px;
+    display:block;
+}

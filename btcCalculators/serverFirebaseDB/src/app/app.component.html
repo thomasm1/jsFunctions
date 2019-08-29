@@ -1,0 +1,36 @@
+<!-- <div class="container">
+    <tm-list-users></tm-list-users>
+</div> -->
+<div class="container">
+    <nav class="navbar navbar-default" id="nav">
+        <ul class="nav navbar-nav">
+            <li>
+                <a routerLink="">
+                    <h4>USERS</h4>
+                </a>
+            </li>
+            <li>
+                <a routerLink="edit/0">
+                    <h4>REGISTER</h4>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/users', 2]">
+                    <h4>DETAILS</h4>
+                </a>
+            </li>
+            <li>
+                <a routerLink="animations">
+                    <h4>ANIMATIONS</h4>
+                </a>
+            </li>
+            <li>
+                <a routerLink="data">
+                    <h4>DATA</h4>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div *ngIf="showLoadingIndicator" class="spinner"></div>
+    <router-outlet></router-outlet>
+</div>

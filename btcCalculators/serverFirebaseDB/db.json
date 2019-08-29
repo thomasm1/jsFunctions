@@ -1,0 +1,185 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Tom Maestas",
+      "email": "thomasm1.maestas@gmail.com",
+      "phone": 5055087707,
+      "contactType": "email",
+      "userGroup": "5",
+      "dateOfBirth": "2020/09/03",
+      "isActive": true,
+      "photoPath": "assets/images/a.png"
+    },
+    {
+      "id": 2,
+      "name": "Thomas",
+      "email": "thomas@gmail.com",
+      "phone": 5055087707,
+      "contactType": "email",
+      "userGroup": "2",
+      "dateOfBirth": "1976/09/03",
+      "isActive": true,
+      "photoPath": "assets/images/d.png"
+    },
+    {
+      "id": 3,
+      "name": "Milton",
+      "email": "milton@gmail.com",
+      "phone": 5055087707,
+      "contactType": "email",
+      "userGroup": "3",
+      "dateOfBirth": "1818/09/03",
+      "isActive": false,
+      "photoPath": "assets/images/s.png"
+    },
+    {
+      "id": 4,
+      "name": "newest addition",
+      "email": "john@John.com",
+      "phone": "445 454 4545",
+      "contactType": "email",
+      "userGroup": "6",
+      "dateOfBirth": "2019-07-09",
+      "isActive": true,
+      "photoPath": " assets/images/l.png"
+    },
+    {
+      "id": 5,
+      "name": "er",
+      "email": "er@er.er",
+      "phone": "4544545545",
+      "contactType": "phone",
+      "userGroup": "3",
+      "dateOfBirth": "2019-07-12",
+      "isActive": null,
+      "photoPath": "assets/images/m.png"
+    },
+    {
+      "id": 7,
+      "name": "namer",
+      "email": "namer@r.r",
+      "phone": "34343434",
+      "contactType": "phone",
+      "userGroup": "1",
+      "dateOfBirth": "2019-07-10",
+      "isActive": true,
+      "photoPath": "assets/images/f.png"
+    },
+    {
+      "id": 10,
+      "name": "rt",
+      "email": "r@3.3",
+      "phone": "333333",
+      "contactType": "email",
+      "userGroup": "4",
+      "dateOfBirth": "2019-07-11",
+      "isActive": true,
+      "photoPath": "assets/images/q.png"
+    },
+    {
+      "id": 11,
+      "name": "f",
+      "email": "f@f.f",
+      "phone": "4564564545",
+      "contactType": "email",
+      "userGroup": "2",
+      "dateOfBirth": "2019-07-12",
+      "isActive": true,
+      "photoPath": "assets/images/m.png"
+    },
+    {
+      "id": 12,
+      "name": "newnew",
+      "email": "new@new.new",
+      "phone": "777-777-777",
+      "contactType": "email",
+      "userGroup": "6",
+      "dateOfBirth": "2019-07-23",
+      "isActive": null,
+      "photoPath": "assets/images/m.png"
+    }
+  ],
+  "coins": [
+    {
+      "Date": "2019/07/04",
+      "Symbol": "BTCUSD",
+      "Open": 11976.42,
+      "High": 12064.26,
+      "Low": 11820,
+      "Close": 11909.55,
+      "Volume BTC": 1237.57,
+      "Volume USD": 14790355.69
+    },
+    {
+      "Date": "2019/07/03",
+      "Symbol": "BTCUSD",
+      "Open": 10829.18,
+      "High": 12014.6,
+      "Low": 10829.18,
+      "Close": 11976.42,
+      "Volume BTC": 36836.85,
+      "Volume USD": 419076229.34
+    },
+    {
+      "Date": "2019/07/02",
+      "Symbol": "BTCUSD",
+      "Open": 10577.63,
+      "High": 10925,
+      "Low": 9651,
+      "Close": 10829.18,
+      "Volume BTC": 41476.42,
+      "Volume USD": 424791613.92
+    },
+    {
+      "Date": "2019/07/01",
+      "Symbol": "BTCUSD",
+      "Open": 10761.26,
+      "High": 11210.52,
+      "Low": 9953,
+      "Close": 10577.63,
+      "Volume BTC": 37633.9,
+      "Volume USD": 396857365.17
+    },
+    {
+      "Date": "2019/07/04",
+      "Symbol": "ETHUSD",
+      "Open": 301.79,
+      "High": 304,
+      "Low": 300.39,
+      "Close": 301.5,
+      "Volume ETH": 3825.69,
+      "Volume USD": 1154988.12
+    },
+    {
+      "Date": "2019/07/03",
+      "Symbol": "ETHUSD",
+      "Open": 291.25,
+      "High": 303.83,
+      "Low": 289.61,
+      "Close": 301.79,
+      "Volume ETH": 105691.96,
+      "Volume USD": 31264397.55
+    },
+    {
+      "Date": "2019/07/02",
+      "Symbol": "ETHUSD",
+      "Open": 293.7,
+      "High": 296.24,
+      "Low": 270.42,
+      "Close": 291.25,
+      "Volume ETH": 218010.42,
+      "Volume USD": 61564550.93
+    },
+    {
+      "Date": "2019/07/01",
+      "Symbol": "ETHUSD",
+      "Open": 290.07,
+      "High": 301.32,
+      "Low": 278.65,
+      "Close": 293.7,
+      "Volume ETH": 184436.14,
+      "Volume USD": 53230192.12
+    }
+  ]
+}

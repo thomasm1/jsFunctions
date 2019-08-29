@@ -1,0 +1,13 @@
+<div class="content">
+<h3>Test Button</h3>
+<article class="message is-warning" [hidden]="hideContent">
+  <div class="message-header">
+    <p>warning code {{ severity }}</p>
+  </div>
+  <div class="message-body">
+    {{ content | async }}
+  </div>
+</article>
+
+<button (click)="toggle()" class="button is-info">Toggle Visibility</button>
+</div>

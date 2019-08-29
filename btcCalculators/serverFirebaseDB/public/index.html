@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Armchair Bitcoinist</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style media="screen">
+        body {
+            background: #ECEFF1;
+            color: rgba(0, 0, 0, 0.87);
+            font-family: Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .message {
+            background: white;
+            width: 90%;
+            height: 70px;
+            margin: 10px auto;
+            padding: 10px 10px;
+            border-radius: 3px;
+        }
+        
+        .message h2 {
+            color: #ffa100;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 0 0 8px;
+        }
+        
+        .message h1 {
+            font-size: 22px;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.6);
+            margin: 0 0 16px;
+        }
+        
+        .message p {
+            line-height: 200%;
+            margin: 5px 0 5px;
+        }
+        
+        .message a {
+            display: block;
+            text-align: center;
+            background: #039be5;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+            padding: 16px;
+            border-radius: 4px;
+        }
+        
+        .message,
+        .message a {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+        
+        #load {
+            color: rgba(0, 0, 0, 0.4);
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        @media (max-width: 600px) {
+            body,
+            .message {
+                margin-top: 0;
+                background: white;
+                box-shadow: none;
+            }
+            body {
+                border-top: 16px solid #ffa100;
+            }
+        }
+    </style>
+    <style>
+        body {
+            background-color: aliceblue;
+            color: #0c4a7f;
+        }
+        
+        header {
+            background-color: rgba(124, 188, 243, .1);
+            color: #0c4a7f;
+            border-radius: 5px;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+        
+        footer {
+            text-align: center;
+            vertical-align: center;
+            margin-bottom: 20px;
+        }
+        
+        input {
+            border-radius: 5px;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            text-align: center;
+        }
+        
+        .subheader {
+            color: #337ab7;
+        }
+        
+        .container {
+            /* border:1px solid rgba(124,188,243,.4); */
+            border: 1px solid rgba(165, 42, 42, 0.377);
+            padding: 10px;
+            border-radius: 6px;
+            width: 95%;
+            height: 800px;
+        }
+        
+        .navigation {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            /* transform: translateX(35px) */
+        }
+        
+        h5.copyright {
+            color: #3379b7b4;
+            margin-top: 25px;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        a.navi {
+            color: #0c4a7f;
+        }
+        
+        span.login {
+            float: right;
+            margin: 0 5px;
+        }
+        
+        span.register {
+            border: solid 1px #ffa100;
+            border-radius: 5px;
+        }
+        
+        span.topheader {
+            color: #337ab7;
+            font-size: 1.2rem;
+            padding: 0 10px;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+        
+        .portlet-title {
+            color: #ffa100;
+            font-style: italic;
+            font-size: 1.8rem;
+            line-height: 1.5;
+        }
+        
+        .portlet {
+            height: 180px;
+            padding-left: 20px;
+        }
+        
+        .updates {
+            height: 180px;
+            padding-left: 20px;
+        }
+        
+        .userlist {
+            height: 300px;
+            max-height: 300px;
+            overflow-y: scroll;
+            padding-left: 20px;
+        }
+        
+        .col-left {
+            border-right: solid 1px orange;
+        }
+        /* .data {
+            border: solid 1px #ffa100;
+            border-radius: 5px;
+        } */
+        
+        .footer-links {
+            line-height: 2;
+        }
+    </style>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/6.3.4/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/6.3.4/firebase-auth.js"></script>
+    <script defer src="/__/firebase/6.3.4/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/6.3.4/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/6.3.4/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <!-- <input class="search" placeholder="Search .." onchange="findUser(event)"> -->
+        <span class="login topheader" onclick="googleLogin()">Login</span> &nbsp;
+        <a href="/register"><span class="login register topheader">Register</span></a>
+        <span class="pull-left topheader">Firestore Serverless Database </span> &nbsp;
+        <div class="navigation">
+            <a class="navi" href="/home"> Home</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+            <a class="navi" href="/home"> Console</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+            <a class="navi" href="/home/analytics">Analytics</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+            <a class="navi" href="/home/messages">Bitcoin News</a>
+        </div>
+        <h2>The Armchair Bitcoinist</h2>
+        <h3 class="subheader"><em>Bitcoin Research and Analysis Console</em></h3>
+    </header>
+
+    <div class="container">
+        <div class="message">
+            <h2>
+                <p class="new-user portlet-title" id="new-user">
+                    Armchair Bitcoinist
+                </p>
+            </h2>
+        </div>
+        <div class="message portlet">
+            <div class="col col-xs-6 ">
+                <p class="portlet-title"> On-Load Data</p>
+                <p class="db-change data" id="db-change"></p>
+            </div>
+            <div class="pull-right col col-xs-5 col-right">
+                <p class="portlet-title">Upload Avatar Image</p>
+                <input class="input-update " type="file" onchange="uploadData(this.files)">
+                <hr>
+                <img id="imgUpload" src="" width="100vw">
+                <!-- <p class="portlet-title"> Update Status</p>
+                <input class="input-update "  disabled onclick="updateStatus(event)"> -->
+            </div>
+
+        </div>
+        <div class="message updates">
+            <div class="col col-xs-6 ">
+                <p class=" portlet-title">Real-Time Updates</p>
+                <p class="db-update data" id="db-update"> </p>
+            </div>
+            <div class="pull-right col col-xs-5 col-right">
+                <p class="portlet-title">Real-Time Inputs</p>
+                <input class="input-update " type="text" onblur="updateData(event)">
+            </div>
+        </div>
+        <div class="message userlist">
+            <div class="col col-xs-6 col-left">
+                <p class=" portlet-title">Active Memberships</p>
+                <p class="db-userlist" id="db-userlist"> </p>
+            </div>
+            <div class="pull-right col col-xs-5 col-right">
+                <p class="portlet-title">Inactive Users</p>
+                <p class="db-userlist" id="db-userlist-inactive"> </p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <hr>
+        <h5 class="footer-links">
+            <a href="/about">About Us</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a href="mailto:thomas.maestas@ourdailytech.net" title="Contact Owner: thomas.maestas@ourdailytech.net">
+                Contact Us</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a href="/terms" title="Terms and Conditions">
+                Terms and Conditions</a> &nbsp;&nbsp; | &nbsp;&nbsp;
+            <a href="/api-docs" title="API Documentation and Trading Guide">
+                API Documentation</a>
+        </h5>
+        <h5 class="copyright">&copy; ThomasMilton.net. &nbsp;All Rights Reserved. </h5>
+    </footer>
+    <script src="functions.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+body {
+    background-image: url('assets/images/patterns/greeninvert.png');
+}
+nav#nav{
+    background-image: url('assets/images/patterns/silverchip.png');
+    border:outset 3px silver;
+    padding: 10px;
+}
+.panel {
+    background-image: url('assets/images/patterns/silverchip.png');
+    border:outset 3px silver;
+}
+div.info {
+    min-width:60%;
+}

@@ -1,0 +1,42 @@
+<div class="form-group search">
+
+    <div class="input" *ngIf="!inputEmailDisplaySearch && !findPhoto ">
+        <input type="text" class="form-control" placeholder="Name Search... " [(ngModel)]="searchTerm" />
+        <span *ngIf="searchTerm"><em>Name you searched: </em> &nbsp;&nbsp;{{searchTerm}} </span>
+    </div>
+
+    <div class="input" *ngIf="!searchTerm && !findPhoto">
+        <input type="text" class="form-control" placeholder="Email Search..." [(ngModel)]="emailSearch" [value]=""
+            (input)="inputEmailDisplaySearch=$event.target.value" />
+        <span *ngIf="inputEmailDisplaySearch">Email you searched: &nbsp;&nbsp;{{inputEmailDisplaySearch}} </span>
+    </div>
+
+    <div class="input" *ngIf="!inputEmailDisplaySearch && !searchTerm">
+        <input type="text" class="form-control" placeholder="Photo Search... " [(ngModel)]="findPhoto" />
+        <span *ngIf="findPhoto"><em>Photo you searched: </em> &nbsp;&nbsp;{{findPhoto}} </span>
+    </div>
+
+    <button class="btn btn-primary clear-input" (click)="clearInput()">Clear</button>
+</div> 
+<h4 *ngIf="filteredUsers.length===0" class="none">Oops! Search yielded no results. </h4>
+
+<div *ngFor="let user of filteredUsers">   <!-- | userFilter:searchTerm   -->
+ 
+        <tm-display-user 
+            [user]="user"
+            [searchTerm]="searchTerm"
+            [emailSearch]="emailSearch"
+            [findPhoto]="findPhoto" 
+            (notifyDelete)="onDeleteNotification($event)"
+        ></tm-display-user> 
+</div>
+<div *ngIf="error">
+    {{ error }}
+</div>
+ 
+<!-- cards scroll-through design below  (other parts in display-user.comp)-->
+
+<!-- <button (click)="nextUser()" class="btn btn-primary">
+    View Next Employee
+</button> 
+ -->
