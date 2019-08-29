@@ -1,0 +1,160 @@
+[
+  {
+id: "19",
+did: "08-22-18",
+date: "August 22, 2018",
+author: "by Thomas Maestas",
+cat3: "Sociology Tomorrow!",
+title: "Quantum Data"
+},
+{
+id: "18",
+did: "08-21-18",
+date: "August 21, 2018 ",
+author: "by Thomas Maestas",
+cat3: "Quantum Data",
+title: "Quantum Data IV:<br />The Business of Quantum Data  "
+},
+
+{
+id: "17",
+did: "08-20-18",
+date: "August 20, 2018",
+author: "by Thomas Maestas",
+cat3: "Web Dev Affairs",
+title: "Data that Go Up but Do not Go Down"
+},
+{
+id: "16",
+did: "08-18-18",
+date: "August 18-19, 2018<br />Weekend",
+author: "by Thomas Maestas",
+cat3: "Quantum Data",
+title: "Quantum Data III: Sudden Data "
+},
+
+{
+id: "15",
+did: "08-17-18",
+date: "August 17, 2018",
+author: "by Thomas Maestas",
+cat3: "Sociology Tomorrow!",
+title: "Quantum Data, Part II:<br /> Quantum State-Entanglement across a Solid State"
+},
+{
+id: "14",
+did: "08-16-18",
+date: "August 16, 2018",
+author: "by Thomas Maestas",
+cat3: "Sociology Tomorrow!",
+title: "Quantum Data, Part I:<br /><br />Binary Photon Data"
+},
+
+{
+id: "13",
+did: "08-15-18",
+date: "August 15, 2018",
+author: "by Thomas Maestas",
+cat3: "Sociology Tomorrow!",
+title: "Quantum Data Zero"
+}, 
+{
+id: "12",
+did: "08-14-18",
+date: "August 14, 2018",
+author: "by Thomas Maestas",
+cat3: "Quantum Data",
+title: ""
+},
+
+{
+id: "11",
+did: "08-12-18",
+date: "August 12-13, 2018<br />Weekend",
+author: "by Thomas Maestas",
+cat3: "A.I.Now.",
+title: " "
+},
+
+{
+id: "10",
+did: "08-11-18",
+date: "August 11, 2018",
+author: "by Thomas Maestas",
+cat3: "Web Dev Affairs",
+title: "The Good Doctor, Part IV: Good Doctor, Heal Thyself!"
+},
+{
+id: "9",
+did: "08-10-18",
+date: "August 10, 2018",
+author: "by Thomas Maestas",
+cat3: "A.I.Now.",
+title: "The Good Doctor, Part III: Magneto Encephelop"
+}, 
+{
+id: "8",
+ did: "08-09-18",
+ date: "August 9, 2018",
+ author: "by Thomas Maestas",
+ cat3: "Sociology Tomorrow!",
+ title: "The Good Doctor, Part II:  <br />About that Second Opinion . . . <br />"
+},
+{
+ id: "7",
+ did: "08-08-18",
+ date: "August 8, 2018",
+ author: "by Thomas Maestas",
+ cat3: "A.I.Now.",
+ title: "The Good Doctor, Part I: <br /> How A.I.-Driven Predictive Analytics Rewrites Healthcare"
+},
+{
+ id: "6",
+     did: "08-07-18",
+     date: "August 7, 2018",
+     author: "by Thomas Maestas",
+     cat3: "Web Dev Affairs",
+     title: "New Math &amp; the Speed of Antiquation, a Case Study:<br />Mobile 8th Generation Intel"
+   },
+   {
+     id: "5",
+ did: "08-06-18",
+ date: "August 6, 2018",
+ author: "by Thomas Maestas",
+ cat3: "Web Dev Affairs",
+ title: "Android Pi(e) Day"
+},
+{
+ id: "4",
+ did: "08-04-18",
+ date: "August 4-5, 2018<br />Weekend",
+ author: "by Thomas Maestas",
+ cat3: "Sociology Tomorrow!",
+ title: "The New Age of Digital Responsibility"
+},
+{
+ id: "3",
+ did: "08-03-18",
+ date: "August 3, 2018",
+ author: "by Thomas Maestas",
+ cat3: " ",
+ title: "Tour of Google\"s Chocolate Factory, Part II:<br />Glass Elevator into the Cloud"
+},
+{
+ id: "2",
+did: "08-02-18",
+ date: "August 02, 2018<br />Weekend",
+ author: "by Thomas Maestas",
+ cat3: "Web Dev Affairs",
+ title: "Tour of Google\"s Chocolate Factory, Part II:<br />Google\"s Golden Ticket"
+},
+{
+ id: "1", 
+   did: "08-01-18",
+   date: "August 1, 2018",
+   author: "by Thomas Maestas",
+   cat3: "Musing Blockchain",
+   title: "Fintech Auchtung!"
+ } 
+
+]
