@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- development version  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- production version -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        .dynamic {
+            border: solid 1px orange;
+            color:blue;
+        }
+    </style>
+    <title>tmm_VUE</title>
+</head>
+
+<body>
+    <h4>VUE TEMPLATE</h4>
+    <div id="app">
+        {{ message }}
+    </div>
+    <div style="color:blue" class="dynamic" id="app-2">
+        <span v-bind:title="message">
+            Hover : v-bind attribute is directive reactive behavior to rendered DOM.
+            Directives prefixed with v-
+        </span>
+    </div>
+    <div id="conditionals">
+        <span v-if="seen">Now you see me...</span><br />
+        <button onclick="hidethis()">{{button}}</button>
+    </div>
+
+    <hr>
+    <div id="loops">
+        <ol>
+            <li v-for="l in loopeys">
+                {{ l.text }}
+            </li>
+        </ol>
+    </div>
+
+    <hr>
+    <div id="input-id">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+
+    <hr>
+    <div id="input-2">
+        <p>{{ message }}</p>
+        <input v-model="message">
+    </div>
+    instance of the thing-item component
+    <ol>
+        <!--  instance of the thing-item component -->
+        <thing-item></thing-item>
+    </ol>
+    <div class="dynamic">
+        <h6>v-bind component</h6>
+        1. provide each thing-item with the thing object
+        it's representing, so that its content can be dynamic.<br />
+
+        2. provide each component with a "key"
+    </div>
+    <div id="vbind-7">
+        <ol>
+            <!--
+                1. provide each thing-item with the thing object
+                it's representing, so that its content can be dynamic.
+                
+                2. provide each component with a "key" 
+              -->
+            <thing-item v-for="item in lister" v-bind:thing="item" v-bind:key="item.id"></thing-item>
+        </ol>
+    </div>
+    <div  class="dynamic">
+        <h6>Typical design</h6>
+        <pre>
+        div id="app">
+                app-nav>  /app-nav>
+                
+                app-view> 
+                    app-sidebar>  /app-sidebar>
+                    app-content>  /app-content>
+                /app-view>
+        /div>
+        </pre>
+    </div>
+    <script>
+        // declarative rendering
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'This here\'s the interpolation!!'
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#app-2',
+            data: {
+                message: 'Page loaded on ... ' + new Date().toLocaleString()
+            }
+        })
+        //  conditionals 
+        var conditionals = new Vue({
+            el: '#conditionals',
+            data: {
+                seen: true,
+                button: 'hide this'
+            }
+        })
+
+        if (conditionals._data.seen === true) {
+            button = 'show this';
+        } else {
+            button = 'hide htis';
+        }
+        console.log(conditionals._data.seen)
+        const hidethis = function () {
+            conditionals._data.seen = (conditionals._data.seen === true) ? false : true
+        }
+
+        // loops
+        var loops = new Vue({
+            el: '#loops',
+            data: {
+                loopeys: [
+                    { text: 'Thomas' },
+                    { text: 'Milton' },
+                    { text: 'Maestas' }
+                ]
+            }
+        })
+        // user input 
+        var input = new Vue({
+            el: '#input-id',
+            data: {
+                message: 'On your marks; get set; GO!!'
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        })
+
+        var app6 = new Vue({
+            el: '#input-2',
+            data: {
+                message: '2-way model-binding ...'
+            }
+        })
+    </script>
+    <script src="vue-component.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
