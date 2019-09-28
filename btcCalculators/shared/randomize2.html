@@ -1,0 +1,99 @@
+<!--
+******************************************************************************************
+****  AUTHOR: Kristin Goodman (www.kgoodmanwebsolutions.com)                          ****
+****  DATE: March 6, 2017                                                             ****
+****  DESCRIPTION: These files receive a CSV file of names (one column of data) and   ****
+****  will randomly pick a best and display the best's name. Additionally, it     ****
+****  removes the best so they can't win again. This also keeps track of who has    ****
+****  already been called.                                                            ****
+******************************************************************************************
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Randomizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="./favicon.ico">
+
+    <link rel="stylesheet" href="randomize2/normalize.css">
+    <link rel="stylesheet" href="randomize2/style.css">
+    <link href="randomize2/googleapisPoppins.css" rel="stylesheet">
+
+    <script type="text/javascript" src="randomize2/jquery.min.js"></script>
+
+    <script src="randomize2/random.js" type="text/javascript"></script>
+
+
+</head>
+
+<body>
+    <div id="header" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <img id="main-img" src="randomize2/tmmsteelbanner.jpg" alt="randomizer">
+            </div>
+            <div class="col-sm-8">
+                <h1 class="light-text">Randomizer</h1>
+            </div>
+            <div class="col-sm-2">
+                <form id="file-form">
+                    <label class="btn btn-primary" for="my-file-selector">
+                        <input id="my-file-selector" type="file" style="display:none;"
+                            onchange="$('#upload-file-info').html($(this).val()); handleFiles(this.files);">
+                        Choose File
+                    </label>
+                    <a class="help" onclick="openModal('helpModal')" href="#">Help</a>
+                    <span class='label label-info' id="upload-file-info"></span>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('helpModal')">&times;</span>
+            <h3>Help</h3>
+            <p>To use best randomizer, upload a CSV file that contains one column with
+                the names for the best to be chosen from.</p>
+            <p>When a best is selected, they cannot be chosen another time.</p>
+            <p>Previously selected best will be displayed at the bottom of the page.</p>
+        </div>
+    </div>
+
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('errorModal')">&times;</span>
+            <h3>ERROR</h3>
+            <p>Missing file with possible best names. Please upload a file and try again.</p>
+        </div>
+    </div>
+
+    <div id="emptyList" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('emptyList')">&times;</span>
+            <h3>ERROR</h3>
+            <p>Upload a new file to randomize.</p>
+        </div>
+    </div>
+
+    <div id="banner-area" class="container-fluid">
+        <div class="jumbotron">
+            <h1 id="winners-name">Best displayed here</h1>
+            <br><br><br>
+            <p><a onClick="randomizeWinner()" class="btn btn-primary btn-lg" href="#" role="button">Next Best</a></p>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="all-winners" class="col-sm-12">
+            </div>
+        </div>
+    </div>
+</body>
