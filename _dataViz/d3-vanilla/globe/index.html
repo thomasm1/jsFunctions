@@ -2,11 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   <script src="http://d3js.org/d3.v3.min.js"></script>
     <style>
+      
       body {
         background-color:blue;
         background-image:url('bluechip.png');
+        padding:20px;
+      }
+      
+      a {
+        color:aliceblue;
       }
       circle {
         fill: orange;
@@ -17,19 +25,34 @@
 
       h2 {
         text-align: center;
-        color: black;
+        color: aliceblue;
       }
 
       div.years_buttons {
         position: fixed;
         top: 5px;
-        left: 50px;
+        left: 30px;
       }
 
       div.years_buttons div {
-        background-color: rgb(251, 201, 127);
-        padding: 3px;
-        margin: 7px;
+        background-color:green;
+        padding: 2px;
+        margin: 6px;
+        color:white;
+        border:outset green 2px;
+        cursor:pointer;
+      }
+      
+      div.years_buttons div:hover {
+        background-color:blue;
+      }
+      .right {
+        margin:30px 30px;
+        float:right;
+      }
+      .year {
+        border: solid lightblue .5px;
+        padding:2px 5px 2px 3px;
       }
     </style>
     <script type="text/javascript">  
@@ -41,7 +64,7 @@
 
         d3.select("body")
           .append("h2")
-          .text("World Cup ");
+          .html("World Cup:<br><small>Participating Nations</small>");
 
         var svg = d3.select("body")
             .append("svg")
@@ -60,7 +83,7 @@
 
         var projection = d3.geo.mercator()
                                .scale(140)
-                               .translate([width / 2, height / 1.2]);
+                               .translate([width / 2.5, height / 1.5]);
 
         var path = d3.geo.path().projection(projection);
 
@@ -69,9 +92,9 @@
                      .enter()
                      .append('path')
                      .attr('d', path)
-                     .style('fill', 'lightBlue')
+                     .style('fill', 'rgba(0,128,0,.8)')
                      .style('stroke', 'black')
-                     .style('stroke-width', 0.5);
+                     .style('stroke-width', 1);
 
         function plot_points(data) {
             
@@ -146,7 +169,7 @@
               });
 
               d3.select("h2")
-                .text("World Cup " + year);
+                .html("World Cup <br><small>Participating Nations: <span class='year'> " + year + "</span></small>");
 
               var circles = svg.selectAll('circle')
                                .data(filtered, key_func);
@@ -156,7 +179,7 @@
               circles.enter()
                      .append("circle")
                      .transition()
-                     .duration(500)
+                     .duration(250)
                      .attr('cx', function(d) { return d.values['x']; })
                      .attr('cy', function(d) { return d.values['y']; })
                      .attr('r', function(d) {
@@ -167,15 +190,15 @@
 
               function update_countries(d) {
                   if(countries.indexOf(d.properties.name) !== -1) {
-                      return "lightBlue";
+                      return "rgba(0,128,0,.8)";
                   } else {
-                      return 'white';
+                      return 'rgba(96,169,182,.5)';
                   }
               }
 
               svg.selectAll('path')
                  .transition()
-                 .duration(500)
+                 .duration(250)
                  .style('fill', update_countries)
                  .style('stroke', update_countries);
 
@@ -206,19 +229,20 @@
                     d3.select(".years_buttons")
                       .selectAll("div")
                       .transition()
-                      .duration(500)
-                      .style("color", "black")
-                      .style("background", "rgb(251, 201, 127)");
+                      .duration(250)
+                       .style("color", "white")
+                      .style("background", "rgba(96,169,182,.5)");
 
                     d3.select(this)
                       .transition()
-                      .duration(500)
-                      .style("background", "lightBlue")
-                      .style("color", "white");
+                      .duration(250)
+                      .style("background", "rgba(0,128,0,.8)")
+                      .style("stroke", "black")
+                      .style("color", "rgba(96,169,182,.5)");
                     update(d);
                 });
             }
-          }, 1000);
+          }, 350);
       }
 
       var format = d3.time.format("%d-%m-%Y (%H:%M h)");
@@ -239,6 +263,7 @@
     
 d3.json("world_countries.json", draw);
   </script>
-  <a href="https://thomasmaestas.net">thomasmaestas.net</a>
+  <p></p>
+ <a  class="pull-right right" href="https://thomasmaestas.net">thomasmaestas.net</a> 
 </body>
 </html>

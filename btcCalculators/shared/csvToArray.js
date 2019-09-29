@@ -1,5 +1,18 @@
 // ### SOURCE:  https://mounirmesselmeni.github.io/2012/11/20/reading-csv-file-with-javascript-and-html5-file-api/
 
+document.getElementById("csv-array").innerHTML = `
+<h1>CSV-to-Array</h1>
+<div>
+<input type="file" id="csvFileInput" onchange="handleFiles(this.files)"
+accept=".csv"></input>
+<hr>
+<div id="csv-array">
+</div>
+</div>
+`;
+
+    
+
 function handleFiles(files) {
     // Check for the various File API support.
     if (window.FileReader) {
