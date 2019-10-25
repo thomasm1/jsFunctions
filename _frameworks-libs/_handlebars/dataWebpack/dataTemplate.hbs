@@ -1,0 +1,12 @@
+{{#each btc}}
+<div class="coin">
+    <div class="info-column">
+        <p><strong>Symbol: {{Symbol}}</strong></p>
+        <p><strong>{{$calculateNetGain Close  Open}}</strong></p>
+        <p><strong>Date:</strong> {{Date}}</p>
+        <p><strong>Close:</strong> {{Close}}</p>
+        <p><strong>Open:</strong> {{Open}}</p>
+        <hr>
+    </div>
+</div>
+{{/each}}
