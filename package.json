@@ -1,0 +1,22 @@
+{
+  "name": "jsfunctions",
+  "version": "1.0.0",
+  "description": "jsFunctions",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasm1/jsFunctions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomasm1/jsFunctions/issues"
+  },
+  "homepage": "https://github.com/thomasm1/jsFunctions#readme",
+  "devDependencies": {
+    "fs": "^0.0.1-security"
+  }
+}

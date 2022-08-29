@@ -1,0 +1,8 @@
+r open/read
+r+ open read+write
+rs open synch mode
+
+w open/write - Truncated if exists
+wx "" - Fails if path exists
+
+a open file for appending
