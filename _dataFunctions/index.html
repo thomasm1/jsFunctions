@@ -39,6 +39,11 @@
             color: white;
         }
         
+        #mapping {
+            background-color: yellow;
+            opacity: .8;
+            color: black;
+        }
     </style>
 
 
@@ -51,6 +56,7 @@
                 <p id="text"></p>
                 <p id="inplace"></p>
                 <div id="stack"></div>
+                <div id="mapping"></div>
                 <script src="util.js" type="module"></script>
 
 
@@ -139,28 +145,29 @@
                     var myStack = new Stack();
                     myStack.push('push1');
                     stackText.append(myStack.peek());
-
+                    
                     myStack.push('push2'); 
                     stackText.append(myStack.peek());
                     stackText.append(myStack.pop());
  
                     stackText.append(myStack.peek());
-
+                    
                     myStack.push('push3');
                     stackText.append(myStack.peek()); 
 
                     myStack.push('push4');
                     stackText.append(myStack.peek()); 
-
+                    
                     stackText.append(" SIZE"+myStack.size()); 
                     
                 </script>
             </div>
-
+            
+            <h3>Array Queue</h3>
             <div id="queue">
-
+            </div>
+            
                 <hr>
-                <h3>Array Queue</h3>
 
 
                 <script>
@@ -199,11 +206,7 @@
                     q.front();
                     q.print();
                     document.write('<br />');
-                </script>
-                <br />
-
-
-                <script>
+             
                     console.log('Start PRIORITY QUEUE');
                     document.write('Start PRIORITY QUEUE<br /><br />');
 
@@ -255,6 +258,11 @@
                     pq.front();
                     pq.printCollection();
                 </script>
-                <br /> <br /> <br />
-            </div>
+
+                <script>
+                    const mapping = $$$('#mapping'); 
+                    mapping.innerHTML = "<h3>mapping<h4>"
+                    mapping.append("<h3>replaced</h3>") 
+                    mapping
+                </script>
 </body>
