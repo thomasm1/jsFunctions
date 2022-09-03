@@ -14,55 +14,32 @@ const reverseInplace = function (string) {
 }
 // reverseInplace("watch")
 
-const StackObject = function () {
-    this.stackLen = 0;
-    this.storage = {};
-    // Adds a value onto end of stack  ... {2:"value2"}
-    this.push = function (value) {
-        this.stackLen++;
-        this.storage[this.stackLen] = value; // {1:"value1"}
-    }
-    // Removes and returns a value at the end of stack
-    this.pop = function () {
-        if (this.stackLen === 0) {
-            return undefined;
-        }
-        const result = this.storage[this.stackLen]; // {1:"value2"}
-        delete this.storage[this.stackLen];
-        this.stackLen--;
-        return result;
-    }
-    this.size = function () {
-        return this.stackLen;
-    }
-    // Returns value at the end of the stack (BUT DOES NOT REMOVE ITEM)
-    this.peek = function () {
-        return this.storage[this.stackLen];
-    }
-};
 
-function QueueArray() {
-    collection = []; // collect items in queue
-    this.print = function () {
-        document.write(collection);
-    }; // helper function
-    this.enqueue = function (element) { // pushes first item on q
-        collection.push(element);
-    };
-    this.dequeue = function () { // takes item off queue
-        return collection.shift(); // pulls off first item in array , returns it
-    };
-    this.front = function () { // this returns item at 0 index, (no remove)
-        return collection[0];
-    };
-    this.size = function () { // length method
-        return collection.length;
-    };
-    this.isEmpty = function () {
-        return (collection.length === 0);
-    };
+////// MEMOIZE 
+//   adds 10 to provided value and takes it from cache if it was already calculated.
+
+const memoizeAdd = () => {
+    let cache = {}
+
+    return value => {
+        if (value in cache) {
+            console.log("fetching from cache");
+            return cache[value];
+        } 
+        else {
+            console.log('calculating ....');
+            const result = value + 100;
+            cache[value] = result;
+            return result
+        }
+    }
 }
-/// Fibonacci Memo
+const newAdd = memoizeAdd();
+console.log(newAdd(9))
+console.log(newAdd(9)) // cached
+
+
+////// Fibonacci Memo
 const fibMemo = function (position, cache) {
     cache = cache || [];
     if (cache[position]) {
@@ -79,6 +56,8 @@ const fibMemo = function (position, cache) {
 }
 // console.log(   fibMemo(20) )
 
+
+////// PRIMES
 const sieve = (num) => {
     let arr = [];
     for (let i = 0; i <= num; i++) {
@@ -98,7 +77,8 @@ const sieve = (num) => {
 }
 // console.log(sieve(19))
 
-/// Closure
+
+////// Closure
 const getSecret = () => {
     const secret = "my secret"
     return () => secret;
@@ -122,7 +102,8 @@ const counter = closure();
 // console.log(counter.getValue());
 console.dir(counter.getValue, { color: true })
 
-/// Currying  
+
+////// Currying  
 let weirdNum = '000023.456'
 const priceDiscount =  (price) => {
     return (discount) =>  {
@@ -136,7 +117,81 @@ const priceDiscount =  (price) => {
 }
 console.log(priceDiscount(weirdNum)(.23))
 
-/// Binary Search
+const curry = function (fn) {
+    var clarity = fn.length;
+    return function f1(...args) {
+        if(args.length >= clarity){
+        return fn(...args);
+    } else {
+        return function f2(...moreArgs) {
+            let newArgs = args.concat(moreArgs);
+            return f1(...newArgs);
+        }
+    }
+    }
+}
+const get = curry((property, object) => object[property]);
+const getId = get("id");
+const map = curry((fn, values) => values.map(fn));
+const getIds = map(getId);
+
+console.log(getId, [{id:1}])
+console.log(getIds([{id:1}]))
+console.log(getIds([{id:1,id:2}]))
+
+
+////// BIND 
+let coord = {
+    x:23,y:44
+}
+let count =function() { 
+    return `${this.x},${this.y}`
+}
+count() // NaN for
+let boundFunc = count.bind(coord)
+// console.log(boundFunc())
+boundFunc()
+
+////// CALLl
+const myLanguages = function (lang1, lang2, lang3) {
+   return `My name is ${this.name} and I know ${lang1},  ${lang2},  ${lang3}`   
+}
+let person1 = { name: 'thomas'}
+console.log(myLanguages.call(person1, 'javaScript','python','java'))
+
+
+////// Shallow Compare
+const typeOf = (input) => {
+    const rawObject = Object.prototype.toString.call(input).toLowerCase();
+    const typeOfRegex = /\[object (.*)]/g;
+    const type = typeOfRegex.exec(rawObject)[1]
+    return type
+}
+const shallowCompare = (source, target) => {
+    if(typeOf(source) !== typeOf(target)) {
+        return false;
+    }
+    if(typeOf(source) ==="array"){
+        if(source.length !== target.length) { 
+            return false;
+        }
+        return source.every((el, index) => el === target[index]);
+    }
+    if(typeOf(source) ==="object"){
+        if(Object.keys(source).length !== Object.keys(target).length) { 
+            return false;
+        }
+        return Object.keys(source).every((key) => source[key] === target[key]);
+    }
+    
+    return source === target;
+}
+console.log(shallowCompare([1],[1])) 
+console.log(shallowCompare({a:1},{a:1})) 
+
+
+
+////// Binary Search
 let arrSorted =[1,2,3,4,5,6,7,8]
 const binarySearch = (arr, num) => {
     let midIndex = Math.floor(arr.length/2); 
@@ -151,7 +206,7 @@ const binarySearch = (arr, num) => {
 }
 // console.log("binarySearch: "+binarySearch(arrSorted,1))
 
-/// BubbleSort
+////// BubbleSort
 let arrUnsorted =[1,5,8,2,3,4,6,7]
 const bubbleSort = (arr, num) => {
 
@@ -168,7 +223,7 @@ const bubbleSort = (arr, num) => {
 }
 // console.log(arrUnsorted+"...>> "+bubbleSort(arrUnsorted))
 
-/// GRID
+////// GRID  ////////////
 const gridX = [
     [0,1,0,0,0],
     [0,1,0,0,0],
@@ -254,9 +309,9 @@ const copyGrid = (grid) => {
     [0,1,2,3,777]
      ]
 shiftGrid(gridSorted)
-/////////////////// MISC //////////////////////
+/////////////////// MISCELLANEOUS //////////////////////
 
-/// Chaining
+////// Chaining
 let users = [
     { id: 1, name: "a", isActive: true, age: 33 },
     { id: 2, name: "b", isActive: false, age: 43 },
@@ -291,7 +346,7 @@ const total = arra.reduce((acc, curr) => {
 console.log(total)
 
 
-/// Object Mapping
+////// Object Mapping
 const meanMedianMode = (arr) => {
     return {
         mean: getMean(arr),

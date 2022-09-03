@@ -6,17 +6,24 @@
   "scripts": {
     "test": "jest"
   },
+  "type":"module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thomasm1/jsFunctions.git"
   },
-  "author": "",
+  "author": "thomasm1",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/thomasm1/jsFunctions/issues"
   },
   "homepage": "https://github.com/thomasm1/jsFunctions#readme",
   "devDependencies": {
-    "fs": "^0.0.1-security"
-  }
+    "fs": "^0.0.1-security",
+    "node-fetch": "^3.2.10"
+  },
+  "keywords": [
+    "patterns",
+    "algorithms",
+    "javascript"
+  ]
 }

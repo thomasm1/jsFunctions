@@ -1,15 +1,25 @@
-function foo(){
-  // bad code IFFE
-}();
+//FUNCTION
+function funcIncrement(i) {
+  return i + 1; 
+};
 
-//now bad code turns good with parens:
-( function foo(){ 
-  // good iffe
-})();
+
+fIncrement()
+//FUNCTION EXPRESSION
+var expIncrement = function(i){
+  return i + 1;
+};
+
+expIncrement(2); 
+
+//FUNCTION EXPRESSION I-I-F
+(function(i){
+  return i + 1;
+})(); 
 
 function foo(){
   // getting better IFFE
-  // Definition or Statement in heree
+  // Definition or Statement in here 
 };
 
 var foo = function() {
