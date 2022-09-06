@@ -141,16 +141,16 @@ console.log(getIds([{id:1,id:2}]))
 
 
 ////// BIND 
-let coord = {
-    x:23,y:44
-}
-let count =function() { 
-    return `${this.x},${this.y}`
-}
-count() // NaN for
-let boundFunc = count.bind(coord)
+// let coord = {
+//     x:23,y:44
+// }
+// let count = function() { 
+//     return `${this.x},${this.y}`
+// }
+// count() // NaN for
+// let boundFunc = count.bind(coord)
 // console.log(boundFunc())
-boundFunc()
+// //  boundFunc()
 
 ////// CALLl
 const myLanguages = function (lang1, lang2, lang3) {
@@ -347,13 +347,22 @@ console.log(total)
 
 
 ////// Object Mapping
-const meanMedianMode = (arr) => {
-    return {
-        mean: getMean(arr),
-        median: getMedian(arr),
-        mode: getMode(arr)
-    }
+const typeOf2= (input) => {
+    const rawObject = Object.prototype.toString.call(input).toLowerCase();
+    const typeOfRegex = /\[object (.*)]/g;
+    const type = typeOfRegex.exec(rawObject)[1]
+    console.log("type: "+type)
+    return type
 }
+
+const meanMedianMode = (type) => {
+    return {
+        mean: getMean(type),
+        median: getMedian(type),
+        median: getMedianObj(type),
+        mode: getMode(type)
+    }
+}        
         const getMean = (arr) => {
             let sum = 0;
             arr.forEach(a => {
@@ -362,18 +371,38 @@ const meanMedianMode = (arr) => {
             let mean = sum / arr.length;
             return mean;
         }
+// MEDIANS
         const getMedian = (arr) => {
             arr.sort(function (a, b) { return a - b })
             let median;
             if (arr.length % 2 !== 0) {
-                median = Math.floor(arr.length / 2);
+                median = arr[Math.floor(arr.length / 2)];
             } else {
-                const mid1 = arr.length / 2 - 1;
-                const mid2 = arr.length / 2;
-                median = mid1 + mid2 / 2
+                const median1 = arr[arr.length / 2 - 1];
+                const median2 = arr[arr.length / 2];
+                median = (median1 + median2) / 2
             }
             return median
         }
+        console.log(getMedian([1,2,3,4,5]))
+        console.log(getMedian([1,2,3,4]))
+
+        const getMedianObj = (objArr) => { 
+            objArr.sort(function (a, b) { return a.b- b.b })  // <--hard-coded obj 
+            let median;
+            let objArrLen = Object.keys(objArr).length;
+            if (objArrLen % 2 !== 0) {  // ODD
+                median  = objArr[Math.floor(objArrLen / 2)].b;
+            } else {
+                const median1 = objArr[objArrLen / 2 - 1].b;
+                const median2 = objArr[objArrLen / 2].b;
+                median = (median1 + median2) / 2 
+            }
+            return median
+        } 
+        console.log(getMedianObj([{a:1,b:101},{a:2,b:102},{a:3,b:103}])) 
+        console.log(getMedianObj([{a:1,b:101},{a:2,b:102},{a:3,b:103},{a:4,b:104}])) 
+
         const getMode = (arr) => {
             let modeObj = {}
             // Make Object from array
@@ -395,3 +424,11 @@ const meanMedianMode = (arr) => {
             return modes
         }
 console.log(meanMedianMode([1,1,3,3,4,5]))
+
+
+
+/// SHUFFLE
+const shuffleItems = (items) => {
+    return items.map((item) => ({ sort: Math.random(), value:item})).sort((item1, item2) => item1.sort - item2.sort).map((a) => a.value);
+}
+console.log(shuffleItems([2,5,3,12,22,1]))
