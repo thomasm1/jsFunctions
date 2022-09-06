@@ -91,11 +91,80 @@ class PriorityQueue {
 		this.values = [];
 	}
 	enqueue(val, priority) {
-		let newNode = new Node(val, priority)
+		let newNode = new PriorityNode(val, priority)
 		this.values.push(newNode);
 		this.bubbleUp();
 	}
+	bubbleUp() {
+		let idx = this.values.length - 1; // start at end, i.e. newly pushed
+		const element = this.values[idx]
+		while (idx > 0){
+			let parentIdx = Math.floor((idx-1)/2);
+			let parent = this.values[parentIdx];
+			if(element.priority >= parent.priority) 
+				break;   // compare with parent
+			this.values[parentIdx] = element // SWAP
+			this.values[idx] = parent; // SWAP
+			idx = parentIdx;
+		}
+	}
+	dequeue() {
+		const min = this.values[0];
+		const end = this.values.pop();
+		if(this.values.length > 0) {
+			this.values[0] = end;
+			this.sinkDown()
+		}
+		return min;
+	}
+	sinkDown() {
+		let idx = 0;
+		const length = this.values.length;
+		const element = this.values[0];
+		while(true) { 
+				let leftChildIdx = 2 * idx +1;   // left leaf
+				let rightChildIdx = 2 * idx +2;  // right leaf
+				let leftChild,rightChild;
+				let swap = null; 
+
+				if (leftChildIdx < length) {
+					leftChild = this.values[leftChildIdx];
+					if(leftChild.priority < element.priority) {
+						swap = leftChildIdx;
+					}
+				}
+				if (rightChildIdx < length) {
+					rightChild = this.values[rightChildIdx];
+					if(
+						(swap === null && rightChild.priority < element.priority) ||
+						(swap !== null && rightChild.priority < leftChild.priority) 				
+							) {
+						swap = rightChildIdx;
+					}
+				}
+				if(swap ===null) 
+				break;
+				this.values(idx) = this.values[swap];
+				this.values[swap] = element;
+				idx = swap;
+			}
+	}
 }
+
+class PriorityNode {
+	constructor(val, priority) {
+		this.val = val;
+		this.priority = priority;
+	}
+}
+let pq = new PriorityQueue();
+pq.enqueue("low priority", 5)
+pq.enqueue("utmost", 1)
+pq.enqueue("emergency", 2)
+pq.enqueue("nonemergency", 3)
+pq.enqueue("less nonemergency", 4)
+console.log(pq.values)
+
 
 //////////// TRIE   <===========Not returning corectly
 // trie data = structure  Prefix tree used to store associative structures
@@ -113,8 +182,7 @@ class Node {
 }
 
  class Trie  {
-	constructor() {
-			
+	constructor() { 
 	this.root = new Node(); 
 	}
 	 add (inputArr, node = this.root) {  // if pass in node, it will use. --- If not, it will use this.root
@@ -168,7 +236,7 @@ myTrie.add('do');
 myTrie.add('dorm');
 myTrie.add('send');
 myTrie.add('sense'); 
-myTrie.print()
+// myTrie.print()
 console.log(myTrie.isWord('xoll'));
 console.log(myTrie.isWord('doll'));
 console.log(myTrie.isWord('dor'));
