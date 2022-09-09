@@ -22,6 +22,71 @@ class Graph {
         }
         delete this.adjacencyList[vtx]
     }
+
+    depthFirstRecursion(start) {
+        const result = [];
+        const visited = {};
+        const adjacencyList = this.adjacencyList /// lose 'this' in IFFE
+        
+        // Helper IFFE recursion function 
+        (function dfsHelper(vertex) {
+            if (!vertex) return null;
+            visited[vertex] = true;
+            result.push(vertex);
+            adjacencyList[vertex].forEach(neighbor => { // Lost 'this'
+                if(!visited[neighbor]) { 
+                    return dfsHelper(neighbor)
+                }
+            })
+        })(start);
+        return result;
+    }
+
+    depthFirstIteration(start) {
+        const stack = [start]; // ['a']
+        const result = [];
+        const visited = {};
+        let currentVertex;
+
+        visited[start] = true; // {'visited':{'a':true,'b':false}
+        while(stack.length) {
+            console.log(stack);
+            currentVertex = stack.pop()
+            result.push(currentVertex);
+
+            this.adjacencyList[currentVertex].forEach(neighbor => {
+                if(!visited[neighbor]){
+                    visited[neighbor] = true;
+                    stack.push(neighbor)
+                }
+            })
+        }
+        return result;
+    }
+
+    // QUEUE: ['a'] ==>[] => ['b','c'] ==> ['c']
+    // RESULT: [] ==> ['a'] ==> ['a','b']
+    breadthFirstRecursion(start) {
+        const queue = [start];
+        const result = [];
+        const visited = {};
+        let currentVertex;
+
+        while(queue.length){
+            console.log(queue);
+            currentVertex = queue.shift();
+            result.push(currentVertex);
+            
+            this.adjacencyList[currentVertex].slice().reverse().forEach(neighbor => {               
+            // this.adjacencyList[currentVertex].forEach(neighbor => {
+                if(!visited[neighbor]) { 
+                    visited[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            })
+        }
+        return result;
+    }
 }
 
 let g = new Graph();
@@ -29,23 +94,29 @@ g.addVertex("a");
 g.addVertex("b");
 g.addVertex("c");
 g.addVertex("d");
-g.addEdge("a","c");
+g.addVertex("e");
+g.addVertex("f");
 g.addEdge("a","b");
-g.addEdge("c","d");
+g.addEdge("a","c");
+g.addEdge("b","d");
+g.addEdge("c","e");
+g.addEdge("d","e");
+g.addEdge("d","f");
+g.addEdge("e","f");
 console.log(g)
 
 
 // DepthFirst Recursion
-const depthFirstRecursion = function( graph, src, print=false) {
+const depthFirstRecursionPrint = function( graph, src, print=false) {
     let localPrint = print;
     if(localPrint === true) {console.log(src)};
     for(let neighbor of graph[src]){
-        this.depthFirstRecursion(graph, neighbor, lcoalPrint);
+        this.depthFirstRecursionPrint(graph, neighbor, localPrint);
     }
 }
 
 // DepthFirst Iteration
-const depthFirstIteration = function (graph, src, print=false){
+const depthFirstIterPrint = function (graph, src, print=false){
     const stack = [src];
     while(stack.length > 0 ){
         const current = stack.pop();
