@@ -14,8 +14,27 @@ const reverseInplace = function (string) {
 }
 // reverseInplace("watch")
 
-
-////// MEMOIZE 
+const maxStockProfit = function (pricesArr) {
+    let maxProfit = -1;
+    let buyPrice = 0;
+    let sellPrice = 0;
+    let nextBuyPrice =true;
+    for (var i = 0; i< pricesArr.length;i++){
+        if(nextBuyPrice){ 
+            buyPrice = pricesArr[i]
+        } 
+        sellPrice = pricesArr[i+1]
+        if(sellPrice<buyPrice) nextBuyPrice=true;
+        else{
+            let tempProfit = sellPrice-buyPrice;
+            if(tempProfit>maxProfit) maxProfit = tempProfit;
+            nextBuyPrice = false;
+        }
+    }
+    return maxProfit;
+}
+console.log(maxStockProfit([23,24,22,26,23,20,25]))
+    ////// MEMOIZE 
 //   adds 10 to provided value and takes it from cache if it was already calculated.
 
 const memoizeAdd = () => {
@@ -223,26 +242,33 @@ const bubbleSort = (arr, num) => {
 }
 // console.log(arrUnsorted+"...>> "+bubbleSort(arrUnsorted))
 
-const mergeSort = function(arr) {
-    if (arr.length < 2) return arr;  // BASE CASE
-    let midIndex = Math.floor(arr.length/2);
-    let firstHalf = arr.slice(0,midIndex);
-    let secondHalf = arr.slice(midIndex);
-    return merge(mergeSort(firstHalf), mergeSort(secondHalf)); // split recursion
+function mergeSort(arr) {
+    if (arr.length<2) return arr; // base case
+    let midIdx = Math.floor(arr.length/2);
+    let left = arr.slice(0,midIdx);
+    let right = arr.splice(midIdx,arr.length);
+    return merge(mergeSort(left), mergeSort(right));
 }
-const merge = function (arr1, arr2) {
+function merge(arrL, arrR) {
     let result = [];
-    while(arr1.length && arr2.length) {
-        let minElement;
-        if(arr1[0]<arr2[0]) minElement = arr1.shift()
-        else minElement = arr2.shift()
+    while (arrL.length && arrR.length) { // after both shifted off 
+        let minElement 
+        if(arrL[0]<arrR[0]){
+            minElement = arrL.shift();
+        } else {
+            minElement = arrR.shift()
+        }
         result.push(minElement)
     }
-    if (arr1.length) result = result.concat(arr1);
-    else result = result.concat(arr2);
-    return result;
+    if(arrL.length) {
+        result = result.concat(arrL)  
+    } else {
+        result = result.concat(arrR)
+    }
+    return result; 
 }
 console.log(mergeSort([34,23,11,2,333]))
+console.log(mergeSort([34,23,11,2]))
 
 ////// GRID  ////////////
 const gridX = [
@@ -331,26 +357,7 @@ const copyGrid = (grid) => {
      ]
 shiftGrid(gridSorted)
 
-// DepthFirst Recursion
-const depthFirstRecursion = function( graph, src, print=false) {
-    let localPrint = print;
-    if(localPrint === true) {console.log(src)};
-    for(let neighbor of graph[src]){
-        this.depthFirstRecursion(graph, neighbor, lcoalPrint);
-    }
-}
-
-// DepthFirst Iteration
-const depthFirstIteration = function (graph, src, print=false){
-    const stack = [src];
-    while(stack.length > 0 ){
-        const current = stack.pop();
-        if(print === true) {console.log(current)}
-        for (let neighbor of graph[current]) {
-            stack.push(neighbor);
-        }
-    }
-}
+ 
 /////////////////// MISCELLANEOUS //////////////////////
 
 ////// Chaining

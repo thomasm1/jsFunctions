@@ -244,3 +244,10 @@ console.log(myTrie.isWord('brat'));
 console.log(myTrie.isWord('dorf'));
 
 
+('sense');
+console.log(myTrie.IsWord('doll'));
+console.log(myTrie.IsWord('dor'));
+console.log(myTrie.IsWord('dorf'));('sense');
+console.log(myTrie.IsWord('doll'));
+console.log(myTrie.IsWord('dor'));
+console.log(myTrie.IsWord('dorf'));
