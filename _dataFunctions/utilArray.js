@@ -1,4 +1,35 @@
+ 
+// Sufficient words in paragraph
+const ransomNote = function (notetext, availText) {
+    let noteArray = notetext.split(' ');
+    let availArray = availText.split(' ');
+    let mapper = {}
+    availArray.forEach((word) => {
+        if (!mapper[word]) {
+            mapper[word] = 0;
+        }   
+        mapper[word]++; // mapping available's count
+        })
+    console.log(availArray, noteArray, mapper)
+    let possible = true;
+    noteArray.forEach((word)=>{
+        if(mapper[word]) { 
+            mapper[word]--;
+            if(mapper[word]<0) possible = false;
+        } else {
+        possible = false;
+        }   
+    })
+    return possible
+}
+console.log(ransomNote('I know a cat', 'where there is a cat in the world and there am I'))
 
+// Flatten 2d arrays 
+let array2d = [ [1,2],[3,4,5],[6,7,8]] 
+const flatArray = array2d.reduce((accumulator, current) => {
+    return accumulator.concat(current);
+}) 
+console.log(flatArray)
 
 const reverseInplace = function (string) {
     // let arr = string.split(""); // [w,a,t,c,h]
@@ -8,7 +39,8 @@ const reverseInplace = function (string) {
         arr[i] = arr[arr.length - 1 - i]  //  temp lose first
         arr[arr.length - 1 - i] = temp; // rebuild from back
     }
-    let reverse = arr.join("")
+    let5
+     reverse = arr.join("")
     console.log(reverse)
     return reverse
 }
@@ -34,12 +66,13 @@ const maxStockProfit = function (pricesArr) {
     return maxProfit;
 }
 console.log(maxStockProfit([23,24,22,26,23,20,25]))
-    ////// MEMOIZE 
+
+////// MEMOIZE 
 //   adds 10 to provided value and takes it from cache if it was already calculated.
 
 const memoizeAdd = () => {
     let cache = {}
-
+    
     return value => {
         if (value in cache) {
             console.log("fetching from cache");
@@ -70,7 +103,7 @@ const fibMemo = function (position, cache) {
             cache[position] = fibMemo(position - 1, cache) + fibMemo(position - 2, cache);
         }
     }
-
+    
     return cache[position]
 }
 // console.log(   fibMemo(20) )
@@ -122,12 +155,14 @@ const counter = closure();
 console.dir(counter.getValue, { color: true })
 
 
+
+
 ////// Currying  
 let weirdNum = '000023.456'
 const priceDiscount =  (price) => {
     return (discount) =>  {
         if(!isNaN(price) && price>0) {
-        price = Number(parseFloat(price)).toFixed(2);
+            price = Number(parseFloat(price)).toFixed(2);
             if(!isNaN(discount) && discount<1 && discount>0){
                 return Number(discount * price).toFixed(2);
             }
@@ -140,7 +175,7 @@ const curry = function (fn) {
     var clarity = fn.length;
     return function f1(...args) {
         if(args.length >= clarity){
-        return fn(...args);
+            return fn(...args);
     } else {
         return function f2(...moreArgs) {
             let newArgs = args.concat(moreArgs);
@@ -161,10 +196,10 @@ console.log(getIds([{id:1,id:2}]))
 
 ////// BIND 
 // let coord = {
-//     x:23,y:44
-// }
-// let count = function() { 
-//     return `${this.x},${this.y}`
+    //     x:23,y:44
+    // }
+    // let count = function() { 
+        //     return `${this.x},${this.y}`
 // }
 // count() // NaN for
 // let boundFunc = count.bind(coord)
@@ -208,67 +243,50 @@ const shallowCompare = (source, target) => {
 console.log(shallowCompare([1],[1])) 
 console.log(shallowCompare({a:1},{a:1})) 
 
+//// ITERABLES
+let array = [4,5];
+let itr = array[Symbol.iterator]();
+console.log(itr.next())   // Returns Object {value:4, done:false }
+console.log(itr.next())   // Returns Object {value:5, done:false }
+console.log(itr.next())   // Returns Object {value:undefined, done:true }
 
-
-////// Binary Search
-let arrSorted =[1,2,3,4,5,6,7,8]
-const binarySearch = (arr, num) => {
-    let midIndex = Math.floor(arr.length/2); 
-    if (num ===arr[midIndex]) return true;
-    if (num < arr[midIndex] && arr.length>1) {
-        return binarySearch(arr.splice(0,midIndex), num)
-    } 
-    else if (num > arr[midIndex] && arr.length>1) {
-        return binarySearch(arr.splice(midIndex,arr.length), num)
-    }
-    else return false
-}
-// console.log("binarySearch: "+binarySearch(arrSorted,1))
-
-////// BubbleSort
-let arrUnsorted =[1,5,8,2,3,4,6,7]
-const bubbleSort = (arr, num) => {
-
-    for(let i=arr.length;i>0;i--){
-        for(let j = 0;j<i;j++){
-            if(arr[j]>arr[j+1]){
-                let temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+let obj = {
+    start:10, 
+    end:15,
+    [Symbol.iterator](){ 
+        return {
+            next(){
+                if(obj.start<=obj.end){
+                    return {value:obj.start++,done:false}
+                } else { 
+                    return {done:true}
+                }
             }
         }
     }
-    return arr;
 }
-// console.log(arrUnsorted+"...>> "+bubbleSort(arrUnsorted))
+for (let x of obj){ // 
+    console.log(x)
+} 
 
-function mergeSort(arr) {
-    if (arr.length<2) return arr; // base case
-    let midIdx = Math.floor(arr.length/2);
-    let left = arr.slice(0,midIdx);
-    let right = arr.splice(midIdx,arr.length);
-    return merge(mergeSort(left), mergeSort(right));
+//// GENERATORS 
+const generatorFunc = function* (){ //Asterisk
+    console.log("start");
+    yield;  // <== next() method will start the execution until the yield operator
+    console.log("middle");
+    yield; /// <== yield can return any value;
+    console.log("end");
+    yield;
 }
-function merge(arrL, arrR) {
-    let result = [];
-    while (arrL.length && arrR.length) { // after both shifted off 
-        let minElement 
-        if(arrL[0]<arrR[0]){
-            minElement = arrL.shift();
-        } else {
-            minElement = arrR.shift()
-        }
-        result.push(minElement)
-    }
-    if(arrL.length) {
-        result = result.concat(arrL)  
-    } else {
-        result = result.concat(arrR)
-    }
-    return result; 
+const genObject = generatorFunc();
+console.log(genObject.next()); // <== next() returns 2 keys: 1.)value, 2.) boolean (showing next status)
+console.log(genObject.next());
+console.log(genObject.next()); 
+
+// Geneartors (these are iterable)
+for (let o of genObject){
+    console.log(o)
 }
-console.log(mergeSort([34,23,11,2,333]))
-console.log(mergeSort([34,23,11,2]))
 
 ////// GRID  ////////////
 const gridX = [

@@ -192,88 +192,78 @@ pq.enqueue("less nonemergency", 4)
 console.log(pq)
 
 
-// //////////// TRIE   <===========Not returning correctly
-// // trie data = structure  Prefix tree used to store associative structures
-// class Node {
-// 	constructor() {
-// 		this.keys = new Map();
-// 		this.end = false;
-// 		this.setEnd = function() {
-// 			this.end = true;
-// 		}
-// 		this.isEnd = function() {
-// 			return this.end;
-// 		};
-// 	};
-// }
+//////////// TRIE   
+// trie data = structure  Prefix tree used to store associative structures
+class TrieNode {
+	constructor() {
+		this.keys = new Map();
+		this.end = false;
+		this.setEnd = () => this.end = true; 
+		this.isEnd  = () =>  this.end; 
+	};
+}
 
-//  class Trie  {
-// 	constructor() { 
-// 	this.root = new Node(); 
-// 	}
-// 	 add (inputArr, node = this.root) {  // if pass in node, it will use. --- If not, it will use this.root
-// 		if (inputArr.length == 0){
-// 			node.setEnd();
-// 			return;
-// 		} else if (!node.keys.has(inputArr[0])) {  // first letter not there; there are more letters, not yet at end of word
-// 			node.keys.set(inputArr[0], new Node());    // if not, here we'll set it with method input[0] first letter. 
-// 			return this.add(inputArr.substr(1), node.keys.get(inputArr[0])); // every letter after the first letter, than pass in node just created (node with letter 'B')
-// 		} else { 
-// 			return this.add(inputArr.substr(1), node.keys.get(inputArr[0]));  // if there was another of same letter (if already in try, not going start from [1]... rather new input substring)
-// 		};
-// 	};
-//     isWord(word) {			// checking if word in.. (doesn't need to check every word, only first letter, so faster indexing)
-// 		let node = this.root; 		
-// 		while (word.length > 1) {    //////////// TRIE   <===========Not returning correctly
-// 			if (!node.keys.has(word[0]))  {
-// 				return false;
-// 			} else {
-// 				node = node.keys.get(word[0]);
-// 				word = word.substr(1);
-// 				return true;
-// 				};
-// 		};
-// 	}
-//  	print() {   // helper function - create array of every word and searches 
-// 	let words = new Array();
-// 	let search = function(node, string) {
-// 		if (node.keys.size != 0) {
-// 			for (let letter of node.keys.keys()) {
-// 				search(node.keys.get(letter), string.concat(letter));
-// 			};
-// 			if (node.isEnd()) {
-// 				words.push(string);
-// 			};
-// 		} else {
-// 			string.length > 0 ? words.push(string) : undefined;
-// 			return;
-// 		};
-// 	};
-// 	search(this.root, new String());
-// 	return words.length > 0 ? words : null;
-// 	};		
-// };  
+ class Trie  {
+	constructor() { 
+	this.root = new TrieNode(); 
+	}
+	 add (inputArr, node = this.root) {  // if pass in node, it will use. --- If not, it will use this.root
+		if (inputArr.length == 0){
+			node.setEnd();
+			return;
+		} else if (!node.keys.has(inputArr[0])) {  // first letter not there; there are more letters, not yet at end of word
+			node.keys.set(inputArr[0], new TrieNode());    // if not, here we'll set it with method input[0] first letter. 
+			return this.add(inputArr.substr(1), node.keys.get(inputArr[0])); // every letter after the first letter, than pass in node just created (node with letter 'B')
+		} else { 
+			return this.add(inputArr.substr(1), node.keys.get(inputArr[0]));  // if there was another of same letter (if already in try, not going start from [1]... rather new input substring)
+		};
+	};
+    isWord(word) {			// checking if word in.. (doesn't need to check every word, only first letter, so faster indexing)
+		let node = this.root; 		
+		while (word.length > 1) {    //////////// TRIE   <===========Not returning correctly
+			if (!node.keys.has(word[0]))  {
+				return false;
+			} else {
+				node = node.keys.get(word[0]);
+				word = word.substr(1); 
+				};
+		};
+		return node.keys.has(word) && node.keys.get(word).isEnd()? true: false;
+	}
+ 	print() {   // helper function - create array of every word and searches 
+	let words = new Array();
+	let search = function(node, string) {
+		if (node.keys.size != 0) {
+			for (let letter of node.keys.keys()) {
+				search(node.keys.get(letter), string.concat(letter));
+			};
+			if (node.isEnd()) {
+				words.push(string);
+			};
+		} else {
+			string.length > 0 ? words.push(string) : undefined;
+			return;
+		};
+	};
+	search(this.root, new String());
+	return words.length > 0 ? words : null;
+	};		
+};  
 
-// let myTrie = new Trie()
-// myTrie.add('ball');
-// myTrie.add('bat');
-// myTrie.add('doll');
-// myTrie.add('do');
-// myTrie.add('dorm');
-// myTrie.add('send');
-// myTrie.add('sense'); 
-// // myTrie.print()
-// console.log(myTrie.isWord('xoll'));
-// console.log(myTrie.isWord('doll'));
-// console.log(myTrie.isWord('dor'));
-// console.log(myTrie.isWord('brat'));
-// console.log(myTrie.isWord('dorf'));
+let myTrie = new Trie()
+myTrie.add('ball');
+myTrie.add('bat');
+myTrie.add('doll');
+myTrie.add('do');
+myTrie.add('dorm');
+myTrie.add('send');
+myTrie.add('sense'); 
+// myTrie.print()
+console.log(myTrie.isWord('xoll'));
+console.log(myTrie.isWord('doll'));
+console.log(myTrie.isWord('dor'));
+console.log(myTrie.isWord('brat'));
+console.log(myTrie.isWord('dorf'));
+console.log(myTrie.print())
 
-
-// ('sense');
-// console.log(myTrie.IsWord('doll'));
-// console.log(myTrie.IsWord('dor'));
-// console.log(myTrie.IsWord('dorf'));('sense');
-// console.log(myTrie.IsWord('doll'));
-// console.log(myTrie.IsWord('dor'));
-// console.log(myTrie.IsWord('dorf'));
+ 
