@@ -1,4 +1,20 @@
 
+class GraphWeighted extends Graph {
+    constructor(){
+        this.adjacencyList = {};
+    }
+    addVertexWeight(vtx) {
+        if (!this.adjacencyList[vtx]) this.adjacencyList[vtx] = []; 
+    } 
+    addEdge(vtx1, vtx2, weight) {
+        this.adjacencyList[vtx1].push({node:vtx2, weight:weight});
+        this.adjacencyList[vtx2].push({node:vtx1, weight:weight});
+    }
+    removeEdge(vtx1,vtx2) {
+        this.adjacencyList[vtx1]= this.adjacencyList[vtx1].filter( (v)=>v.node !== vtx2.node );
+        this.adjacencyList[vtx2]= this.adjacencyList[vtx2].filter( (v)=>v.node !== vtx1.node );
+    }  
+}
 class Graph {
     constructor() {
         this.adjacencyList = {};

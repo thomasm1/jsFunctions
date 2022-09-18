@@ -1,5 +1,10 @@
-
-
+const $$$$ = (tag) => {
+   let elems =  document.querySelector(tag);
+    if (tag.length == 0) return null;
+    if (elems.length == 1) return elems[0]
+    if (tag.length >1)     return elems
+    } 
+ 
 const reverseInplace = function (string) {
     // let arr = string.split(""); // [w,a,t,c,h]
     let arr = [...string] //  [w,a,t,c,h]
@@ -97,6 +102,50 @@ const sieve = (num) => {
 // console.log(sieve(19))
 
 
+let nCount = 0;
+let throttleCount = 0;
+let debounceCount = 0;
+let nCountDiv = $$$$("#nCountDiv")
+let throttleCountDiv =$$$$("#throttleCountDiv")
+let debounceCountDiv =$$$$("#debounceCountDiv")
+
+const counterId = $$$$("#counterId")
+ 
+const  normalCounter = function() {
+    nCount++;
+    nCountDiv.innerHTML = `nCount: ${nCount}`;
+}
+let fireThrottle = true;
+
+////// THROTTLE
+const  throttleCounter = function() {
+   if (fireThrottle == true) {
+    throttleCount++
+    throttleCountDiv.innerHTML = `throttleCount: ${throttleCount}`;
+    fireThrottle = false;
+    setTimeout(function(){
+        fireThrottle = true;
+    },500)
+   }
+}
+
+
+///// DEBOUNCE
+let debounceTimer
+const debounceCounter = function(){
+   window.clearTimeout(debounceTimer);
+   debounceTimer = setTimeout(function() {
+       debounceCount++
+       debounceCountDiv.innerHTML = `debounceCount: ${debounceCount}`;
+   },500)
+}
+
+counterId.addEventListener("mousemove", function(){
+    normalCounter()
+    throttleCounter() 
+    debounceCounter()
+} )
+ 
 ////// Closure
 const getSecret = () => {
     const secret = "my secret"
@@ -375,6 +424,11 @@ const arr = []
 const filterMapper = (users) => users.filter(user => user.isActive).map(user => "name: " + user.name);
 // console.log(filterMapper(users));
 
+const find = (users) => users.find((user) => user.age >= 21)  // {id:1 ...} first only
+//  findIndex();  // like indexOf() but is testing function 
+                  // like includes()  ""
+                  // like some()        ""
+
 users.sort((user1, user2) => user1.age < user2.age ? -1 : 1) // ASC
 // console.log(users)
 let arr1a = users.filter(user => user.isActive).map(user => user.name);
@@ -394,8 +448,50 @@ const total = arra.reduce((acc, curr) => {
 }, 10)
 console.log(total)
 
+///// RANDOM
+ 
+export function first(array, n = 1) {
+  if (n === 1) return array[0]
+  return array.filter((_, index) => index < n)
+}
 
-////// Object Mapping
+export function last(array, n = 1) {
+  if (n === 1) return array[array.length - 1]
+  return array.filter((_, index) => array.length - index <= n)
+} 
+
+export function pluck(array, key) {
+  return array.map(element => element[key])
+}
+
+export function groupBy(array, key) {
+  return array.reduce((group, element) => {
+    const keyValue = element[key]
+    return { ...group, [keyValue]: [...(group[keyValue] ?? []), element] }
+  }, {})
+}
+
+////// Object Mapping ////////////
+// dynamic object variables
+let tV = "pCode1"
+let getData = function() { }
+let obj1 = {
+    [tV]:1000,
+    pName1:"apple",
+    ['get'+'Data'] () {
+        console.log(obj.pCode1, obj.pName1);
+    }
+}
+const obj2 = Object.assign({}, obj1);
+// configuring object properties 
+const proto = Object.defineProperty({}, 'pCode3', {
+    writeable:true, 
+    configurable: true, 
+    value: 2001
+});
+const obj3 = Object.create(proto)
+
+////// TypeOf
 const typeOf2= (input) => {
     const rawObject = Object.prototype.toString.call(input).toLowerCase();
     const typeOfRegex = /\[object (.*)]/g;

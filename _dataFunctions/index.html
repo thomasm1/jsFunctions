@@ -52,16 +52,23 @@
         <h3>Array Stack</h3>
         <form>
             <div class="form-group">
-
+                
                 <p id="text"></p>
                 <p id="inplace"></p>
                 <div id="stack"></div>
                 <div id="mapping"></div>
-                <script src="util.js" type="module"></script>
+              
+                <script src="utilArray.js" type="module"></script>
+<div id="counterId" height="500" width="500">
+    <h1>Throttle/debounce</h1> 
+    <p id="nCountDiv"></p> 
+    <p id="throttleCountDiv"></p> 
+    <p id="debounceCountDiv"></p>
+</div>
 
 
                 <script>
-                    /// BAD
+          
                     const $$$ = function (tag) {
                         let elems = document.querySelectorAll(tag);
                         if (elems.length === 0) return null;
