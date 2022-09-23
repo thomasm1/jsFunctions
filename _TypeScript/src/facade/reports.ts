@@ -20,4 +20,4 @@ export default class Reports {
         this.rowId = this.rowId + 1
         return true
     }
-}
+} 
