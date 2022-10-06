@@ -31,7 +31,7 @@ class Creator {
             return new ConcreteProductA()
         } else if(propertyRequest === 'b'){
             return new ConcreteProductB()
-        } else if (propertyRequest === 'c') {
+        } else     {
             return new ConcreteProductC()
         }
     }
