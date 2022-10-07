@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+var igloo_director_1 = require("./igloo-director");
+var castle_director_1 = require("./castle-director");
+var houseboat_director_1 = require("./houseboat-director");
+var igloo = igloo_director_1["default"].construct();
+var castle = castle_director_1["default"].construct();
+var houseboat = houseboat_director_1["default"].construct();
+console.log(igloo.construction());
+console.log(castle.construction());
+console.log(houseboat.construction());
