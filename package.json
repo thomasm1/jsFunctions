@@ -1,29 +1,23 @@
 {
   "name": "jsfunctions",
   "version": "1.0.0",
-  "description": "jsFunctions",
+  "description": "data-focused js functions, direct relevance to D3js Sankey/Hierarchical Data Structures\r JS FUNCTIONS:  Trie Data Structures, Stacks, Queue, Priority Queue",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jasmine"
   },
-  "type":"module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thomasm1/jsFunctions.git"
   },
-  "author": "thomasm1",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/thomasm1/jsFunctions/issues"
   },
   "homepage": "https://github.com/thomasm1/jsFunctions#readme",
   "devDependencies": {
-    "fs": "^0.0.1-security",
-    "node-fetch": "^3.2.10"
-  },
-  "keywords": [
-    "patterns",
-    "algorithms",
-    "javascript"
-  ]
+    "@types/node": "^18.8.3",
+    "jasmine": "^4.4.0"
+  }
 }

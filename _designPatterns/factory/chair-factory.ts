@@ -8,6 +8,6 @@ export default class ChairFactory {
             return new ChairBig()
         } else if(chair == 'ChairSmall') {
             return new ChairSmall()
-        }
+        }  
     }
 }
