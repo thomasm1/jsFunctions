@@ -19,5 +19,5 @@ var LocalDB = /** @class */ (function () {
     };
     return LocalDB;
 }());
-var l = new LocalDB;
-l.getPopulation("Tokyo");
+var local = new LocalDB;
+local.getPopulation("Tokyo");
