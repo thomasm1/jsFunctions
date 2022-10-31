@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/thomasm1/jsFunctions#readme",
   "devDependencies": {
-    "@types/node": "^18.11.7",
+    "@types/node": "^18.11.9",
     "jasmine": "^4.4.0"
   }
 }
