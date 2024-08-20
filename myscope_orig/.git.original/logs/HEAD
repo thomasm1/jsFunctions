@@ -1,0 +1,8 @@
+0000000000000000000000000000000000000000 c1a2f487b2e575195c075fdaa1ad6fe18ef6c701 Thomas Maestas <thomasm1.maestas@gmail.com> 1683341059 -0400	clone: from github.com:Friends-of-Groot-Society/myscope.git
+c1a2f487b2e575195c075fdaa1ad6fe18ef6c701 c1a2f487b2e575195c075fdaa1ad6fe18ef6c701 Thomas Maestas <thomasm1.maestas@gmail.com> 1683400671 -0400	checkout: moving from main to dev-tom
+c1a2f487b2e575195c075fdaa1ad6fe18ef6c701 d539ba1cfd510a7d93cd077bb3d6da5a44d635f3 Thomas Maestas <thomasm1.maestas@gmail.com> 1683400765 -0400	commit: edited: /pages/index.js; goal: api call to OpenSea, with API env key named NEXT_OPENSEA_API_KEY
+d539ba1cfd510a7d93cd077bb3d6da5a44d635f3 1414813ea1b01d4b0d302c844e605d2a48e1e60e Thomas Maestas <thomasm1.maestas@gmail.com> 1683426199 -0400	commit: README
+1414813ea1b01d4b0d302c844e605d2a48e1e60e c1a2f487b2e575195c075fdaa1ad6fe18ef6c701 Thomas Maestas <thomasm1.maestas@gmail.com> 1683426358 -0400	checkout: moving from dev-tom to main
+c1a2f487b2e575195c075fdaa1ad6fe18ef6c701 e3b1e4418daee619b1f39d5b192d1c8af21bf5c2 Thomas Maestas <thomasm1.maestas@gmail.com> 1684427171 -0400	pull origin main: Fast-forward
+e3b1e4418daee619b1f39d5b192d1c8af21bf5c2 e3b1e4418daee619b1f39d5b192d1c8af21bf5c2 Thomas Maestas <thomasm1.maestas@gmail.com> 1684428002 -0400	reset: moving to HEAD
+e3b1e4418daee619b1f39d5b192d1c8af21bf5c2 b6bc37e29e75b4d195f5a8d781f25d9d3cbd1025 Thomas Maestas <thomasm1.maestas@gmail.com> 1684428048 -0400	checkout: moving from main to b6bc37e29e75b4d195f5a8d781
