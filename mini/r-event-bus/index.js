@@ -7,11 +7,11 @@ app.use(bodyParser.json());
  
 const PORT_POSTS = 4000;
 const PORT_COMMENTS = 4001;
-const PORT_QUERY = 4002;
 const PORT_MODERATION = 4003;
-
 const PORT_BLOCKCHAIN = 9009;
-const PORT_USERS = 9000;
+
+const PORT_QUERY = 4002;
+const PORT_USERS = 9002;
 
 const PORT = 4005;
 const events = [];
