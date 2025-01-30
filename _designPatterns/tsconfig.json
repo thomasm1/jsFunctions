@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "strict": true,
-        "watch":true,
         "target":"ES5",
         "module":"CommonJS",
         "outDir":"../dist",
@@ -12,3 +11,6 @@
         "**/*.ts"
     ]
 }
+
+
+
