@@ -1,0 +1,37 @@
+{
+    "id": 10,
+    "name": "A.I.Now.",
+    "description": "AI Technology news",
+    "news": [
+        {
+            "id": 42,
+            "title": "Tech Giant Merges",
+            "url": "https://news3.com"
+        }
+    ],
+    "posts": [
+        {
+            "id": 23,
+            "did": "D1004",
+            "date": "2025-05-04",
+            "author": "Alice",
+            "monthOrder": "June",
+            "cat3": "Tech",
+            "title": "AI Breakthrough",
+            "post": "New AI breakthrough discovered...",
+            "blogcite": "https://blogsite4.com",
+            "email": "alice.user@example.com",
+            "state": "Published",
+            "wordCount": 1600,
+            "durationGoal": 8,
+            "comments": [
+                {
+                    "id": 33,
+                    "name": "TechLover",
+                    "email": "techie@example.com",
+                    "body": "Excited about AI updates!"
+                }
+            ]
+        }
+    ]
+}

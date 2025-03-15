@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: blockchain-depl
 spec:
-  replicas:
+  replicas: 1
   selector:
     matchLabels:
       app: r-blockchain
@@ -14,4 +14,17 @@ spec:
     spec:
       containers:
         - name: r-blockchain
-          image: thomasm1/r-blockchain:0.0.1
+          image: thomasm1/r-blockchain
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: blockchain-clusterip-srv
+spec:
+  selector:
+    app: blockchain
+  ports:
+    - name: blockchain
+      protocol: TCP
+      port: 9009
+      targetPort: 9009

@@ -7,7 +7,9 @@ app.use(bodyParser.json());
 
 
 const commentsByPostId = {}; 
-const PORT = 4003; 
+const MODERATION_HOST = "moderation-clusterip-srv"; // localhost
+const MODERATION_PORT = 4003; 
+const BUS_HOST = "event-bus-srv"; // localhost
 const PORT_EVENT_BUS = 4005;
 
 
@@ -17,7 +19,7 @@ app.post(`/events`, async (req, res) => {
   if (type === `CommentCreated`) {
     const status = data.content.includes(`orange`) ? `rejected` : `approved`;
 
-    await axios.post(`http://localhost:${PORT_EVENT_BUS}/events`, {
+    await axios.post(`http://${BUS_HOST}:${PORT_EVENT_BUS}/events`, {
       type: `CommentModerated`,
       data: {
         id: data.id,
@@ -32,8 +34,8 @@ app.post(`/events`, async (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
-  console.log(`⚡️[moderation]: Event Bus target: https://localhost:${PORT_EVENT_BUS}`);
+app.listen(MODERATION_PORT, () => {
+  console.log(`⚡️[moderation server]: Server is running at http://${MODERATION_HOST}:${MODERATION_PORT}`);
+  console.log(`⚡️ Event Bus target: http://${BUS_HOST}:${PORT_EVENT_BUS}`);
 });
  

@@ -8,7 +8,10 @@ app.use(bodyParser.json());
 app.use(cors());
  
 const posts = {};
-const PORT = 4002; 
+const HANDLER_HOST = "query-srv"; // localhost
+const HANDLER_PORT = 4004; 
+
+const BUS_HOST = "event-bus-srv"; // localhost
 const PORT_EVENT_BUS = 4005;
 
 const handleEvent = (type, data) => { 
@@ -50,11 +53,11 @@ app.post('/events', (req, res) => {
 });
 
  
-app.listen(PORT, async () => { 
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
-  console.log(`⚡️[query-service]: Event Bus target: https://localhost:${PORT_EVENT_BUS}`);
+app.listen(HANDLER_PORT, async () => { 
+  console.log(`⚡️[Event-Handler server]: is running at https://${HANDLER_HOST}:${HANDLER_PORT}`);
+  console.log(`⚡️  Event Bus target: https://${BUS_HOST}:${PORT_EVENT_BUS}`);
   try {
-    const res = await axios.get(`http://localhost:${PORT_EVENT_BUS}/events`);
+    const res = await axios.get(`http://${BUS_HOST}:${PORT_EVENT_BUS}/events`);
 
     for (let event of res.data) {
       console.log("Processing event:", event.type);

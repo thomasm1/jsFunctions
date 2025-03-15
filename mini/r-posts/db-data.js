@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.NFT_REFS = exports.POSTS = exports.USERS = exports.LOGIN = void 0;
 exports.LOGIN = [
     { email: "thomas1.maestas@gmail.com",
@@ -70,7 +70,7 @@ exports.USERS = [
                     ownerId: 0,
                     chainId: 43114
                 }
-            ]
+            ],
         } },
     { "1": {
             id: "1",
@@ -103,7 +103,7 @@ exports.USERS = [
                     ownerId: 1,
                     chainId: 1
                 },
-            ]
+            ],
         } },
     { "2": {
             id: "2",
@@ -136,7 +136,7 @@ exports.USERS = [
                     ownerId: 2,
                     chainId: 1
                 },
-            ]
+            ],
         } },
 ];
 /////////// POSTS //////////////////////////////////////// //////////////////////////////////////

@@ -1,0 +1,98 @@
+[
+    {
+        "id": 10,
+        "name": "A.I.Now.",
+        "description": "AI Technology news",
+        "news": [
+            {
+                "id": 42,
+                "title": "Tech Giant Merges",
+                "url": "https://news3.com"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Web Dev Affairs",
+        "description": "Web-Dev & Coding updates",
+        "news": [
+            {
+                "id": 41,
+                "title": "Health App Innovations",
+                "url": "https://news2.com"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Sociology Tomorrow!",
+        "description": "Sociology Apps & updates",
+        "news": [
+            {
+                "id": 43,
+                "title": "Local Team Wins",
+                "url": "https://news4.com"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Quantum Data",
+        "description": "Quantum news & tips",
+        "news": [
+            {
+                "id": 44,
+                "title": "Finance Reforms",
+                "url": "https://news5.com"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Musing Blockchain",
+        "description": " Blockchain Cryptocurrency insights",
+        "news": [
+            {
+                "id": 40,
+                "title": "Crypto Market Surges",
+                "url": "https://news1.com"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "name": "A.I.Now.",
+        "description": "A.I.Now. as category",
+        "news": []
+    },
+    {
+        "id": 16,
+        "name": "h",
+        "description": "h",
+        "news": []
+    },
+    {
+        "id": 17,
+        "name": "h",
+        "description": "h",
+        "news": []
+    },
+    {
+        "id": 18,
+        "name": "h",
+        "description": "h",
+        "news": []
+    },
+    {
+        "id": 19,
+        "name": "h",
+        "description": "h",
+        "news": []
+    },
+    {
+        "id": 20,
+        "name": "h",
+        "description": "h",
+        "news": []
+    }
+]

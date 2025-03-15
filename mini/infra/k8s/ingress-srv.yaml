@@ -10,20 +10,20 @@ spec:
     - host: ourdailytech.net
       http:
         paths:
-          - path: /posts/create
+          - path: /posts
             pathType: Prefix
             backend:
               service:
                 name: posts-clusterip-srv
                 port:
                   number: 4000
-          - path: /posts
+          - path: /events
             pathType: Prefix
             backend:
               service:
                 name: query-srv
                 port:
-                  number: 4002
+                  number: 4004
           - path: /posts/?(.*)/comments
             pathType: Prefix
             backend:

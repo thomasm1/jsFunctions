@@ -7,7 +7,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: thomasm1/client-react
+    - image: thomasm1/r-client
       context: client
       sync:
         manual:
@@ -19,7 +19,7 @@ build:
       context: blockchain
       sync:
         manual:
-          - src: src/**/*.js
+          - src: "*.js"
             dest: .
       docker:
         dockerfile: Dockerfile
@@ -63,7 +63,7 @@ build:
             dest: .
       docker:
         dockerfile: Dockerfile
-    - image: thomasm1/r-query
+    - image: thomasm1/r-event-handler
       context: query
       sync:
         manual:

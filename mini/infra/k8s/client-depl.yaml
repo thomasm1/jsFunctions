@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: thomasm1/client-react
+          image: thomasm1/r-client
 ---
 apiVersion: v1
 kind: Service

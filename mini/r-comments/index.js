@@ -9,7 +9,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const commentsByPostId = {}; 
-const PORT = 4001; 
+const COMMENTS_HOST = "comments-clusterip-srv"; // localhost
+const COMMENTS_PORT = 4001; 
+
+const BUS_HOST = "event-bus-srv"; // localhost
 const PORT_EVENT_BUS = 4005;
 
 app.get(`/posts/:id/comments`, (req, res) => {
@@ -26,7 +29,7 @@ app.post(`/posts/:id/comments`, async (req, res) => {
 
   commentsByPostId[req.params.id] = comments;
 
-  await axios.post(`http://event-bus-srv:${PORT_EVENT_BUS}/events`, {
+  await axios.post(`http://${BUS_HOST}:${PORT_EVENT_BUS}/events`, {
     type: `CommentCreated`,
     data: {
       id: commentId,
@@ -55,7 +58,7 @@ app.post(`/events`, async (req, res) => {
     });
     comment.status = status;
 
-    await axios.post(`http://event-bus-srv:${PORT_EVENT_BUS}/events`, {
+    await axios.post(`http://${BUS_HOST}:${PORT_EVENT_BUS}/events`, {
       type: "CommentUpdated",
       data: {
         id,
@@ -69,7 +72,7 @@ app.post(`/events`, async (req, res) => {
 });
  
 
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
-  console.log(`⚡️[comments]: Event Bus target: https://localhost:${PORT_EVENT_BUS}`);
+app.listen(COMMENTS_PORT, () => {
+  console.log(`⚡️[comments server]: Server is running at https://${COMMENTS_HOST}:${COMMENTS_PORT}`);
+  console.log(`⚡️ Event Bus target: https://${BUS_HOST}:${PORT_EVENT_BUS}`);
 });

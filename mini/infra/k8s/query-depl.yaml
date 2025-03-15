@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: query
-          image: thomasm1/r-query
+          image: thomasm1/r-event-handler
 ---
 apiVersion: v1
 kind: Service
@@ -26,5 +26,5 @@ spec:
   ports:
     - name: query
       protocol: TCP
-      port: 4002
-      targetPort: 4002
+      port: 4004
+      targetPort: 4004

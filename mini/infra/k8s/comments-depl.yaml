@@ -19,7 +19,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: comments-srv
+  name: comments-clusterip-srv
 spec:
   selector:
     app: comments

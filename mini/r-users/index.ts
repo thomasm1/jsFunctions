@@ -1,12 +1,11 @@
-import * as express from 'express';
-import { Express, Request, Response } from 'express'; 
+import express from 'express';
+import { Application,  Request, Response } from 'express'; 
 import { USERS } from "./db-data";
-import {randomBytes} from 'crypto'; 
+import {randomBytes} from 'crypto';  
 import axios  from 'axios';
 import cors from 'cors'; 
- 
 
-const app: Express = express();
+const app: Application = express();
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -16,8 +15,17 @@ app.use(function (req, res, next) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); 
   
-const users = USERS; // {};
-const PORT = 9002; 
+interface User {
+  id: string;
+  email?: string;
+  password?: string;
+}
+
+const users: { [key: string]: User } = USERS; // {};
+const USERS_HOST = "users-clusterip-srv"; // localhost
+const USERS_PORT = 3999;  
+
+const BUS_HOST = "event-bus-srv"; // localhost
 const PORT_EVENT_BUS = 4005;
 
 // #1
@@ -44,7 +52,7 @@ const userRegister = async (req: Request, res: Response) => {
     id 
   };
 
-  await axios.post(`http://localhost:${PORT_EVENT_BUS}/events`, {
+  await axios.post(`http://${BUS_HOST}:${PORT_EVENT_BUS}/events`, {
     type: "UserCreated",
     data: {
       id,
@@ -83,8 +91,8 @@ app.post(`/events`, (req, res) => {
   res.send({});
 });
 
-app.listen(PORT, () => {
-  console.log(`⚡️[*users* server]: Server is running at https://localhost:${PORT}`);
-  console.log(`⚡️[event-bus]: Event Bus target: https://localhost:${PORT_EVENT_BUS}`);
+app.listen(USERS_PORT, () => {
+  console.log(`⚡️[*users* server]: Server is running at https://${USERS_HOST}:${USERS_PORT}`);
+  console.log(`⚡️  Event Bus target: http://${BUS_HOST}:${PORT_EVENT_BUS}`);
 });
  

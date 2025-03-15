@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express from 'express';
 import { Application,  Request, Response } from 'express';
 import { POSTS } from "./db-data";
 import {randomBytes} from 'crypto';  
@@ -16,10 +16,19 @@ app.use(function (req, res, next) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); 
 
-let posts = POSTS;// {};
-const PORT = 4000; 
-const PORT_EVENT_BUS = 4005;
+interface Post {
+  id: string;
+  title: string;
+}
 
+let posts: { [key: string]: Post } = POSTS;
+ 
+
+const POST_HOST = "posts-clusterip-srv"; // localhost
+const POST_PORT = 4000; 
+
+const BUS_HOST = "event-bus-srv"; // localhost
+const PORT_EVENT_BUS = 4005;
 
 // #1 //
 const getPosts = (req: Request, res: Response) => {
@@ -48,7 +57,7 @@ const getPosts = (req: Request, res: Response) => {
     id, title
   };
 
-  await axios.post(`http://localhost:${PORT_EVENT_BUS}/events`, {
+  await axios.post(`http://${BUS_HOST}:${PORT_EVENT_BUS}/events`, {
     type: "PostCreated",
     data: {
       id, title
@@ -61,7 +70,7 @@ const getPosts = (req: Request, res: Response) => {
 
 app.route('/posts').get(getPosts);  // #1 //
 app.route(`/posts/:id`).get(getPostById); // #2 // 
-app.route(`/posts`).post(PostCreated); // #3 //
+app.route(`/posts/create`).post(PostCreated); // #3 //
 
 
 // #5
@@ -71,7 +80,7 @@ app.post(`/events`,(req: Request, res: Response) => {
   res.send({});
 });
 
-app.listen(PORT, () => {
-  console.log(`⚡️[*posts* server]: Server is running at https://localhost:${PORT}`);
-  console.log(`⚡️[event-bus]: Event Bus target: https://localhost:${PORT_EVENT_BUS}`);
+app.listen(POST_PORT, () => {
+  console.log(`⚡️[*posts* server]: Server is running at http://${POST_HOST}:${POST_PORT}`);
+  console.log(`⚡️  Event Bus target: http://${BUS_HOST}:${PORT_EVENT_BUS}`);
 });

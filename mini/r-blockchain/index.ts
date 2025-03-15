@@ -16,8 +16,17 @@ app.use(function (req, res, next) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); 
 
-let blockchain =   {};
-const PORT = 9009; 
+interface Block {
+  id: string;
+  title: string;
+}
+
+let blockchain: { [key: string]: Block } = {};
+
+const BLOCKCHAIN_HOST = "blockchain-clusterip-srv";
+const BLOCKCHAIN_PORT = 9009; 
+
+const BUS_HOST = "event-bus-srv"; // localhost
 const PORT_EVENT_BUS = 4005;
 
 
@@ -32,7 +41,7 @@ const getBlockchain = (req: Request, res: Response) => {
  const getBlockById = (req: Request, res: Response) => {
 
   const blockId = req.params["id"];
-  const blockchain: BLOCKCHAIN = Object.values(BLOCKCHAIN);
+  const blockchain:any  = Object.values(BLOCKCHAIN);
   const block = blockchain.find((block: { id: string; }) => block.id == blockId);
 
   res.status(200).json(block);
@@ -48,7 +57,7 @@ const getBlockchain = (req: Request, res: Response) => {
     id, title
   };
 
-  await axios.post(`http://localhost:${PORT_EVENT_BUS}/events`, {
+  await axios.post(`http://${BUS_HOST}:${PORT_EVENT_BUS}/events`, {
     type: "BlockMinted",
     data: {
       id, title
@@ -71,7 +80,7 @@ app.post(`/events`,(req: Request, res: Response) => {
   res.send({});
 });
 
-app.listen(PORT, () => {
-  console.log(`⚡️[*blockchain* server]: Server is running at https://localhost:${PORT}`);
-  console.log(`⚡️[event-bus]: Event Bus target: https://localhost:${PORT_EVENT_BUS}`);
+app.listen(BLOCKCHAIN_PORT, () => {
+  console.log(`⚡️[*blockchain* server]: Server is running at https://${BLOCKCHAIN_HOST}:${BLOCKCHAIN_PORT}`);
+  console.log(`⚡️[event-bus]: Event Bus target: https://${BUS_HOST}:${PORT_EVENT_BUS}`);
 });

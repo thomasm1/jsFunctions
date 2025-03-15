@@ -1,0 +1,177 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: "Gill Sans", sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  header {
+    background: #03a9f4;
+    text-align: center;
+  }
+  
+  .app-header {
+    background-color: #e2eeff;
+    color: #18264d;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .header-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #150e62;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: #fff;
+  }
+  
+  .app-main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  h3,h4, h5, h6 {
+    text-align: center;
+    color: rgb(43, 0, 255);
+  }
+  
+  /* Dashboard styling (you can expand this) */
+  .dashboard-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ... existing styles ... */
+  
+  /* PostItem specific styles */
+  .post-item-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .post-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .post-title {
+    color: darkblue;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+  }
+  
+  .post-meta {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  .post-author,
+  .post-date {
+    margin-right: 15px;
+  }
+  
+  .post-body {
+    margin-bottom: 20px;
+  }
+  
+  .post-content {
+    line-height: 1.6;
+    color: #555;
+    text-decoration: none;
+  }
+  
+  .post-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+    gap: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+  }
+  
+  .detail-item {
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  
+  .detail-label {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #333;
+  }
+  
+  .logo {
+    color: #fff;
+    font-family: "Gill Sans", sans-serif;
+    text-align: center;
+  }
+  
+  header input {
+    font-size: 20px;
+    margin: 20px 0px;
+  }
+  
+  .news_item {
+    padding: 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid grey;
+  }
+  
+  /* NewsList Specific Styles */
+  .news-list-container {
+    margin-bottom: 20px;
+  }
+  /* moved the content to the post-item-container*/
+  /* .news-list-container h3 {
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+  } */
+  
+  .news-list-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .news-list-container li {
+    margin-bottom: 5px;
+  }
+  
+  .news-list-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .news-list-container a:hover {
+    text-decoration: underline;
+  }
+  /* style for the list item in the news list */
+  .news-item-li {
+    padding: 10px;
+  }
+  
