@@ -36,7 +36,7 @@ const NewsAdd = ({ categorySelected }) => {
 
             // PUT request to the CORRECT endpoint with the CORRECT data
             await axios.put(
-              `${API_BASE_URL}/categories`, // Correct URL!
+              `${CATEGORY_BASE_URL}/categories`, // Correct URL!
               category, // Send only the category to update
               {
                 headers: {

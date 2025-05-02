@@ -1,0 +1,19 @@
+{
+  "name": "daily-img-mkr",
+  "version": "1.3.0",
+  "description": "daily img for blog post formatted to consistent h/w and type",
+  "main": "commands-cloud.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "thomas maestas",
+  "license": "ISC",
+  "keywords": [
+    "aws",
+    "s3",
+    "dynamodb"
+  ],
+  "dependencies": {
+    "dgram": "^1.0.1"
+  }
+}
